@@ -12,9 +12,22 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
 {
     public partial class CommonCatalogForm : Form
     {
-        public CommonCatalogForm()
+        private readonly Form _form;
+        public CommonCatalogForm(Form form)
         {
             InitializeComponent();
+
+            _form = form;
+        }
+
+        private void CommonCatalogFormLoad(object sender, EventArgs e)
+        {
+            _form.Visible = false;
+        }
+
+        private void CommonCatalogFormClosed(object sender, FormClosedEventArgs e)
+        {
+            _form.Visible = true;
         }
     }
 }

@@ -7,14 +7,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HeadphonesShop.BusinessLogic.Services.Interfaces;
+using HeadphonesShop.BusinessLogic.Services.Implementation;
+using HeadphonesShop.Common.Entities;
 
 namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
 {
     public partial class SignUpForm : Form
     {
-        public SignUpForm()
+        private readonly Form _form;
+        private readonly ISignUpService _signUpService;
+
+        private const int MAXLOGIN = 16;
+        private const int MINLOGIN = 6;
+        private const int MAXPASS = 16;
+        private const int MINPASS = 6;
+
+        public SignUpForm(Form form)
         {
             InitializeComponent();
+
+            _form = form;
+            _signUpService = new SignUpService();
+        }
+
+        private void SignUpFormLoad(object sender, EventArgs e)
+        {
+            _form.Visible = false;
+        }
+
+        private void SignUpFormClosed(object sender, FormClosedEventArgs e)
+        {
+            _form.Visible = true;
+        }
+
+        private void BackButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void RegisterButtonClick(object sender, EventArgs e)
+        {
+            var login = _loginTextBox.Text;
+            var pass = _passTextBox.Text;
+            var repass = _repassTextBox.Text;
+            if(Validate(login, pass, repass))
+            {
+                var user = new User()
+                {
+                    Login = login,
+                    Password = pass,
+                    IsAdmin = false
+                };
+                if (_signUpService.SignUp(user))
+                {
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Such user is already exists");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect input");
+            }
+        }
+
+        private bool Validate(string login, string password, string repassword)
+        {
+            return login.Length <= MAXLOGIN && 
+                login.Length >= MINLOGIN && 
+                password.Length <= MAXPASS && 
+                password.Length >= MINPASS && 
+                password == repassword;
         }
     }
 }

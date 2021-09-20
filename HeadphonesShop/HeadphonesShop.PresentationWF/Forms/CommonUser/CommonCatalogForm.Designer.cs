@@ -29,10 +29,19 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CommonCatalogForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "CommonCatalogForm";
             this.Text = "CommonCatalogForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CommonCatalogFormClosed);
+            this.Load += new System.EventHandler(this.CommonCatalogFormLoad);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

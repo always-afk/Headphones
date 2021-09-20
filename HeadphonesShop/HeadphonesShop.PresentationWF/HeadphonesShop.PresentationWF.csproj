@@ -10,4 +10,16 @@
     <Folder Include="Forms\Admin\Users\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HeadphonesShop.BusinessLogic\HeadphonesShop.BusinessLogic.csproj" />
+    <ProjectReference Include="..\HeadphonesShop.Common\HeadphonesShop.Common.csproj" />
+  </ItemGroup>
+
 </Project>
