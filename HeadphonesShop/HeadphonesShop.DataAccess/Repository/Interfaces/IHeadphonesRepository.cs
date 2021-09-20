@@ -12,6 +12,6 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         IEnumerable<Headphones> GetAllHeadphones();
         bool Add(Headphones headphones);
         void Delete(Headphones headphones);
-        void Update(IEnumerable<Headphones> headphones);
+        void Update(Headphones headphones);
     }
 }

@@ -47,9 +47,8 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Delete(Headphones headphones)
         {
-            var head = _dataMapper.ToHeadphones(headphones);
-            head = Fill(head);
-            _context.Headphones.Remove(head);
+            _context.Headphones.Remove(_context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault());
+            _context.SaveChanges();
         }
 
         public IEnumerable<Headphones> GetAllHeadphones()
@@ -63,23 +62,22 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return headphones;
         }
 
-        public void Update(IEnumerable<Headphones> headphones)
+        public void Update(Headphones headphones)
         {
-            //var dheads = new List<Models.Headphone>();
-            //foreach (var head in headphones)
+            var head = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
+            head.MinFrequency = headphones.MinFrequency;
+            head.MaxFrequency = headphones.MaxFrequency;
+            head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
+            head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
+            //head.Company = new Models.Company()
             //{
-            //    var h = _dataMapper.ToHeadphones(head);
-            //    h = Fill(h);
-            //    dheads.Add(h);
-            //}
-            foreach (var dhead in _context.Headphones)
-            {
-                if(!headphones.Any(h => h.Name == dhead.Name))
-                {
-                    _context.Headphones.Remove(dhead);
-                }
-            }
-
+            //    Name = headphones.Company.Name
+            //};
+            //head.Design = new Models.Design()
+            //{
+            //    Name = headphones.Design.Name
+            //};
+            _context.SaveChanges();
         }
 
         private Models.Headphone Fill(Models.Headphone headphone)

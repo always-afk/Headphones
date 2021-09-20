@@ -13,7 +13,8 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
         List<Company> GetAllCompanies();
         List<Design> GetAllDesigns();
         bool Add(Headphones headphones);
-        bool Update(Headphones headphones);
+        void Update(Headphones headphones);
         void Save(List<Headphones> headphones);
+        void Delete(Headphones headphones);
     }
 }

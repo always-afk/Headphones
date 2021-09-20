@@ -30,6 +30,11 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             }
         }
 
+        public void Delete(Headphones headphones)
+        {
+            _unitOfWork.HeadphonesRepository.Delete(headphones);
+        }
+
         public List<Company> GetAllCompanies()
         {
             return _unitOfWork.CompaniesRepository.GetAllCompanies().ToList();
@@ -50,9 +55,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public bool Update(Headphones headphones)
+        public void Update(Headphones headphones)
         {
-            throw new NotImplementedException();
+            _unitOfWork.HeadphonesRepository.Update(headphones);
         }
     }
 }

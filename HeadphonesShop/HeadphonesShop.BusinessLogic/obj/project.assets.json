@@ -5743,11 +5743,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+      "projectUniqueName": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
       "projectName": "HeadphonesShop.BusinessLogic",
-      "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+      "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
       "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\obj\\",
+      "outputPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5768,11 +5768,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
-              "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
+            "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
+              "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
             },
-            "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\HeadphonesShop\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj"
+            "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
+              "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj"
             }
           }
         }

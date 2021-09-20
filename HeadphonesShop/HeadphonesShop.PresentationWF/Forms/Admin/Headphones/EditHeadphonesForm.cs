@@ -53,5 +53,41 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             }
             _designComboBox.SelectedItem = _headphones.Design.Name;
         }
+
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            var minf = _minFTextBox.Text;
+            var maxf = _maxFTextBox.Text;
+            if (_nameTextBox.Text.Length > 0 && maxf.Length > 0 && minf.Length > 0 && minf.All(Char.IsDigit) && maxf.All(Char.IsDigit))
+            {
+                var max = Convert.ToDouble(maxf);
+                var min = Convert.ToDouble(minf);
+                var head = new Common.Entities.Headphones();
+                head.Name = _headphones.Name;
+                head.MinFrequency = min;
+                head.MaxFrequency = max;
+                head.Company = new Company()
+                {
+                    Name = _companyComboBox.SelectedItem.ToString()
+                };
+                head.Design = new Design()
+                {
+                    Name = _designComboBox.SelectedItem.ToString()
+                };
+
+                _headphonesService.Update(head);
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void DeleteButtonClick(object sender, EventArgs e)
+        {
+            _headphonesService.Delete(_headphones);
+            Close();
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._saveButton.TabIndex = 23;
             this._saveButton.Text = "Save";
             this._saveButton.UseVisualStyleBackColor = true;
+            this._saveButton.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // _backButton
             // 
@@ -145,6 +146,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._nameTextBox.Location = new System.Drawing.Point(288, 57);
             this._nameTextBox.MaxLength = 127;
             this._nameTextBox.Name = "_nameTextBox";
+            this._nameTextBox.ReadOnly = true;
             this._nameTextBox.Size = new System.Drawing.Size(201, 23);
             this._nameTextBox.TabIndex = 12;
             // 
@@ -156,6 +158,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._deleteButton.TabIndex = 24;
             this._deleteButton.Text = "Delete";
             this._deleteButton.UseVisualStyleBackColor = true;
+            this._deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
             // 
             // EditHeadphonesForm
             // 
