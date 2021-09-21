@@ -60,18 +60,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(IEnumerable<User> users)
         {
-            foreach(var user in users)
+            foreach(var user in _context.Users)
             {
-                var us = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault();
+                var us = users.Where(u => u.Login == user.Login).FirstOrDefault();
                 if(us is null)
                 {
-                    _context.Users.Remove(us);
+                    _context.Remove(user);
                 }
-                else
-                {
-                    us.IsAdmin = user.IsAdmin;
-                }
-                
             }
             Save();
         }

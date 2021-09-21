@@ -86,7 +86,9 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
+            _users.Add(_user);
             _usersService.Update(_users);
+            Close();
         }
     }
 }
