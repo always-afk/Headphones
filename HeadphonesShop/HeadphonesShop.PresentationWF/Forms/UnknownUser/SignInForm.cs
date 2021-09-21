@@ -56,5 +56,11 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
                 }
             }
         }
+
+        private void SignInVisibleChange(object sender, EventArgs e)
+        {
+            _loginTextBox.Text = null;
+            _passwordTextBox.Text = null;
+        }
     }
 }

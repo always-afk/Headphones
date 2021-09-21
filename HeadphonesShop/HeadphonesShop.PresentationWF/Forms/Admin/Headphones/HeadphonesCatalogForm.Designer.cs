@@ -33,6 +33,8 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._addButton = new System.Windows.Forms.Button();
             this._headphonesTable = new System.Windows.Forms.DataGridView();
             this._editButton = new System.Windows.Forms.Button();
+            this._nameTextBox = new System.Windows.Forms.TextBox();
+            this._nameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +46,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._backButton.TabIndex = 1;
             this._backButton.Text = "Back";
             this._backButton.UseVisualStyleBackColor = true;
+            this._backButton.Click += new System.EventHandler(this.BackButtonClick);
             // 
             // _addButton
             // 
@@ -78,11 +81,30 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._editButton.UseVisualStyleBackColor = true;
             this._editButton.Click += new System.EventHandler(this.EditButtonClick);
             // 
+            // _nameTextBox
+            // 
+            this._nameTextBox.Location = new System.Drawing.Point(60, 12);
+            this._nameTextBox.Name = "_nameTextBox";
+            this._nameTextBox.Size = new System.Drawing.Size(100, 23);
+            this._nameTextBox.TabIndex = 9;
+            this._nameTextBox.TextChanged += new System.EventHandler(this.NameTextBoxChanged);
+            // 
+            // _nameLabel
+            // 
+            this._nameLabel.AutoSize = true;
+            this._nameLabel.Location = new System.Drawing.Point(15, 15);
+            this._nameLabel.Name = "_nameLabel";
+            this._nameLabel.Size = new System.Drawing.Size(39, 15);
+            this._nameLabel.TabIndex = 8;
+            this._nameLabel.Text = "Name";
+            // 
             // HeadphonesCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._nameTextBox);
+            this.Controls.Add(this._nameLabel);
             this.Controls.Add(this._editButton);
             this.Controls.Add(this._headphonesTable);
             this.Controls.Add(this._addButton);
@@ -94,6 +116,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this.VisibleChanged += new System.EventHandler(this.HeadphonesCatalogForm_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -102,5 +125,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private System.Windows.Forms.Button _addButton;
         private System.Windows.Forms.DataGridView _headphonesTable;
         private System.Windows.Forms.Button _editButton;
+        private System.Windows.Forms.TextBox _nameTextBox;
+        private System.Windows.Forms.Label _nameLabel;
     }
 }

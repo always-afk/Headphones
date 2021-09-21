@@ -50,6 +50,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             // 
             this._passwordTextBox.Location = new System.Drawing.Point(149, 114);
             this._passwordTextBox.Name = "_passwordTextBox";
+            this._passwordTextBox.PasswordChar = '*';
             this._passwordTextBox.Size = new System.Drawing.Size(100, 23);
             this._passwordTextBox.TabIndex = 2;
             // 
@@ -102,6 +103,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             this.Controls.Add(this._loginLabel);
             this.Name = "SignInForm";
             this.Text = "SignInForm";
+            this.VisibleChanged += new System.EventHandler(this.SignInVisibleChange);
             this.ResumeLayout(false);
             this.PerformLayout();
 

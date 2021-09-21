@@ -17,6 +17,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private readonly Form _form;
         private readonly DataTable _table;
         private readonly IHeadphonesService _headphonesService;
+        private List<Common.Entities.Headphones> _headphones;
         private string[] prop = { "Name", "MinFrequancy", "MaxFrequancy", "Company", "Design" };
         public HeadphonesCatalogForm(Form form)
         {
@@ -30,6 +31,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private void HeadphonesCatalogFormLoad(object sender, EventArgs e)
         {
             _form.Visible = false;
+            _headphones = _headphonesService.GetAllHeadphones();
 
             foreach(var p in prop) 
             {
@@ -38,12 +40,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
                 _table.Columns.Add(column);
             }
 
-            foreach(var h in _headphonesService.GetAllHeadphones())
-            {
-                var row = _table.NewRow();
-                row.ItemArray = new object[] { h.Name, h.MinFrequency, h.MaxFrequency, h.Company.Name, h.Design.Name };
-                _table.Rows.Add(row);
-            }
+            Fill(_headphones);
 
             _headphonesTable.DataSource = _table;
         }
@@ -61,16 +58,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
 
         private void HeadphonesCatalogForm_VisibleChanged(object sender, EventArgs e)
         {
-            _table.Rows.Clear();
-
-            foreach (var h in _headphonesService.GetAllHeadphones())
-            {
-                var row = _table.NewRow();
-                row.ItemArray = new object[] { h.Name, h.MinFrequency, h.MaxFrequency, h.Company.Name, h.Design.Name };
-                _table.Rows.Add(row);
-            }
-
-            _headphonesTable.DataSource = _table;
+            Fill(_headphones);
         }
 
         private void EditButtonClick(object sender, EventArgs e)
@@ -96,6 +84,28 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             };
             Form form = new EditHeadphonesForm(this, _headphonesService, selectedhead);
             form.Show();
+        }
+
+        private void BackButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void Fill(IEnumerable<Common.Entities.Headphones> headphones)
+        {
+            _table.Rows.Clear();
+
+            foreach (var h in headphones)
+            {
+                var row = _table.NewRow();
+                row.ItemArray = new object[] { h.Name, h.MinFrequency, h.MaxFrequency, h.Company.Name, h.Design.Name };
+                _table.Rows.Add(row);
+            }
+        }
+
+        private void NameTextBoxChanged(object sender, EventArgs e)
+        {
+            Fill(_headphones.Where(h => h.Name.StartsWith(_nameTextBox.Text)));
         }
     }
 }
