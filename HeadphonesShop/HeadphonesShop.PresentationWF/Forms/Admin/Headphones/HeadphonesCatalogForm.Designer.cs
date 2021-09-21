@@ -35,6 +35,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._editButton = new System.Windows.Forms.Button();
             this._nameTextBox = new System.Windows.Forms.TextBox();
             this._nameLabel = new System.Windows.Forms.Label();
+            this._usersButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,11 +99,22 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._nameLabel.TabIndex = 8;
             this._nameLabel.Text = "Name";
             // 
+            // _usersButton
+            // 
+            this._usersButton.Location = new System.Drawing.Point(551, 415);
+            this._usersButton.Name = "_usersButton";
+            this._usersButton.Size = new System.Drawing.Size(75, 23);
+            this._usersButton.TabIndex = 10;
+            this._usersButton.Text = "Users";
+            this._usersButton.UseVisualStyleBackColor = true;
+            this._usersButton.Click += new System.EventHandler(this.UsersButtonClick);
+            // 
             // HeadphonesCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._usersButton);
             this.Controls.Add(this._nameTextBox);
             this.Controls.Add(this._nameLabel);
             this.Controls.Add(this._editButton);
@@ -127,5 +139,6 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private System.Windows.Forms.Button _editButton;
         private System.Windows.Forms.TextBox _nameTextBox;
         private System.Windows.Forms.Label _nameLabel;
+        private System.Windows.Forms.Button _usersButton;
     }
 }

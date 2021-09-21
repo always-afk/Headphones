@@ -25,7 +25,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         {
             var newUser = _dataMapper.ToUser(user);
             _context.Users.Add(newUser);
-
+            Save();
         }
 
         public void Delete(User user)
@@ -43,6 +43,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return users;
         }
 
+        public IEnumerable<User> GetOtherUsers(User user)
+        {
+            var users = new List<User>();
+            foreach(var us in _context.Users.Where(u => u.Login != user.Login))
+            {
+                users.Add(_commonMapper.ToUser(us));
+            }
+            return users;
+        }
+
         public void Save()
         {
             _context.SaveChangesAsync();
@@ -50,7 +60,20 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(IEnumerable<User> users)
         {
-            throw new NotImplementedException();
+            foreach(var user in users)
+            {
+                var us = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault();
+                if(us is null)
+                {
+                    _context.Users.Remove(us);
+                }
+                else
+                {
+                    us.IsAdmin = user.IsAdmin;
+                }
+                
+            }
+            Save();
         }
 
         bool IUsersRepository.Add(User user)

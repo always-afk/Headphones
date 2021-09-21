@@ -46,7 +46,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             {
                 if (user.IsAdmin)
                 {
-                    Form form = new Admin.Headphones.HeadphonesCatalogForm(this);
+                    Form form = new Admin.Headphones.HeadphonesCatalogForm(this, user);
                     form.Show();
                 }
                 else

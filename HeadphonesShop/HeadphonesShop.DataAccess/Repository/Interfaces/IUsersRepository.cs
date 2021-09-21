@@ -10,6 +10,7 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
     public interface IUsersRepository
     {
         IEnumerable<User> GetAllUsers();
+        IEnumerable<User> GetOtherUsers(User user);
         bool Add(User user);
         void Delete(User user);
         void Update(IEnumerable<User> users);

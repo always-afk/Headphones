@@ -17,13 +17,15 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private readonly Form _form;
         private readonly DataTable _table;
         private readonly IHeadphonesService _headphonesService;
+        private readonly Common.Entities.User _user;
         private List<Common.Entities.Headphones> _headphones;
         private string[] prop = { "Name", "MinFrequancy", "MaxFrequancy", "Company", "Design" };
-        public HeadphonesCatalogForm(Form form)
+        public HeadphonesCatalogForm(Form form, Common.Entities.User user)
         {
             InitializeComponent();
 
             _form = form;
+            _user = user;
             _table = new DataTable();
             _headphonesService = new HeadphonesService();
         }
@@ -106,6 +108,12 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private void NameTextBoxChanged(object sender, EventArgs e)
         {
             Fill(_headphones.Where(h => h.Name.StartsWith(_nameTextBox.Text)));
+        }
+
+        private void UsersButtonClick(object sender, EventArgs e)
+        {
+            Form form = new Users.AllUsersForm(this, _user);
+            form.Show();
         }
     }
 }
