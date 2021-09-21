@@ -17,18 +17,20 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
     {
         private readonly Form _form;
         private readonly ISignUpService _signUpService;
+        private readonly SimpleInjector.Container _container;
 
         private const int MAXLOGIN = 16;
         private const int MINLOGIN = 6;
         private const int MAXPASS = 16;
         private const int MINPASS = 6;
 
-        public SignUpForm(Form form)
+        public SignUpForm(Form form, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
-            _signUpService = new SignUpService();
+            _container = container;
+            _signUpService = _container.GetInstance<ISignUpService>();
         }
 
         private void SignUpFormLoad(object sender, EventArgs e)

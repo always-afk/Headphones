@@ -467,6 +467,18 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "SimpleInjector/5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "System.ComponentModel": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.1/SimpleInjector.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/SimpleInjector.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2283,6 +2295,30 @@
         "lib/netstandard1.0/_._",
         "runtime.native.system.4.3.0.nupkg.sha512",
         "runtime.native.system.nuspec"
+      ]
+    },
+    "SimpleInjector/5.3.2": {
+      "sha512": "YNpunojK3+pK9S9D7sWpeR6me41StcurcMc9XB2UZE44cYUImXL6SKoxo2sffcq8YVou0/JX/Wjf2UuY1JcRyQ==",
+      "type": "package",
+      "path": "simpleinjector/5.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/SimpleInjector.dll",
+        "lib/net45/SimpleInjector.xml",
+        "lib/net461/SimpleInjector.dll",
+        "lib/net461/SimpleInjector.xml",
+        "lib/netstandard1.0/SimpleInjector.dll",
+        "lib/netstandard1.0/SimpleInjector.xml",
+        "lib/netstandard1.3/SimpleInjector.dll",
+        "lib/netstandard1.3/SimpleInjector.xml",
+        "lib/netstandard2.0/SimpleInjector.dll",
+        "lib/netstandard2.0/SimpleInjector.xml",
+        "lib/netstandard2.1/SimpleInjector.dll",
+        "lib/netstandard2.1/SimpleInjector.xml",
+        "simpleinjector.5.3.2.nupkg.sha512",
+        "simpleinjector.nuspec",
+        "simpleinjector.png"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5811,7 +5847,8 @@
     "net5.0-windows7.0": [
       "HeadphonesShop.BusinessLogic >= 1.0.0",
       "HeadphonesShop.Common >= 1.0.0",
-      "Microsoft.EntityFrameworkCore.Design >= 5.0.10"
+      "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
+      "SimpleInjector >= 5.3.2"
     ]
   },
   "packageFolders": {
@@ -5821,11 +5858,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
+      "projectUniqueName": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
       "projectName": "HeadphonesShop.PresentationWF",
-      "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
+      "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
       "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-      "outputPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\obj\\",
+      "outputPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5846,11 +5883,11 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "projectReferences": {
-            "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {
-              "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj"
+            "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj"
             },
-            "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
-              "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
+            "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
+              "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
             }
           }
         }
@@ -5870,6 +5907,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.10, )"
+          },
+          "SimpleInjector": {
+            "target": "Package",
+            "version": "[5.3.2, )"
           }
         },
         "imports": [

@@ -17,15 +17,17 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
     {
         private readonly Form _form;
         private readonly User _user;
+        private readonly SimpleInjector.Container _container;
         private readonly IUsersService _usersService;
         private List<User> _users;
-        public AllUsersForm(Form form, User user)
+        public AllUsersForm(Form form, User user, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
             _user = user;
-            _usersService = new UsersService();
+            _container = container;
+            _usersService = _container.GetInstance<IUsersService>();
         }
 
         private void BackButtonClick(object sender, EventArgs e)

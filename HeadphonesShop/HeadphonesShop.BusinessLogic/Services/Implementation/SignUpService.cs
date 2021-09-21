@@ -12,9 +12,13 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
     public class SignUpService : Interfaces.ISignUpService
     {
         private readonly IUsersRepository _usersRepository;
-        public SignUpService()
+        //public SignUpService()
+        //{
+        //    _usersRepository = new UsersRepository();
+        //}
+        public SignUpService(IUsersRepository usersRepository)
         {
-            _usersRepository = new UsersRepository();
+            _usersRepository = usersRepository;
         }
 
         public bool SignUp(User user)

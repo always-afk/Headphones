@@ -12,9 +12,13 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
     public class SignInService : Interfaces.ISignInService
     {
         private readonly IUsersRepository _usersRepository;
-        public SignInService()
+        //public SignInService()
+        //{
+        //    _usersRepository = new UsersRepository();
+        //}
+        public SignInService(IUsersRepository usersRepository)
         {
-            _usersRepository = new UsersRepository();
+            _usersRepository = usersRepository;
         }
 
         public User SignIn(User user)

@@ -15,13 +15,15 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
     public partial class AddHeadphonesForm : Form
     {
         private readonly Form _form;
+        private readonly SimpleInjector.Container _container;
         private readonly IHeadphonesService _headphonesService;
-        public AddHeadphonesForm(Form form, IHeadphonesService headphonesService)
+        public AddHeadphonesForm(Form form, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
-            _headphonesService = headphonesService;
+            _container = container;
+            _headphonesService = _container.GetInstance<IHeadphonesService>();
         }
 
         private void AddHeadphonesFormLoad(object sender, EventArgs e)

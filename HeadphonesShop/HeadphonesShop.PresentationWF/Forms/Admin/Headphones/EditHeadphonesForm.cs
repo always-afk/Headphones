@@ -17,12 +17,14 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private readonly Form _form;
         private readonly IHeadphonesService _headphonesService;
         private readonly Common.Entities.Headphones _headphones;
-        public EditHeadphonesForm(Form form, IHeadphonesService headphonesService, Common.Entities.Headphones headphones)
+        private readonly SimpleInjector.Container _container;
+        public EditHeadphonesForm(Form form, Common.Entities.Headphones headphones, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
-            _headphonesService = headphonesService;
+            _container = container;
+            _headphonesService = _container.GetInstance<IHeadphonesService>();
             _headphones = headphones;
         }
 

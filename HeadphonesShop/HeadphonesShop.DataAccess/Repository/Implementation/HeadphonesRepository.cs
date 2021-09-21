@@ -16,12 +16,12 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         private Context.HeadphonesDBContext _context;
         private IDataMapper _dataMapper;
         private ICommonMapper _commonMapper;
-        public HeadphonesRepository()
-        {
-            _context = new Context.HeadphonesDBContext();
-            _dataMapper = new DataMapper();
-            _commonMapper = new CommonMapper();
-        }
+        //public HeadphonesRepository()
+        //{
+        //    _context = new Context.HeadphonesDBContext();
+        //    _dataMapper = new DataMapper();
+        //    _commonMapper = new CommonMapper();
+        //}
 
         public HeadphonesRepository(Context.HeadphonesDBContext context, ICommonMapper commonMapper, IDataMapper dataMapper)
         {

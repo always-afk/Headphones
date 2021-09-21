@@ -10,16 +10,22 @@ using HeadphonesShop.DataAccess.Repository.Interfaces;
 
 namespace HeadphonesShop.DataAccess.Repository.Implementation
 {
-    public class UsersRepository : Interfaces.IUsersRepository
+    public class UsersRepository : IUsersRepository
     {
         private Context.HeadphonesDBContext _context;
         private IDataMapper _dataMapper;
         private ICommonMapper _commonMapper;
-        public UsersRepository()
+        //public UsersRepository()
+        //{
+        //    _context = new Context.HeadphonesDBContext();
+        //    _dataMapper = new DataMapper();
+        //    _commonMapper = new CommonMapper();
+        //}
+        public UsersRepository(Context.HeadphonesDBContext context, IDataMapper dataMapper, ICommonMapper commonMapper)
         {
-            _context = new Context.HeadphonesDBContext();
-            _dataMapper = new DataMapper();
-            _commonMapper = new CommonMapper();
+            _context = context;
+            _dataMapper = dataMapper;
+            _commonMapper = commonMapper;
         }
         public void Add(User user)
         {
@@ -76,6 +82,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             if (!_context.Users.Any(u => u.Login == user.Login))
             {
                 _context.Users.Add(_dataMapper.ToUser(user));
+                Save();
                 return true;
             }
             else

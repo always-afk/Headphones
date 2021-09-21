@@ -8,9 +8,9 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IUnitOfWorkHeadphones
     {
-        public ICompaniesRepository CompaniesRepository { get; set; }
-        public IDesignRepository DesignRepository { get; set; }
-        public IHeadphonesRepository HeadphonesRepository { get; set; }
+        public ICompaniesRepository CompaniesRepository { get; }
+        public IDesignRepository DesignRepository { get; }
+        public IHeadphonesRepository HeadphonesRepository { get; }
 
         void Save();
     }

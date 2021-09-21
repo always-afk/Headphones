@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Forms\Admin\Users\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Services\Implementation\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="SimpleInjector" Version="5.3.2" />
   </ItemGroup>
 
   <ItemGroup>

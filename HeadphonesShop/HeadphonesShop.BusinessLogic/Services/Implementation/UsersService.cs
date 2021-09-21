@@ -12,9 +12,13 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
     public class UsersService : Interfaces.IUsersService
     {
         private readonly IUsersRepository _usersRepository;
-        public UsersService()
+        //public UsersService()
+        //{
+        //    _usersRepository = new UsersRepository();
+        //}
+        public UsersService(IUsersRepository usersRepository)
         {
-            _usersRepository = new UsersRepository();
+            _usersRepository = usersRepository;
         }
         public IEnumerable<User> GetOtherUsers(User user)
         {

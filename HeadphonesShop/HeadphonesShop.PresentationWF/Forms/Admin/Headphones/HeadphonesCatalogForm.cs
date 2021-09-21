@@ -18,16 +18,18 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private readonly DataTable _table;
         private readonly IHeadphonesService _headphonesService;
         private readonly Common.Entities.User _user;
+        private readonly SimpleInjector.Container _container;
         private List<Common.Entities.Headphones> _headphones;
         private string[] prop = { "Name", "MinFrequancy", "MaxFrequancy", "Company", "Design" };
-        public HeadphonesCatalogForm(Form form, Common.Entities.User user)
+        public HeadphonesCatalogForm(Form form, Common.Entities.User user, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
             _user = user;
+            _container = container;
             _table = new DataTable();
-            _headphonesService = new HeadphonesService();
+            _headphonesService = _container.GetInstance<IHeadphonesService>();
         }
 
         private void HeadphonesCatalogFormLoad(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
 
         private void AddButtonClick(object sender, EventArgs e)
         {
-            Form form = new AddHeadphonesForm(this, _headphonesService);
+            Form form = new AddHeadphonesForm(this, _container);
             form.Show();
         }
 
@@ -84,7 +86,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
                     Name = desi
                 }
             };
-            Form form = new EditHeadphonesForm(this, _headphonesService, selectedhead);
+            Form form = new EditHeadphonesForm(this, selectedhead, _container);
             form.Show();
         }
 
@@ -112,7 +114,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
 
         private void UsersButtonClick(object sender, EventArgs e)
         {
-            Form form = new Users.AllUsersForm(this, _user);
+            Form form = new Users.AllUsersForm(this, _user, _container);
             form.Show();
         }
     }

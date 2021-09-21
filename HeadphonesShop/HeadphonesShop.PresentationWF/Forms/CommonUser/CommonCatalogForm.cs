@@ -18,15 +18,17 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
         private readonly Form _form;
         private readonly DataTable _table;
         private readonly IHeadphonesService _headphonesService;
+        private readonly SimpleInjector.Container _container;
         private List<Headphones> _headphones;
         private string[] prop = { "Name", "MinFrequancy", "MaxFrequancy", "Company", "Design" };
-        public CommonCatalogForm(Form form)
+        public CommonCatalogForm(Form form, SimpleInjector.Container container)
         {
             InitializeComponent();
 
             _form = form;
             _table = new DataTable();
-            _headphonesService = new HeadphonesService();
+            _container = container;
+            _headphonesService = _container.GetInstance<IHeadphonesService>();
         }
 
         private void CommonCatalogFormLoad(object sender, EventArgs e)

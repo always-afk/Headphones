@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HeadphonesShop.DataAccess.Services.Implementation
 {
-    class CommonMapper : Interfaces.ICommonMapper
+    public class CommonMapper : Interfaces.ICommonMapper
     {
         public Common.Entities.Company ToCompany(Models.Company company)
         {
