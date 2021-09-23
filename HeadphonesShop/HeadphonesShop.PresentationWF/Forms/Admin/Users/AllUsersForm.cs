@@ -51,6 +51,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
         private void Fill(List<User> users)
         {
             _usersTable.Controls.Clear();
+            _usersTable.AutoSize = true;
             _usersTable.RowCount = users.Count;
             
             int row = 0;
@@ -88,6 +89,12 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
 
         private void SaveButtonClick(object sender, EventArgs e)
         {
+            var j = 0;
+            for (var i = 1; i < _usersTable.Controls.Count; i += 3)
+            {
+                _users[j].IsAdmin = (_usersTable.Controls[i] as CheckBox).Checked;
+                j += 1;
+            }
             _users.Add(_user);
             _usersService.Update(_users);
             Close();

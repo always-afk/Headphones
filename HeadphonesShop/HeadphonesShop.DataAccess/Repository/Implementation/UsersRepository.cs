@@ -73,6 +73,10 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 {
                     _context.Remove(user);
                 }
+                else
+                {
+                    user.IsAdmin = us.IsAdmin;
+                }
             }
             Save();
         }

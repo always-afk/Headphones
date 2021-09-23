@@ -59,14 +59,15 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
             // _usersTable
             // 
             this._usersTable.ColumnCount = 3;
-            this._usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this._usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this._usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this._usersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this._usersTable.Location = new System.Drawing.Point(12, 50);
             this._usersTable.Name = "_usersTable";
-            this._usersTable.RowCount = 1;
-            this._usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this._usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 277F));
+            this._usersTable.RowCount = 3;
+            this._usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this._usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this._usersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this._usersTable.Size = new System.Drawing.Size(776, 277);
             this._usersTable.TabIndex = 3;
             // 
