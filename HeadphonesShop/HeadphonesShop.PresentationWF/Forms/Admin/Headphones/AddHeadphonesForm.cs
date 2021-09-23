@@ -17,6 +17,8 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private readonly Form _form;
         private readonly SimpleInjector.Container _container;
         private readonly IHeadphonesService _headphonesService;
+        private readonly ICompanyService _companyService;
+        private readonly IDesignService _designService;
         public AddHeadphonesForm(Form form, SimpleInjector.Container container)
         {
             InitializeComponent();
@@ -24,19 +26,21 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             _form = form;
             _container = container;
             _headphonesService = _container.GetInstance<IHeadphonesService>();
+            _companyService = _container.GetInstance<ICompanyService>();
+            _designService = _container.GetInstance<IDesignService>();
         }
 
         private void AddHeadphonesFormLoad(object sender, EventArgs e)
         {
             _form.Visible = false;
 
-            foreach(var c in _headphonesService.GetAllCompanies())
+            foreach(var c in _companyService.GetAllCompanies())
             {
                 _companyComboBox.Items.Add(c.Name);
             }
             _companyComboBox.SelectedIndex = 0;
 
-            foreach(var d in _headphonesService.GetAllDesigns())
+            foreach(var d in _designService.GetAllDesigns())
             {
                 _designComboBox.Items.Add(d.Name);
             }

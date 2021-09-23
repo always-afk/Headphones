@@ -69,14 +69,6 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             head.MaxFrequency = headphones.MaxFrequency;
             head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
-            //head.Company = new Models.Company()
-            //{
-            //    Name = headphones.Company.Name
-            //};
-            //head.Design = new Models.Design()
-            //{
-            //    Name = headphones.Design.Name
-            //};
             _context.SaveChanges();
         }
 

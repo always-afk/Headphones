@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EGvDZPQ1Iz8LC+7kmRcVW7rxMLUtJd3c+Yul2IqEhBMNERlpA7pfNVc9cuSDP8/2VKTfR+mXHZDhu6mGcmrNrQ==",
+  "dgSpecHash": "nX9hyD1ZRbh6KoqRMLy9oDVfqtKELr6dsoADoyz3/W4xEyq6WKlk8IeX5eBmxBP6ZXcRcvy/r6Q2+P9uXQNRiQ==",
   "success": true,
-  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

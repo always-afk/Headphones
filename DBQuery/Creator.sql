@@ -6,6 +6,7 @@ drop table if exists Headphones
 drop table if exists Designs
 drop table if exists Companies
 drop table if exists Users
+drop procedure if exists CountUsers
 
 go
 
@@ -36,9 +37,26 @@ create table Headphones
 	MinFrequency float,
 	MaxFrequency float,
 	Picture nvarchar(256),
-	CompanyId int references Companies(Id),
-	DesignId int references Designs(Id)
+	CompanyId int references Companies(Id) on delete cascade,
+	DesignId int references Designs(Id) on delete cascade
 )
+
+go
+
+create procedure CountUsers as
+select COUNT(*) from Users 
+
+go 
+
+create trigger HeadphonesInsert
+on Headphones
+after insert
+as
+update Headphones
+set Picture = 'None'
+where Picture LIKE '' or Picture is NULL
+
+go
 
 insert Users values
 ('admin', 'admin', 1),

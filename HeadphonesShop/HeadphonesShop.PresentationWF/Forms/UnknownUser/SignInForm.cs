@@ -42,6 +42,8 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             _container.Register<ISignInService, SignInService>();
             _container.Register<ISignUpService, SignUpService>();
             _container.Register<IUsersService, UsersService>();
+            _container.Register<ICompanyService, CompanyService>();
+            _container.Register<IDesignService, DesignService>();
 
             RegisterContext();
             _container.Register<ICompaniesRepository, CompaniesRepository>();

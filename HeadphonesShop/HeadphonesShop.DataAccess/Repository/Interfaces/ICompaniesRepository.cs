@@ -11,6 +11,6 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
     {
         IEnumerable<Company> GetAllCompanies();
         bool Add(Company company);
-        void Delete(Company company);
+        void Update(IEnumerable<Company> company);
     }
 }

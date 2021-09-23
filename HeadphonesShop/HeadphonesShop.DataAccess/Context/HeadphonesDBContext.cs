@@ -38,7 +38,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Companie__737584F685AEE78B")
+                entity.HasIndex(e => e.Name, "UQ__Companie__737584F648846437")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -48,7 +48,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Design>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Designs__737584F65727EC45")
+                entity.HasIndex(e => e.Name, "UQ__Designs__737584F6F18B7308")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -58,29 +58,26 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Headphone>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Headphon__737584F6BD994041")
-                    .IsUnique();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(128);
+                entity.Property(e => e.Name).HasMaxLength(128);
 
                 entity.Property(e => e.Picture).HasMaxLength(256);
 
                 entity.HasOne(d => d.Company)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.CompanyId)
-                    .HasConstraintName("FK__Headphone__Compa__3A81B327");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Headphone__Compa__236943A5");
 
                 entity.HasOne(d => d.Design)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.DesignId)
-                    .HasConstraintName("FK__Headphone__Desig__3B75D760");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__Headphone__Desig__245D67DE");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Login, "UQ__Users__5E55825B1F75B7E9")
+                entity.HasIndex(e => e.Login, "UQ__Users__5E55825B5F696A58")
                     .IsUnique();
 
                 entity.Property(e => e.Login)

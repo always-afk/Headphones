@@ -32,12 +32,21 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public bool Add(Company company)
         {
-            throw new NotImplementedException();
+            if(!_context.Companies.Any(c => c.Name == company.Name))
+            {
+                var comp = _dataMapper.ToCompany(company);
+                _context.Companies.Add(comp);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public void Delete(Company company)
         {
-            throw new NotImplementedException();
+            var comp = _context.Companies.Where(c => c.Name == company.Name).FirstOrDefault();
+            _context.Companies.Remove(comp);
+            _context.SaveChanges();
         }
 
         public IEnumerable<Company> GetAllCompanies()
@@ -48,6 +57,19 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 companies.Add(_commonMapper.ToCompany(c));
             }
             return companies;
+        }
+
+        public void Update(IEnumerable<Company> companies)
+        {
+            foreach(var company in _context.Companies)
+            {
+                var comp = companies.Where(c => c.Name == company.Name).FirstOrDefault();
+                if(comp is null)
+                {
+                    _context.Remove(company);
+                }
+            }
+            _context.SaveChanges();
         }
     }
 }

@@ -105,6 +105,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
                 row.ItemArray = new object[] { h.Name, h.MinFrequency, h.MaxFrequency, h.Company.Name, h.Design.Name };
                 _table.Rows.Add(row);
             }
+            _headphonesTable.DataSource = _table;
         }
 
         private void NameTextBoxChanged(object sender, EventArgs e)
@@ -116,6 +117,18 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         {
             Form form = new Users.AllUsersForm(this, _user, _container);
             form.Show();
+        }
+
+        private void CompaniesButtonClick(object sender, EventArgs e)
+        {
+            Form form = new Companies.CompaniesForm(this, _container.GetInstance<ICompanyService>());
+            form.Show();
+        }
+
+        private void HeadphonesCatalogFormActivated(object sender, EventArgs e)
+        {
+            _headphones = _headphonesService.GetAllHeadphones();
+            Fill(_headphones);
         }
     }
 }
