@@ -13,8 +13,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class DesignRepository : Interfaces.IDesignRepository
     {
         private readonly HeadphonesDBContext _context;
-        private readonly ICommonMapper _commonMapper;
-        private readonly IDataMapper _dataMapper;
+        private readonly IMapper _mapper;
 
         //public DesignRepository()
         //{
@@ -23,11 +22,10 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         //    _dataMapper = new DataMapper();
         //}
 
-        public DesignRepository(HeadphonesDBContext context, ICommonMapper commonMapper, IDataMapper dataMapper)
+        public DesignRepository(HeadphonesDBContext context, IMapper mapper)
         {
             _context = context;
-            _commonMapper = commonMapper;
-            _dataMapper = dataMapper;
+            _mapper = mapper;
         }
 
         public bool Add(Design design)
@@ -45,7 +43,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var designs = new List<Design>();
             foreach(var des in _context.Designs)
             {
-                var d = _commonMapper.ToDesign(des);
+                var d = _mapper.ToDesign(des);
                 designs.Add(d);
             }
             return designs;

@@ -14,6 +14,5 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         bool Add(User user);
         void Delete(User user);
         void Update(IEnumerable<User> users);
-        void Save();
     }
 }

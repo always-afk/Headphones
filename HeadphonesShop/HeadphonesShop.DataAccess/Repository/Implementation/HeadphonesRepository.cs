@@ -14,8 +14,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class HeadphonesRepository : Interfaces.IHeadphonesRepository
     {
         private Context.HeadphonesDBContext _context;
-        private IDataMapper _dataMapper;
-        private ICommonMapper _commonMapper;
+        private IMapper _mapper;
         //public HeadphonesRepository()
         //{
         //    _context = new Context.HeadphonesDBContext();
@@ -23,16 +22,15 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         //    _commonMapper = new CommonMapper();
         //}
 
-        public HeadphonesRepository(Context.HeadphonesDBContext context, ICommonMapper commonMapper, IDataMapper dataMapper)
+        public HeadphonesRepository(Context.HeadphonesDBContext context, IMapper mapper)
         {
             _context = context;
-            _commonMapper = commonMapper;
-            _dataMapper = dataMapper;
+            _mapper = mapper;
         }
 
         public bool Add(Headphones headphones)
         {
-            var head = _dataMapper.ToHeadphones(headphones);
+            var head = _mapper.ToHeadphones(headphones);
             head = Fill(head);
             if(!_context.Headphones.Any(h => h.Name == head.Name))
             {
@@ -47,8 +45,8 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Delete(Headphones headphones)
         {
-            _context.Headphones.Remove(_context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault());
-            _context.SaveChanges();
+            var headphonesToDel = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
+            _context.Headphones.Remove(headphonesToDel);
         }
 
         public IEnumerable<Headphones> GetAllHeadphones()
@@ -56,7 +54,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var headphones = new List<Headphones>();
             foreach(var h in _context.Headphones.Include(x => x.Design).Include(x => x.Company))
             {
-                var head = _commonMapper.ToHeadphones(h);
+                var head = _mapper.ToHeadphones(h);
                 headphones.Add(head);
             }
             return headphones;
@@ -69,7 +67,6 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             head.MaxFrequency = headphones.MaxFrequency;
             head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
-            _context.SaveChanges();
         }
 
         private Models.Headphone Fill(Models.Headphone headphone)

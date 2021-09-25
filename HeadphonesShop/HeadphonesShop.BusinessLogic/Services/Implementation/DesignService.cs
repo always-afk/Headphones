@@ -10,8 +10,8 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class DesignService : Interfaces.IDesignService
     {
-        private readonly IUnitOfWorkHeadphones _unitOfWork;
-        public DesignService(IUnitOfWorkHeadphones unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public DesignService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

@@ -10,14 +10,19 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class CompanyService : Interfaces.ICompanyService
     {
-        private readonly IUnitOfWorkHeadphones _unitOfWork;
-        public CompanyService(IUnitOfWorkHeadphones unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public CompanyService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public bool Add(Company company)
         {
-            return _unitOfWork.CompaniesRepository.Add(company);
+            var res = _unitOfWork.CompaniesRepository.Add(company);
+            if (res)
+            {
+                _unitOfWork.Save();
+            }
+            return res;
         }
 
         public IEnumerable<Company> GetAllCompanies()

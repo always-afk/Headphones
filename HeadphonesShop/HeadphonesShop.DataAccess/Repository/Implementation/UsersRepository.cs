@@ -13,25 +13,22 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class UsersRepository : IUsersRepository
     {
         private Context.HeadphonesDBContext _context;
-        private IDataMapper _dataMapper;
-        private ICommonMapper _commonMapper;
+        private IMapper _mapper;
         //public UsersRepository()
         //{
         //    _context = new Context.HeadphonesDBContext();
         //    _dataMapper = new DataMapper();
         //    _commonMapper = new CommonMapper();
         //}
-        public UsersRepository(Context.HeadphonesDBContext context, IDataMapper dataMapper, ICommonMapper commonMapper)
+        public UsersRepository(Context.HeadphonesDBContext context, IMapper mapper)
         {
             _context = context;
-            _dataMapper = dataMapper;
-            _commonMapper = commonMapper;
+            _mapper = mapper;
         }
         public void Add(User user)
         {
-            var newUser = _dataMapper.ToUser(user);
+            var newUser = _mapper.ToUser(user);
             _context.Users.Add(newUser);
-            Save();
         }
 
         public void Delete(User user)
@@ -44,7 +41,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var users = new List<User>();
             foreach(var u in _context.Users)
             {
-                users.Add(_commonMapper.ToUser(u));
+                users.Add(_mapper.ToUser(u));
             }
             return users;
         }
@@ -54,15 +51,11 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var users = new List<User>();
             foreach(var us in _context.Users.Where(u => u.Login != user.Login))
             {
-                users.Add(_commonMapper.ToUser(us));
+                users.Add(_mapper.ToUser(us));
             }
             return users;
         }
 
-        public void Save()
-        {
-            _context.SaveChangesAsync();
-        }
 
         public void Update(IEnumerable<User> users)
         {
@@ -78,15 +71,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     user.IsAdmin = us.IsAdmin;
                 }
             }
-            Save();
         }
 
         bool IUsersRepository.Add(User user)
         {
             if (!_context.Users.Any(u => u.Login == user.Login))
             {
-                _context.Users.Add(_dataMapper.ToUser(user));
-                Save();
+                _context.Users.Add(_mapper.ToUser(user));
                 return true;
             }
             else

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
-    public interface IUnitOfWorkHeadphones
+    public interface IUnitOfWork
     {
+        public IUsersRepository UsersRepository { get; }
         public ICompaniesRepository CompaniesRepository { get; }
         public IDesignRepository DesignRepository { get; }
         public IHeadphonesRepository HeadphonesRepository { get; }
-
-        void Save();
+        public void Save();
     }
 }

@@ -14,8 +14,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class CompaniesRepository : Interfaces.ICompaniesRepository
     {
         private readonly HeadphonesDBContext _context;
-        private readonly ICommonMapper _commonMapper;
-        private readonly IDataMapper _dataMapper;
+        private readonly IMapper _mapper;
 
         //public CompaniesRepository()
         //{
@@ -23,20 +22,18 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         //    _commonMapper = new CommonMapper();
         //    _dataMapper = new DataMapper();
         //}
-        public CompaniesRepository(HeadphonesDBContext context, ICommonMapper commonMapper, IDataMapper dataMapper)
+        public CompaniesRepository(HeadphonesDBContext context, IMapper mapper)
         {
             _context = context;
-            _commonMapper = commonMapper;
-            _dataMapper = dataMapper;
+            _mapper = mapper;
         }
 
         public bool Add(Company company)
         {
             if(!_context.Companies.Any(c => c.Name == company.Name))
             {
-                var comp = _dataMapper.ToCompany(company);
-                _context.Companies.Add(comp);
-                _context.SaveChanges();
+                var comp = _mapper.ToCompany(company);
+                _context.Companies.Add(comp);                
                 return true;
             }
             return false;
@@ -45,8 +42,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         public void Delete(Company company)
         {
             var comp = _context.Companies.Where(c => c.Name == company.Name).FirstOrDefault();
-            _context.Companies.Remove(comp);
-            _context.SaveChanges();
+            _context.Companies.Remove(comp);            
         }
 
         public IEnumerable<Company> GetAllCompanies()
@@ -54,7 +50,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var companies = new List<Company>();
             foreach(var c in _context.Companies)
             {
-                companies.Add(_commonMapper.ToCompany(c));
+                companies.Add(_mapper.ToCompany(c));
             }
             return companies;
         }
@@ -68,8 +64,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 {
                     _context.Remove(company);
                 }
-            }
-            _context.SaveChanges();
+            }            
         }
     }
 }

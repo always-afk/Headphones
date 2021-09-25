@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 
 namespace HeadphonesShop.DataAccess.Services.Implementation
 {
-    public class CommonMapper : Interfaces.ICommonMapper
+    public class Mapper : Interfaces.IMapper
     {
+        public Models.Company ToCompany(Common.Entities.Company company)
+        {
+            return new Models.Company()
+            {
+                Name = company.Name
+            };
+        }
+
         public Common.Entities.Company ToCompany(Models.Company company)
         {
             return new Common.Entities.Company()
@@ -18,11 +26,32 @@ namespace HeadphonesShop.DataAccess.Services.Implementation
             };
         }
 
+        public Models.Design ToDesign(Common.Entities.Design design)
+        {
+            return new Models.Design()
+            {
+                Name = design.Name
+            };
+        }
+
         public Common.Entities.Design ToDesign(Models.Design design)
         {
             return new Common.Entities.Design()
             {
                 Name = design.Name
+            };
+        }
+
+        public Headphone ToHeadphones(Headphones headphones)
+        {
+            return new Headphone()
+            {
+                Name = headphones.Name,
+                MaxFrequency = headphones.MaxFrequency,
+                MinFrequency = headphones.MinFrequency,
+                Picture = headphones.Picture,
+                Design = ToDesign(headphones.Design),
+                Company = ToCompany(headphones.Company)
             };
         }
 
@@ -36,6 +65,16 @@ namespace HeadphonesShop.DataAccess.Services.Implementation
                 Picture = headphones.Picture,
                 Design = ToDesign(headphones.Design),
                 Company = ToCompany(headphones.Company)
+            };
+        }
+
+        public Models.User ToUser(Common.Entities.User user)
+        {
+            return new Models.User()
+            {
+                Login = user.Login,
+                Password = user.Password,
+                IsAdmin = user.IsAdmin
             };
         }
 

@@ -11,12 +11,12 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class HeadphonesService : Interfaces.IHeadphonesService
     {
-        private readonly IUnitOfWorkHeadphones _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         //public HeadphonesService()
         //{
         //    _unitOfWork = new UnitOfWorkHeadphones();
         //}
-        public HeadphonesService(IUnitOfWorkHeadphones unitOfWork)
+        public HeadphonesService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
