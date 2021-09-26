@@ -49,10 +49,9 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             _container.Register<ICompaniesRepository, CompaniesRepository>();
             _container.Register<IDesignRepository, DesignRepository>();
             _container.Register<IHeadphonesRepository, HeadphonesRepository>();
-            _container.Register<IUnitOfWorkHeadphones, UnitOfWorkHeadphones>();
+            _container.Register<IUnitOfWork, UnitOfWork>();
             _container.Register<IUsersRepository, UsersRepository>();
-            _container.Register<ICommonMapper, CommonMapper>();
-            _container.Register<IDataMapper, DataMapper>();
+            _container.Register<IMapper, Mapper>();
 
             _container.Verify();
         }

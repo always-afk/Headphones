@@ -70,22 +70,22 @@ namespace HeadphonesShop.DataAccess.Services.Implementation
 
         public Models.User ToUser(Common.Entities.User user)
         {
-            return new Models.User()
+            var resUser = new Models.User()
             {
                 Login = user.Login,
                 Password = user.Password,
-                IsAdmin = user.IsAdmin
             };
+            return resUser;
         }
 
         public Common.Entities.User ToUser(Models.User user)
         {
-            return new Common.Entities.User()
+            var resUser = new Common.Entities.User()
             {
                 Login = user.Login,
-                Password = user.Password,
-                IsAdmin = user.IsAdmin
+                Password = user.Password
             };
+            return resUser;
         }
     }
 }

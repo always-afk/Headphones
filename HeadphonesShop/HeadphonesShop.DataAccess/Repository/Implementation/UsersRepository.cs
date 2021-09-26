@@ -68,7 +68,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 }
                 else
                 {
-                    user.IsAdmin = us.IsAdmin;
+                    //user.IsAdmin = us.IsAdmin;
                 }
             }
         }

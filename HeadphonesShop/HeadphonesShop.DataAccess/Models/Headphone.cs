@@ -12,8 +12,8 @@ namespace HeadphonesShop.DataAccess.Models
         public double? MinFrequency { get; set; }
         public double? MaxFrequency { get; set; }
         public string Picture { get; set; }
-        public int? CompanyId { get; set; }
-        public int? DesignId { get; set; }
+        public int CompanyId { get; set; }
+        public int DesignId { get; set; }
 
         public virtual Company Company { get; set; }
         public virtual Design Design { get; set; }
