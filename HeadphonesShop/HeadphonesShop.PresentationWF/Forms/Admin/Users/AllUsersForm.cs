@@ -63,7 +63,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
                 _usersTable.Controls.Add(login, column, row);
                 column += 1;
                 var admin = new CheckBox();
-                admin.Checked = user.IsAdmin;
+                admin.Checked = user.Role.Name == "Admin";
                 _usersTable.Controls.Add(admin, column, row);
                 column += 1;
                 var del = new Button();
@@ -92,7 +92,15 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
             var j = 0;
             for (var i = 1; i < _usersTable.Controls.Count; i += 3)
             {
-                _users[j].IsAdmin = (_usersTable.Controls[i] as CheckBox).Checked;
+                //_users[j].IsAdmin = 
+                if((_usersTable.Controls[i] as CheckBox).Checked)
+                {
+                    _users[j].Role.Name = "Admin";
+                }
+                else
+                {
+                    _users[j].Role.Name = "Common user";
+                }
                 j += 1;
             }
             _users.Add(_user);

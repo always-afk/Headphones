@@ -59,7 +59,10 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
                 {
                     Login = login,
                     Password = pass,
-                    IsAdmin = false
+                    Role = new Role()
+                    {
+                        Name = "Common user"
+                    }
                 };
                 if (_signUpService.SignUp(user))
                 {

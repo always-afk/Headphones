@@ -27,7 +27,7 @@ create table Users
 	Id int primary key identity(1,1),
 	[Login] nvarchar(16) unique not null,
 	[Password] nvarchar(16) not null,
-	[Role] int references Roles(Id) not null
+	[RoleId] int references Roles(Id) not null
 )
 
 create table Designs

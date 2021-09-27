@@ -74,7 +74,12 @@ namespace HeadphonesShop.DataAccess.Services.Implementation
             {
                 Login = user.Login,
                 Password = user.Password,
+                Role = new Models.Role()
+                {
+                    Name = user.Role.Name
+                }
             };
+            
             return resUser;
         }
 
@@ -83,7 +88,11 @@ namespace HeadphonesShop.DataAccess.Services.Implementation
             var resUser = new Common.Entities.User()
             {
                 Login = user.Login,
-                Password = user.Password
+                Password = user.Password,
+                Role = new Common.Entities.Role()
+                {
+                    Name = user.Role.Name
+                }
             };
             return resUser;
         }

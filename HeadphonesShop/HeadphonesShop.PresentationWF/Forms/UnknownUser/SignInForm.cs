@@ -90,7 +90,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
             }
             else
             {
-                if (user.IsAdmin)
+                if (user.Role.Name == "Admin")
                 {
                     Form form = new Admin.Headphones.HeadphonesCatalogForm(this, user, _container);
                     form.Show();
