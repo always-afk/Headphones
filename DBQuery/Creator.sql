@@ -2,20 +2,31 @@ use HeadphonesDB
 
 go
 
+drop table if exists WishesToHeadphones
+drop table if exists Wishes
 drop table if exists Headphones
 drop table if exists Designs
 drop table if exists Companies
 drop table if exists Users
+drop table if exists Roles
 drop procedure if exists CountUsers
 
 go
+
+
+
+create table Roles
+(
+	Id int primary key identity(1,1),
+	[Name] nvarchar(16) unique not null
+)
 
 create table Users
 (
 	Id int primary key identity(1,1),
 	[Login] nvarchar(16) unique not null,
 	[Password] nvarchar(16) not null,
-	IsAdmin bit not null
+	[Role] int references Roles(Id) not null
 )
 
 create table Designs
@@ -33,12 +44,18 @@ create table Companies
 create table Headphones
 (
 	Id int primary key identity(1,1),
-	[Name] nvarchar(128),
+	[Name] nvarchar(128) unique not null,
 	MinFrequency float,
 	MaxFrequency float,
 	Picture nvarchar(256),
-	CompanyId int references Companies(Id) on delete cascade,
-	DesignId int references Designs(Id) on delete cascade
+	CompanyId int references Companies(Id) on delete cascade not null,
+	DesignId int references Designs(Id) on delete cascade not null
+)
+
+create table Wishes
+(
+	HeadphonesId int references Headphones(Id),
+	UserId int references Users(Id)
 )
 
 go
@@ -58,9 +75,13 @@ where Picture LIKE '' or Picture is NULL
 
 go
 
+insert Roles values
+('admin'),
+('common user')
+
 insert Users values
 ('admin', 'admin', 1),
-('user', 'user', 0)
+('user', 'user', 2)
 
 insert Companies values
 ('Sony'),
