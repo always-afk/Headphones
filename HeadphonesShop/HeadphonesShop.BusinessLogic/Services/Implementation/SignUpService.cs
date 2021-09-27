@@ -11,19 +11,27 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class SignUpService : Interfaces.ISignUpService
     {
-        private readonly IUsersRepository _usersRepository;
+        private readonly IUnitOfWork _unitOfWork;
         //public SignUpService()
         //{
         //    _usersRepository = new UsersRepository();
         //}
-        public SignUpService(IUsersRepository usersRepository)
+        public SignUpService(IUnitOfWork unitOfWork)
         {
-            _usersRepository = usersRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public bool SignUp(User user)
         {
-            return _usersRepository.Add(user);
+            if (_unitOfWork.UsersRepository.Add(user))
+            {
+                _unitOfWork.Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

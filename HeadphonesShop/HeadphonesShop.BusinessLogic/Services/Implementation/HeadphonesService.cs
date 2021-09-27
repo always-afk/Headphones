@@ -37,6 +37,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public void Delete(Headphones headphones)
         {
             _unitOfWork.HeadphonesRepository.Delete(headphones);
+            _unitOfWork.Save();
         }
 
         public List<Company> GetAllCompanies()
@@ -62,6 +63,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public void Update(Headphones headphones)
         {
             _unitOfWork.HeadphonesRepository.Update(headphones);
+            _unitOfWork.Save();
         }
     }
 }

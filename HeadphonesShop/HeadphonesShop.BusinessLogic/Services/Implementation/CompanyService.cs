@@ -33,6 +33,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public void Save(IEnumerable<Company> companies)
         {
             _unitOfWork.CompaniesRepository.Update(companies);
+            _unitOfWork.Save();
         }
     }
 }

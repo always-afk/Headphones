@@ -23,7 +23,7 @@ namespace HeadphonesShop.DataAccess.Context
         public virtual DbSet<Headphone> Headphones { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Wish> Wishes { get; set; }
+        public virtual DbSet<UserHeadphone> UserHeadphones { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -40,7 +40,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Companie__737584F64484D663")
+                entity.HasIndex(e => e.Name, "UQ__Companie__737584F66C96AAF4")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -50,7 +50,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Design>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Designs__737584F6E9C8D79B")
+                entity.HasIndex(e => e.Name, "UQ__Designs__737584F6A1897CC2")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -60,7 +60,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Headphone>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Headphon__737584F68C84BD61")
+                entity.HasIndex(e => e.Name, "UQ__Headphon__737584F65813238C")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -72,17 +72,17 @@ namespace HeadphonesShop.DataAccess.Context
                 entity.HasOne(d => d.Company)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.CompanyId)
-                    .HasConstraintName("FK__Headphone__Compa__22FF2F51");
+                    .HasConstraintName("FK__Headphone__Compa__00200768");
 
                 entity.HasOne(d => d.Design)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.DesignId)
-                    .HasConstraintName("FK__Headphone__Desig__23F3538A");
+                    .HasConstraintName("FK__Headphone__Desig__01142BA1");
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Roles__737584F680F283FE")
+                entity.HasIndex(e => e.Name, "UQ__Roles__737584F68831AF0E")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -92,7 +92,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Login, "UQ__Users__5E55825BA9C421F0")
+                entity.HasIndex(e => e.Login, "UQ__Users__5E55825B23B04B36")
                     .IsUnique();
 
                 entity.Property(e => e.Login)
@@ -107,22 +107,22 @@ namespace HeadphonesShop.DataAccess.Context
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.Role)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__Role__1975C517");
+                    .HasConstraintName("FK__Users__Role__76969D2E");
             });
 
-            modelBuilder.Entity<Wish>(entity =>
+            modelBuilder.Entity<UserHeadphone>(entity =>
             {
                 entity.HasNoKey();
 
                 entity.HasOne(d => d.Headphones)
                     .WithMany()
                     .HasForeignKey(d => d.HeadphonesId)
-                    .HasConstraintName("FK__Wishes__Headphon__25DB9BFC");
+                    .HasConstraintName("FK__UserHeadp__Headp__02FC7413");
 
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Wishes__UserId__26CFC035");
+                    .HasConstraintName("FK__UserHeadp__UserI__03F0984C");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -4,6 +4,7 @@ go
 
 drop table if exists WishesToHeadphones
 drop table if exists Wishes
+drop table if exists UserHeadphones
 drop table if exists Headphones
 drop table if exists Designs
 drop table if exists Companies
@@ -52,11 +53,11 @@ create table Headphones
 	DesignId int references Designs(Id) on delete cascade not null
 )
 
-create table Wishes
-(
-	HeadphonesId int references Headphones(Id),
-	UserId int references Users(Id)
-)
+--create table UserHeadphones
+--(
+--	HeadphonesId int references Headphones(Id),
+--	UserId int references Users(Id)
+--)
 
 go
 

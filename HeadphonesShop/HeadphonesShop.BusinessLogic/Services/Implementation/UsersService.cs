@@ -11,23 +11,24 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class UsersService : Interfaces.IUsersService
     {
-        private readonly IUsersRepository _usersRepository;
+        private readonly IUnitOfWork _unitOfWork;
         //public UsersService()
         //{
         //    _usersRepository = new UsersRepository();
         //}
-        public UsersService(IUsersRepository usersRepository)
+        public UsersService(IUnitOfWork unitOfWork)
         {
-            _usersRepository = usersRepository;
+            _unitOfWork = unitOfWork;
         }
         public IEnumerable<User> GetOtherUsers(User user)
         {
-            return _usersRepository.GetOtherUsers(user);
+            return _unitOfWork.UsersRepository.GetOtherUsers(user);
         }
 
         public void Update(IEnumerable<User> users)
         {
-            _usersRepository.Update(users);
+            _unitOfWork.UsersRepository.Update(users);
+            _unitOfWork.Save();
         }
     }
 }

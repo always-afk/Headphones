@@ -11,19 +11,19 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class SignInService : Interfaces.ISignInService
     {
-        private readonly IUsersRepository _usersRepository;
+        private readonly IUnitOfWork _unitOfWork;
         //public SignInService()
         //{
         //    _usersRepository = new UsersRepository();
         //}
-        public SignInService(IUsersRepository usersRepository)
+        public SignInService(IUnitOfWork unitOfWork)
         {
-            _usersRepository = usersRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public User SignIn(User user)
         {
-            return _usersRepository.GetAllUsers().Where(u => u.Login == user.Login && u.Password == user.Password).FirstOrDefault();
+            return _unitOfWork.UsersRepository.GetAllUsers().Where(u => u.Login == user.Login && u.Password == user.Password).FirstOrDefault();
         }
     }
 }
