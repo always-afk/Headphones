@@ -130,5 +130,11 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             _headphones = _headphonesService.GetAllHeadphones();
             Fill(_headphones);
         }
+
+        private void DesignsButtonClick(object sender, EventArgs e)
+        {
+            Form form = new Designs.DesignsForm(this, _container.GetInstance<IDesignService>());
+            form.Show();
+        }
     }
 }

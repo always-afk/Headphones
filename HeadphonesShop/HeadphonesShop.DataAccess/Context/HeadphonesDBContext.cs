@@ -13,10 +13,10 @@ namespace HeadphonesShop.DataAccess.Context
         {
         }
 
-        public HeadphonesDBContext(DbContextOptions<HeadphonesDBContext> options)
-            : base(options)
-        {
-        }
+        //public HeadphonesDBContext(DbContextOptions<HeadphonesDBContext> options)
+        //    : base(options)
+        //{
+        //}
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Design> Designs { get; set; }

@@ -276,3 +276,5 @@ C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesS
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWF\obj\Debug\net5.0-windows\HeadphonesShop.PresentationWF.Forms.Admin.Companies.CompaniesForm.resources
 D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWF\obj\Debug\net5.0-windows\HeadphonesShop.PresentationWF.Forms.Admin.Companies.AddCompanyForm.resources
 D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWF\obj\Debug\net5.0-windows\HeadphonesShop.PresentationWF.Forms.Admin.Companies.CompaniesForm.resources
+D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWF\obj\Debug\net5.0-windows\HeadphonesShop.PresentationWF.Forms.Admin.Designs.AddDesignForm.resources
+D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWF\obj\Debug\net5.0-windows\HeadphonesShop.PresentationWF.Forms.Admin.Designs.DesignsForm.resources

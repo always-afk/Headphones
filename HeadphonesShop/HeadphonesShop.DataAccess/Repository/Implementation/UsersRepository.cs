@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HeadphonesShop.DataAccess.Services.Interfaces;
 using HeadphonesShop.DataAccess.Services.Implementation;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeadphonesShop.DataAccess.Repository.Implementation
 {
@@ -39,7 +40,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         public IEnumerable<User> GetAllUsers()
         {
             var users = new List<User>();
-            foreach(var u in _context.Users)
+            foreach(var u in _context.Users.Include(u => u.Role))
             {
                 users.Add(_mapper.ToUser(u));
             }

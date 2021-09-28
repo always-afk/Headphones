@@ -37,6 +37,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._nameLabel = new System.Windows.Forms.Label();
             this._usersButton = new System.Windows.Forms.Button();
             this._companiesButton = new System.Windows.Forms.Button();
+            this._designsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,11 +121,22 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._companiesButton.UseVisualStyleBackColor = true;
             this._companiesButton.Click += new System.EventHandler(this.CompaniesButtonClick);
             // 
+            // _designsButton
+            // 
+            this._designsButton.Location = new System.Drawing.Point(389, 415);
+            this._designsButton.Name = "_designsButton";
+            this._designsButton.Size = new System.Drawing.Size(75, 23);
+            this._designsButton.TabIndex = 12;
+            this._designsButton.Text = "Designs";
+            this._designsButton.UseVisualStyleBackColor = true;
+            this._designsButton.Click += new System.EventHandler(this.DesignsButtonClick);
+            // 
             // HeadphonesCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._designsButton);
             this.Controls.Add(this._companiesButton);
             this.Controls.Add(this._usersButton);
             this.Controls.Add(this._nameTextBox);
@@ -153,5 +165,6 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private System.Windows.Forms.Label _nameLabel;
         private System.Windows.Forms.Button _usersButton;
         private System.Windows.Forms.Button _companiesButton;
+        private System.Windows.Forms.Button _designsButton;
     }
 }

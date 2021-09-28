@@ -17,7 +17,15 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         }
         public bool Add(Design design)
         {
-            return _unitOfWork.DesignRepository.Add(design);
+            if (_unitOfWork.DesignRepository.Add(design))
+            {
+                _unitOfWork.Save();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public IEnumerable<Design> GetAllDesigns()

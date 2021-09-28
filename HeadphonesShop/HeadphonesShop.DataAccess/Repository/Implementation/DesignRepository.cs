@@ -30,7 +30,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public bool Add(Design design)
         {
-            throw new NotImplementedException();
+            var dataDes = _mapper.ToDesign(design);
+            if(!_context.Designs.Any(d => d.Name == dataDes.Name))
+            {
+                _context.Designs.Add(dataDes);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void Delete(Design design)

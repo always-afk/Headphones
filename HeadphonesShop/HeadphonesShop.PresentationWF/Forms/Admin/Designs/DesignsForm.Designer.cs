@@ -30,7 +30,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
         private void InitializeComponent()
         {
             this._addButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._designsTable = new System.Windows.Forms.TableLayoutPanel();
             this._saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,19 +44,19 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             this._addButton.UseVisualStyleBackColor = true;
             this._addButton.Click += new System.EventHandler(this.AddButtonClick);
             // 
-            // tableLayoutPanel1
+            // _designsTable
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(408, 241);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this._designsTable.ColumnCount = 2;
+            this._designsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._designsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this._designsTable.Location = new System.Drawing.Point(12, 12);
+            this._designsTable.Name = "_designsTable";
+            this._designsTable.RowCount = 3;
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this._designsTable.Size = new System.Drawing.Size(408, 241);
+            this._designsTable.TabIndex = 1;
             // 
             // _saveButton
             // 
@@ -71,9 +71,9 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 450);
+            this.ClientSize = new System.Drawing.Size(440, 392);
             this.Controls.Add(this._saveButton);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this._designsTable);
             this.Controls.Add(this._addButton);
             this.Name = "DesignsForm";
             this.Text = "DesignsForm";
@@ -86,7 +86,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
         #endregion
 
         private System.Windows.Forms.Button _addButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel _designsTable;
         private System.Windows.Forms.Button _saveButton;
     }
 }
