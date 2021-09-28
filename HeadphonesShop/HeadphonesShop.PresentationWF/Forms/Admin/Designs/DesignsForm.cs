@@ -35,6 +35,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
 
         private void Fill()
         {
+            _designsTable.Controls.Clear();
             _designsTable.RowCount = _designs.Count;
             for (int i = 0; i < _designs.Count; i++)
             {
@@ -64,9 +65,15 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             var b = (sender as Button);
             if(b is not null)
             {
-                _designs.RemoveAt((_designsTable.Controls.IndexOf(b) + 1) / 2);
+                _designs.RemoveAt((_designsTable.Controls.IndexOf(b) + 1) / 2 - 1);
             }
             Fill();
+        }
+
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            _designService.Save(_designs);
+            MessageBox.Show("Success");
         }
     }
 }

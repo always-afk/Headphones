@@ -35,7 +35,8 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Save(IEnumerable<Design> designs)
         {
-            throw new NotImplementedException();
+            _unitOfWork.DesignRepository.Update(designs);
+            _unitOfWork.Save();
         }
     }
 }

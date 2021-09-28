@@ -11,6 +11,6 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
     {
         IEnumerable<Design> GetAllDesigns();
         bool Add(Design design);
-        void Delete(Design design);
+        void Update(IEnumerable<Design> designs);
     }
 }

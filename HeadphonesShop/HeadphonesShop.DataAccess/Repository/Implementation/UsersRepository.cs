@@ -26,11 +26,6 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
             _mapper = mapper;
         }
-        public void Add(User user)
-        {
-            var newUser = _mapper.ToUser(user);
-            _context.Users.Add(newUser);
-        }
 
         public void Delete(User user)
         {
@@ -60,7 +55,8 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(IEnumerable<User> users)
         {
-            foreach(var user in _context.Users)
+            var idAdmin = _context.Roles.Where(r => r.Name == "admin").FirstOrDefault().Id;
+            foreach (var user in _context.Users)
             {
                 var us = users.Where(u => u.Login == user.Login).FirstOrDefault();
                 if(us is null)
@@ -72,13 +68,38 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     //user.IsAdmin = us.IsAdmin;
                 }
             }
+            foreach (var user in users)
+            {
+                var roleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
+                var us = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault();
+                us.RoleId = roleId;
+            }
+        }
+
+        bool Add(User user)
+        {
+            if (!_context.Users.Any(u => u.Login == user.Login))
+            {
+                var newUser = _mapper.ToUser(user);
+                newUser.RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
+                newUser.Role = null;
+                _context.Users.Add(newUser);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         bool IUsersRepository.Add(User user)
         {
             if (!_context.Users.Any(u => u.Login == user.Login))
             {
-                _context.Users.Add(_mapper.ToUser(user));
+                var newUser = _mapper.ToUser(user);
+                newUser.RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
+                newUser.Role = null;
+                _context.Users.Add(newUser);
                 return true;
             }
             else

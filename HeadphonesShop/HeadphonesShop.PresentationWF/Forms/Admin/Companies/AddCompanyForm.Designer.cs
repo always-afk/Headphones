@@ -56,6 +56,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Companies
             // _nameTextBox
             // 
             this._nameTextBox.Location = new System.Drawing.Point(145, 64);
+            this._nameTextBox.MaxLength = 31;
             this._nameTextBox.Name = "_nameTextBox";
             this._nameTextBox.Size = new System.Drawing.Size(100, 23);
             this._nameTextBox.TabIndex = 2;

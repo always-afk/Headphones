@@ -42,11 +42,6 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             }
         }
 
-        public void Delete(Design design)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Design> GetAllDesigns()
         {
             var designs = new List<Design>();
@@ -56,6 +51,17 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 designs.Add(d);
             }
             return designs;
+        }
+
+        public void Update(IEnumerable<Design> designs)
+        {
+            foreach(var design in _context.Designs)
+            {
+                if(!designs.Any(d => d.Name == design.Name))
+                {
+                    _context.Designs.Remove(design);
+                }
+            }
         }
     }
 }

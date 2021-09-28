@@ -51,13 +51,18 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
         private void RegisterButtonClick(object sender, EventArgs e)
         {
             var login = _loginTextBox.Text;
+            var log = "";
+            foreach(var l in login)
+            {
+                log += Char.ToLower(l);
+            }
             var pass = _passTextBox.Text;
             var repass = _repassTextBox.Text;
-            if(Validate(login, pass, repass))
+            if(Validate(log, pass, repass))
             {
                 var user = new User()
                 {
-                    Login = login,
+                    Login = log,
                     Password = pass,
                     Role = new Role()
                     {

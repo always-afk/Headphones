@@ -27,7 +27,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Save()
         {
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
     }
 }

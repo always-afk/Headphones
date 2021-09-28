@@ -63,7 +63,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
                 _usersTable.Controls.Add(login, column, row);
                 column += 1;
                 var admin = new CheckBox();
-                admin.Checked = user.Role.Name == "Admin";
+                admin.Checked = user.Role.Name == "admin";
                 _usersTable.Controls.Add(admin, column, row);
                 column += 1;
                 var del = new Button();

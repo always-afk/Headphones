@@ -52,9 +52,9 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             this._designsTable.Location = new System.Drawing.Point(12, 12);
             this._designsTable.Name = "_designsTable";
             this._designsTable.RowCount = 3;
-            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this._designsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this._designsTable.Size = new System.Drawing.Size(408, 241);
             this._designsTable.TabIndex = 1;
             // 
@@ -66,6 +66,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             this._saveButton.TabIndex = 2;
             this._saveButton.Text = "Save";
             this._saveButton.UseVisualStyleBackColor = true;
+            this._saveButton.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // DesignsForm
             // 
