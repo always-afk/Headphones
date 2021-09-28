@@ -7,6 +7,12 @@
     <Compile Update="Forms\Admin\Companies\CompaniesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Admin\Designs\AddDesignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\Admin\Designs\DesignsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Admin\Headphones\AddHeadphonesForm.cs">
       <SubType>Form</SubType>
     </Compile>

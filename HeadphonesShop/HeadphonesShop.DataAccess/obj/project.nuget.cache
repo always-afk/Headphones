@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gXvEpPzxiOEAcGdaonyc6dAZb6E3edkKoMh4QkVG5lSIUi/2fGx4Y8lIEDtcPCykBVqkrKTix+bSOk+mbVZm2A==",
+  "dgSpecHash": "6WXPtNWguRr4QQX6iXS8z+mMxQTxu1VnTKl/duANuVSLBbtJwNfpcvU3gknR+f3gEtS0lbKvSkvTi4L821cY5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
+  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
