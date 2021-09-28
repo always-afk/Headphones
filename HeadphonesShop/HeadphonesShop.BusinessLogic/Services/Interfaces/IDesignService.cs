@@ -10,7 +10,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
     public interface IDesignService
     {
         IEnumerable<Design> GetAllDesigns();
-        bool Add(Design designy);
+        bool Add(Design design);
         void Save(IEnumerable<Design> designs);
     }
 }

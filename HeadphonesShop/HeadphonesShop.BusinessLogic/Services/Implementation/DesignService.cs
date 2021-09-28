@@ -15,9 +15,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         {
             _unitOfWork = unitOfWork;
         }
-        public bool Add(Design designy)
+        public bool Add(Design design)
         {
-            throw new NotImplementedException();
+            return _unitOfWork.DesignRepository.Add(design);
         }
 
         public IEnumerable<Design> GetAllDesigns()

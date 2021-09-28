@@ -27,6 +27,26 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
         private void AddButtonClick(object sender, EventArgs e)
         {
             var des = new Design();
+            des.Name = _nameTextBox.Text;
+            if (_designService.Add(des))
+            {
+                MessageBox.Show("Added");
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void AddDesignFormLoad(object sender, EventArgs e)
+        {
+            _form.Visible = false;
+        }
+
+        private void AddDesignFormClosed(object sender, FormClosedEventArgs e)
+        {
+            _form.Visible = true;
         }
     }
 }

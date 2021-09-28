@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ttcGVK1ErDyzewgTWGQb1SEesaAzP3lXGPDHuiLh2+S7dpDC2Xa1ErjWcXgTaMe3U8JQp1XuQkDykIYoAgWw/w==",
+  "dgSpecHash": "OQtKspm2slu5utLIrPO2iKADKoOoNx09U61ZQovLPYiEljN88Nn1I1542d+0m3Adsc1yZWKiSrs5BVrX1UJMqQ==",
   "success": true,
-  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWebMVC\\HeadphonesShop.PresentationWebMVC.csproj",
+  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWebMVC\\HeadphonesShop.PresentationWebMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.9.nupkg.sha512",

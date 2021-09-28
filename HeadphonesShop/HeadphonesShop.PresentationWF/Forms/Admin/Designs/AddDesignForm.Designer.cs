@@ -30,7 +30,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
         private void InitializeComponent()
         {
             this._addButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this._nameTextBox = new System.Windows.Forms.TextBox();
             this._nameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -44,12 +44,12 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             this._addButton.UseVisualStyleBackColor = true;
             this._addButton.Click += new System.EventHandler(this.AddButtonClick);
             // 
-            // textBox1
+            // _nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(126, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 1;
+            this._nameTextBox.Location = new System.Drawing.Point(126, 65);
+            this._nameTextBox.Name = "_nameTextBox";
+            this._nameTextBox.Size = new System.Drawing.Size(100, 23);
+            this._nameTextBox.TabIndex = 1;
             // 
             // _nameLabel
             // 
@@ -66,10 +66,12 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(399, 293);
             this.Controls.Add(this._nameLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._nameTextBox);
             this.Controls.Add(this._addButton);
             this.Name = "AddDesignForm";
             this.Text = "AddDesignForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddDesignFormClosed);
+            this.Load += new System.EventHandler(this.AddDesignFormLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,7 +80,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Designs
         #endregion
 
         private System.Windows.Forms.Button _addButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox _nameTextBox;
         private System.Windows.Forms.Label _nameLabel;
     }
 }
