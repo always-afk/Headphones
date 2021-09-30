@@ -35,11 +35,48 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
         public IEnumerable<User> GetAllUsers()
         {
             var users = new List<User>();
-            foreach(var u in _context.Users.Include(u => u.Role))
+            //var us = from u in _context.Users
+            //         join con in _context.UserHeadphones on u.Id equals con.UserId
+            //         join head in _context.Headphones on con.HeadphonesId equals head.Id
+            //         select u;
+            var us = _context.Users.Include(u => u.Role).ToList().Select(u => new User
             {
-                users.Add(_mapper.ToUser(u));
-            }
-            return users;
+                Login = u.Login,
+                Password = u.Password,
+                Role = new Role(){
+                   Name = u.Role.Name
+                },
+                FavHeadphones = _context.Headphones.Where(h => _context.UserHeadphones
+                                                        .Where(con => con.UserId == u.Id)
+                                                        .Any(con => con.HeadphonesId == h.Id))
+                                                   .Include(h => h.Design)
+                                                   .Include(h => h.Company)
+                                                   .ToList()
+                                                   .Select(h => new Headphones()
+                                                   {
+                                                       Name = h.Name,
+                                                       MinFrequency = h.MinFrequency,
+                                                       MaxFrequency = h.MaxFrequency,
+                                                       Picture  = h.Picture,
+                                                       Company = new Company()
+                                                       {
+                                                           Name = h.Company.Name
+                                                       },
+                                                       Design = new Design()
+                                                       {
+                                                           Name = h.Design.Name
+                                                       }
+                                                   })
+                                                   .ToList()
+            }).ToList();
+            
+
+            //foreach(var user in _context.Users.Include(u => u.Role))
+            //{
+                
+            //    users.Add(_mapper.ToUser(user));
+            //}
+            return us;
         }
 
         public IEnumerable<User> GetOtherUsers(User user)

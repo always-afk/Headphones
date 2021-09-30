@@ -47,6 +47,7 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             Fill(_headphones);
 
             _headphonesTable.DataSource = _table;
+            _allRadioButton.Checked = true;
         }
 
         private void CommonCatalogFormClosed(object sender, FormClosedEventArgs e)

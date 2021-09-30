@@ -33,7 +33,11 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this._backButton = new System.Windows.Forms.Button();
             this._nameLabel = new System.Windows.Forms.Label();
             this._nameTextBox = new System.Windows.Forms.TextBox();
+            this._radioFav = new System.Windows.Forms.GroupBox();
+            this._favRadioButton = new System.Windows.Forms.RadioButton();
+            this._allRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).BeginInit();
+            this._radioFav.SuspendLayout();
             this.SuspendLayout();
             // 
             // _headphonesTable
@@ -41,7 +45,7 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this._headphonesTable.AllowUserToAddRows = false;
             this._headphonesTable.AllowUserToDeleteRows = false;
             this._headphonesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this._headphonesTable.Location = new System.Drawing.Point(12, 62);
+            this._headphonesTable.Location = new System.Drawing.Point(13, 106);
             this._headphonesTable.Name = "_headphonesTable";
             this._headphonesTable.ReadOnly = true;
             this._headphonesTable.RowTemplate.Height = 25;
@@ -76,11 +80,44 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this._nameTextBox.TabIndex = 7;
             this._nameTextBox.TextChanged += new System.EventHandler(this.NameTextBoxChanged);
             // 
+            // _radioFav
+            // 
+            this._radioFav.Controls.Add(this._favRadioButton);
+            this._radioFav.Controls.Add(this._allRadioButton);
+            this._radioFav.Location = new System.Drawing.Point(416, 12);
+            this._radioFav.Name = "_radioFav";
+            this._radioFav.Size = new System.Drawing.Size(200, 88);
+            this._radioFav.TabIndex = 8;
+            this._radioFav.TabStop = false;
+            // 
+            // _favRadioButton
+            // 
+            this._favRadioButton.AutoSize = true;
+            this._favRadioButton.Location = new System.Drawing.Point(7, 48);
+            this._favRadioButton.Name = "_favRadioButton";
+            this._favRadioButton.Size = new System.Drawing.Size(74, 19);
+            this._favRadioButton.TabIndex = 1;
+            this._favRadioButton.TabStop = true;
+            this._favRadioButton.Text = "Favourite";
+            this._favRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // _allRadioButton
+            // 
+            this._allRadioButton.AutoSize = true;
+            this._allRadioButton.Location = new System.Drawing.Point(7, 23);
+            this._allRadioButton.Name = "_allRadioButton";
+            this._allRadioButton.Size = new System.Drawing.Size(39, 19);
+            this._allRadioButton.TabIndex = 0;
+            this._allRadioButton.TabStop = true;
+            this._allRadioButton.Text = "All";
+            this._allRadioButton.UseVisualStyleBackColor = true;
+            // 
             // CommonCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._radioFav);
             this.Controls.Add(this._nameTextBox);
             this.Controls.Add(this._nameLabel);
             this.Controls.Add(this._headphonesTable);
@@ -90,6 +127,8 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CommonCatalogFormClosed);
             this.Load += new System.EventHandler(this.CommonCatalogFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).EndInit();
+            this._radioFav.ResumeLayout(false);
+            this._radioFav.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,5 +140,8 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
         private System.Windows.Forms.Button _backButton;
         private System.Windows.Forms.Label _nameLabel;
         private System.Windows.Forms.TextBox _nameTextBox;
+        private System.Windows.Forms.GroupBox _radioFav;
+        private System.Windows.Forms.RadioButton _favRadioButton;
+        private System.Windows.Forms.RadioButton _allRadioButton;
     }
 }

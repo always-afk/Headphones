@@ -33,3 +33,4 @@ C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesS
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.Common\obj\Debug\net5.0\HeadphonesShop.Common.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.Common\obj\Debug\net5.0\ref\HeadphonesShop.Common.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.Common\obj\Debug\net5.0\HeadphonesShop.Common.pdb
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.Common\obj\Debug\net5.0\HeadphonesShop.Common.csproj.AssemblyReference.cache
