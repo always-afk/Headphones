@@ -30,5 +30,11 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             _unitOfWork.UsersRepository.Update(users);
             _unitOfWork.Save();
         }
+
+        public void Update(User user)
+        {
+            _unitOfWork.UsersRepository.Update(user);
+            _unitOfWork.Save();
+        }
     }
 }

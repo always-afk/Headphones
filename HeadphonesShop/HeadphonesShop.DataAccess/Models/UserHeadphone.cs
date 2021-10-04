@@ -7,6 +7,7 @@ namespace HeadphonesShop.DataAccess.Models
 {
     public partial class UserHeadphone
     {
+        public int Id { get; set; }
         public int? HeadphonesId { get; set; }
         public int? UserId { get; set; }
 

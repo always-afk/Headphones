@@ -34,8 +34,11 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this._nameLabel = new System.Windows.Forms.Label();
             this._nameTextBox = new System.Windows.Forms.TextBox();
             this._radioFav = new System.Windows.Forms.GroupBox();
+            this._submitButton = new System.Windows.Forms.Button();
             this._favRadioButton = new System.Windows.Forms.RadioButton();
             this._allRadioButton = new System.Windows.Forms.RadioButton();
+            this._infoButton = new System.Windows.Forms.Button();
+            this._saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._headphonesTable)).BeginInit();
             this._radioFav.SuspendLayout();
             this.SuspendLayout();
@@ -82,13 +85,24 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             // 
             // _radioFav
             // 
+            this._radioFav.Controls.Add(this._submitButton);
             this._radioFav.Controls.Add(this._favRadioButton);
             this._radioFav.Controls.Add(this._allRadioButton);
             this._radioFav.Location = new System.Drawing.Point(416, 12);
             this._radioFav.Name = "_radioFav";
-            this._radioFav.Size = new System.Drawing.Size(200, 88);
+            this._radioFav.Size = new System.Drawing.Size(235, 88);
             this._radioFav.TabIndex = 8;
             this._radioFav.TabStop = false;
+            // 
+            // _submitButton
+            // 
+            this._submitButton.Location = new System.Drawing.Point(122, 33);
+            this._submitButton.Name = "_submitButton";
+            this._submitButton.Size = new System.Drawing.Size(75, 23);
+            this._submitButton.TabIndex = 2;
+            this._submitButton.Text = "Submit";
+            this._submitButton.UseVisualStyleBackColor = true;
+            this._submitButton.Click += new System.EventHandler(this.SubmitButtonClick);
             // 
             // _favRadioButton
             // 
@@ -112,11 +126,33 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
             this._allRadioButton.Text = "All";
             this._allRadioButton.UseVisualStyleBackColor = true;
             // 
+            // _infoButton
+            // 
+            this._infoButton.Location = new System.Drawing.Point(570, 393);
+            this._infoButton.Name = "_infoButton";
+            this._infoButton.Size = new System.Drawing.Size(75, 23);
+            this._infoButton.TabIndex = 9;
+            this._infoButton.Text = "Info";
+            this._infoButton.UseVisualStyleBackColor = true;
+            this._infoButton.Click += new System.EventHandler(this.InfoButtonClick);
+            // 
+            // _saveButton
+            // 
+            this._saveButton.Location = new System.Drawing.Point(651, 393);
+            this._saveButton.Name = "_saveButton";
+            this._saveButton.Size = new System.Drawing.Size(75, 23);
+            this._saveButton.TabIndex = 10;
+            this._saveButton.Text = "Save";
+            this._saveButton.UseVisualStyleBackColor = true;
+            this._saveButton.Click += new System.EventHandler(this.SaveButtonClick);
+            // 
             // CommonCatalogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._saveButton);
+            this.Controls.Add(this._infoButton);
             this.Controls.Add(this._radioFav);
             this.Controls.Add(this._nameTextBox);
             this.Controls.Add(this._nameLabel);
@@ -143,5 +179,8 @@ namespace HeadphonesShop.PresentationWF.Forms.CommonUser
         private System.Windows.Forms.GroupBox _radioFav;
         private System.Windows.Forms.RadioButton _favRadioButton;
         private System.Windows.Forms.RadioButton _allRadioButton;
+        private System.Windows.Forms.Button _submitButton;
+        private System.Windows.Forms.Button _infoButton;
+        private System.Windows.Forms.Button _saveButton;
     }
 }

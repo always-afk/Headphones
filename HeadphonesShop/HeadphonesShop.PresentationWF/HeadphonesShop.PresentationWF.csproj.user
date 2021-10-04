@@ -28,6 +28,9 @@
     <Compile Update="Forms\CommonUser\CommonCatalogForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\CommonUser\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\UnknownUser\SignInForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -113,6 +113,49 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             }
         }
 
+        public void Update(User user)
+        {
+            var userId = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault().Id;
+
+            //foreach(var headphones in user.FavHeadphones)
+            //{
+            //    var headId = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault().Id;
+            //    if(!_context.UserHeadphones.Any(x => x.UserId == userId && x.HeadphonesId == headId))
+            //    {
+            //        var elem = new Models.UserHeadphone()
+            //        {
+            //            HeadphonesId = headId,
+            //            UserId = userId
+            //        };
+            //    }
+            //}
+
+            var heads = _context.Headphones.ToList();
+            var hu = _context.UserHeadphones.ToList();
+
+            foreach (var headphones in heads)
+            {
+                if(user.FavHeadphones.Any(h => h.Name == headphones.Name) && 
+                    !hu.Any(x => x.UserId == userId && x.HeadphonesId == headphones.Id))
+                {
+                    
+                    var elem = new Models.UserHeadphone()
+                    {
+                        HeadphonesId = headphones.Id,
+                        UserId = userId
+                    };
+                    _context.UserHeadphones.Add(elem);
+                    
+                }
+                else if (!user.FavHeadphones.Any(h => h.Name == headphones.Name) &&
+                    hu.Any(x => x.UserId == userId && x.HeadphonesId == headphones.Id))
+                {
+                    var elem = hu.Where(x => x.UserId == userId && x.HeadphonesId == headphones.Id).FirstOrDefault();
+                    _context.UserHeadphones.Remove(elem);
+                }
+            }
+        }
+
         bool Add(User user)
         {
             if (!_context.Users.Any(u => u.Login == user.Login))

@@ -11,5 +11,6 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
     {
         IEnumerable<User> GetOtherUsers(User user);
         void Update(IEnumerable<User> users);
+        void Update(User user);
     }
 }

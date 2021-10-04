@@ -97,7 +97,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
                 }
                 else
                 {
-                    Form form = new CommonUser.CommonCatalogForm(this, _container);
+                    Form form = new CommonUser.CommonCatalogForm(this, _container, user);
                     form.Show();
                 }
             }

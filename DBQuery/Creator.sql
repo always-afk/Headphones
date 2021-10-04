@@ -10,7 +10,8 @@ drop table if exists Designs
 drop table if exists Companies
 drop table if exists Users
 drop table if exists Roles
-drop procedure if exists CountUsers
+drop procedure if exists GetUsers
+drop function if exists CountHeadphones
 
 go
 
@@ -53,18 +54,30 @@ create table Headphones
 	DesignId int references Designs(Id) on delete cascade not null
 )
 
---create table UserHeadphones
---(
---	HeadphonesId int references Headphones(Id),
---	UserId int references Users(Id)
---)
+create table UserHeadphones
+(
+	HeadphonesId int references Headphones(Id),
+	UserId int references Users(Id)
+)
 
 go
 
-create procedure CountUsers as
-select COUNT(*) from Users 
+create procedure GetUsers as
+select * from Users 
 
 go 
+
+create function CountHeadphones()
+returns int
+as
+begin
+	declare @res int
+	select @res = count(*)
+	from Headphones
+	return @res
+end
+
+go
 
 create trigger HeadphonesInsert
 on Headphones
@@ -95,3 +108,6 @@ insert Designs values
 insert Headphones values
 ('Sony WH-1000XM4', 4, 40000, '', 1, 2),
 ('JBL Tune 510BT', 20, 20000, '', 2, 2)
+
+insert UserHeadphones values
+(1,2)

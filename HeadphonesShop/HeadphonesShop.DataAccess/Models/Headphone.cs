@@ -7,6 +7,11 @@ namespace HeadphonesShop.DataAccess.Models
 {
     public partial class Headphone
     {
+        public Headphone()
+        {
+            UserHeadphones = new HashSet<UserHeadphone>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public double? MinFrequency { get; set; }
@@ -17,5 +22,6 @@ namespace HeadphonesShop.DataAccess.Models
 
         public virtual Company Company { get; set; }
         public virtual Design Design { get; set; }
+        public virtual ICollection<UserHeadphone> UserHeadphones { get; set; }
     }
 }
