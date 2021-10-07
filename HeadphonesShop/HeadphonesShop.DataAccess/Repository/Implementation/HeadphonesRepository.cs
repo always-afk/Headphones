@@ -51,12 +51,21 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public IEnumerable<Headphones> GetAllHeadphones()
         {
-            var headphones = new List<Headphones>();
-            foreach(var h in _context.Headphones.Include(x => x.Design).Include(x => x.Company))
+            var headphones = _context.Headphones.Select(h => new Headphones()
             {
-                var head = _mapper.ToHeadphones(h);
-                headphones.Add(head);
-            }
+                Name = h.Name,
+                MinFrequency = h.MinFrequency,
+                MaxFrequency = h.MaxFrequency,
+                Picture = h.Picture,
+                Company = new Company()
+                {
+                    Name = h.Company.Name
+                },
+                Design = new Design()
+                {
+                    Name = h.Design.Name
+                }
+            }).ToList();
             return headphones;
         }
 
@@ -65,6 +74,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             var head = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
             head.MinFrequency = headphones.MinFrequency;
             head.MaxFrequency = headphones.MaxFrequency;
+            head.Picture = headphones.Picture;
             head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
         }

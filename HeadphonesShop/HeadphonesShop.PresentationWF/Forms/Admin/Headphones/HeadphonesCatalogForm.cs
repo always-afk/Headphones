@@ -68,24 +68,25 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private void EditButtonClick(object sender, EventArgs e)
         {
             var name = _headphonesTable.CurrentRow.Cells[0].Value.ToString();
-            var minF = Convert.ToDouble(_headphonesTable.CurrentRow.Cells[1].Value.ToString());
-            var maxF = Convert.ToDouble(_headphonesTable.CurrentRow.Cells[2].Value.ToString());
-            var company = _headphonesTable.CurrentRow.Cells[3].Value.ToString();
-            var desi = _headphonesTable.CurrentRow.Cells[4].Value.ToString();
-            var selectedhead = new Common.Entities.Headphones()
-            {
-                Name = name,
-                MinFrequency = minF,
-                MaxFrequency = maxF,
-                Company = new Common.Entities.Company()
-                {
-                    Name = company
-                },
-                Design = new Common.Entities.Design()
-                {
-                    Name = desi
-                }
-            };
+            //var minF = Convert.ToDouble(_headphonesTable.CurrentRow.Cells[1].Value.ToString());
+            //var maxF = Convert.ToDouble(_headphonesTable.CurrentRow.Cells[2].Value.ToString());
+            //var company = _headphonesTable.CurrentRow.Cells[3].Value.ToString();
+            //var desi = _headphonesTable.CurrentRow.Cells[4].Value.ToString();
+            //var selectedhead = new Common.Entities.Headphones()
+            //{
+            //    Name = name,
+            //    MinFrequency = minF,
+            //    MaxFrequency = maxF,
+            //    Company = new Common.Entities.Company()
+            //    {
+            //        Name = company
+            //    },
+            //    Design = new Common.Entities.Design()
+            //    {
+            //        Name = desi
+            //    }
+            //};
+            var selectedhead = _headphones.Where(h => h.Name == name).FirstOrDefault();
             Form form = new EditHeadphonesForm(this, selectedhead, _container);
             form.Show();
         }

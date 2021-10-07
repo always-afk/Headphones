@@ -81,11 +81,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public IEnumerable<User> GetOtherUsers(User user)
         {
-            var users = new List<User>();
-            foreach(var us in _context.Users.Where(u => u.Login != user.Login))
+            //var users = new List<User>();
+            //foreach(var us in _context.Users.Where(u => u.Login != user.Login))
+            //{
+            //    users.Add(_mapper.ToUser(us));
+            //}
+            var param = new Microsoft.Data.SqlClient.SqlParameter("@login", user.Login);
+            var users = _context.Users.FromSqlRaw("GetOtherUsersProc @login", param).ToList().Select(u => new User()
             {
-                users.Add(_mapper.ToUser(us));
-            }
+                Login = u.Login
+            });
             return users;
         }
 

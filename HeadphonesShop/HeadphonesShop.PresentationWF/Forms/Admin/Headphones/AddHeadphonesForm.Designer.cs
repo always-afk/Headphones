@@ -41,6 +41,9 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._designLabel = new System.Windows.Forms.Label();
             this._backButton = new System.Windows.Forms.Button();
             this._addButton = new System.Windows.Forms.Button();
+            this._pictureButton = new System.Windows.Forms.Button();
+            this._pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // _nameTextBox
@@ -148,11 +151,32 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._addButton.UseVisualStyleBackColor = true;
             this._addButton.Click += new System.EventHandler(this.AddButtonClick);
             // 
+            // _pictureButton
+            // 
+            this._pictureButton.Location = new System.Drawing.Point(288, 271);
+            this._pictureButton.Name = "_pictureButton";
+            this._pictureButton.Size = new System.Drawing.Size(75, 23);
+            this._pictureButton.TabIndex = 12;
+            this._pictureButton.Text = "Picture";
+            this._pictureButton.UseVisualStyleBackColor = true;
+            this._pictureButton.Click += new System.EventHandler(this.PictureButtonClick);
+            // 
+            // _pictureBox
+            // 
+            this._pictureBox.Location = new System.Drawing.Point(495, 101);
+            this._pictureBox.Name = "_pictureBox";
+            this._pictureBox.Size = new System.Drawing.Size(214, 193);
+            this._pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._pictureBox.TabIndex = 13;
+            this._pictureBox.TabStop = false;
+            // 
             // AddHeadphonesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._pictureBox);
+            this.Controls.Add(this._pictureButton);
             this.Controls.Add(this._addButton);
             this.Controls.Add(this._backButton);
             this.Controls.Add(this._designLabel);
@@ -169,6 +193,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this.Text = "AddHeadphonesForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddHeadphonesFormClosed);
             this.Load += new System.EventHandler(this.AddHeadphonesFormLoad);
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +213,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private System.Windows.Forms.Label _designLabel;
         private System.Windows.Forms.Button _backButton;
         private System.Windows.Forms.Button _addButton;
+        private System.Windows.Forms.Button _pictureButton;
+        private System.Windows.Forms.PictureBox _pictureBox;
     }
 }

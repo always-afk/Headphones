@@ -42,6 +42,9 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._minFTextBox = new System.Windows.Forms.TextBox();
             this._nameTextBox = new System.Windows.Forms.TextBox();
             this._deleteButton = new System.Windows.Forms.Button();
+            this._pictureButton = new System.Windows.Forms.Button();
+            this._pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // _saveButton
@@ -160,11 +163,32 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this._deleteButton.UseVisualStyleBackColor = true;
             this._deleteButton.Click += new System.EventHandler(this.DeleteButtonClick);
             // 
+            // _pictureButton
+            // 
+            this._pictureButton.Location = new System.Drawing.Point(288, 202);
+            this._pictureButton.Name = "_pictureButton";
+            this._pictureButton.Size = new System.Drawing.Size(75, 23);
+            this._pictureButton.TabIndex = 25;
+            this._pictureButton.Text = "Picture";
+            this._pictureButton.UseVisualStyleBackColor = true;
+            this._pictureButton.Click += new System.EventHandler(this.PictureButtonClick);
+            // 
+            // _pictureBox
+            // 
+            this._pictureBox.Location = new System.Drawing.Point(495, 57);
+            this._pictureBox.Name = "_pictureBox";
+            this._pictureBox.Size = new System.Drawing.Size(293, 233);
+            this._pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this._pictureBox.TabIndex = 26;
+            this._pictureBox.TabStop = false;
+            // 
             // EditHeadphonesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 408);
+            this.Controls.Add(this._pictureBox);
+            this.Controls.Add(this._pictureButton);
             this.Controls.Add(this._deleteButton);
             this.Controls.Add(this._saveButton);
             this.Controls.Add(this._backButton);
@@ -182,6 +206,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
             this.Text = "EditHeadphonesForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditHeadphonesFormClosed);
             this.Load += new System.EventHandler(this.EditHeadphonesFormLoad);
+            ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +227,7 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Headphones
         private System.Windows.Forms.TextBox _minFTextBox;
         private System.Windows.Forms.TextBox _nameTextBox;
         private System.Windows.Forms.Button _deleteButton;
+        private System.Windows.Forms.Button _pictureButton;
+        private System.Windows.Forms.PictureBox _pictureBox;
     }
 }

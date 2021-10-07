@@ -17,6 +17,7 @@ using HeadphonesShop.DataAccess.Services.Interfaces;
 using HeadphonesShop.BusinessLogic.Services.Implementation;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace HeadphonesShop.PresentationWebMVC
 {
@@ -33,17 +34,23 @@ namespace HeadphonesShop.PresentationWebMVC
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
+            //services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<ICompaniesRepository, CompaniesRepository>();
             services.AddScoped<IDesignRepository, DesignRepository>();
             services.AddScoped<IHeadphonesRepository, HeadphonesRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMapper, Mapper>();
 
             services.AddScoped<ISignInService, SignInService>();
             services.AddScoped<ISignUpService, SignUpService>();
             services.AddScoped<IHeadphonesService, HeadphonesService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IDesignService, DesignService>();
 
             services.AddControllersWithViews();
             
@@ -68,7 +75,8 @@ namespace HeadphonesShop.PresentationWebMVC
 
             app.UseRouting();
 
-            app.UseAuthorization();        
+            app.UseAuthentication();    
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

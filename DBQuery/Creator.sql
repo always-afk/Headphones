@@ -11,7 +11,10 @@ drop table if exists Companies
 drop table if exists Users
 drop table if exists Roles
 drop procedure if exists GetUsers
+drop procedure if exists GetOtherUsersProc
+drop function if exists GetOtherUsersFunc
 drop function if exists CountHeadphones
+drop view if exists FullHeadphones
 
 go
 
@@ -56,26 +59,59 @@ create table Headphones
 
 create table UserHeadphones
 (
+	Id int primary key identity(1,1), 
 	HeadphonesId int references Headphones(Id),
 	UserId int references Users(Id)
 )
 
 go
 
-create procedure GetUsers as
-select * from Users 
-
-go 
-
-create function CountHeadphones()
-returns int
+create view FullHeadphones
 as
-begin
-	declare @res int
-	select @res = count(*)
-	from Headphones
-	return @res
-end
+select Headphones.Name, Companies.Name as Company, Designs.Name as Design
+from Headphones
+join Companies on Headphones.CompanyId = Companies.Id
+join Designs on Headphones.DesignId = Designs.Id
+
+go
+
+create index pic_index on Headphones(Picture)
+
+go
+
+create procedure GetOtherUsersProc
+	@login nvarchar(16)
+	as
+	select *
+	from Users
+	where NOT [Login] = @login
+
+go
+
+create function GetOtherUsersFunc(@login nvarchar(16))
+returns table
+as
+return
+(
+	select *
+	from Users
+	where [Login] != @login
+)
+
+--create procedure GetUsers as
+--select * from Users 
+
+--go 
+
+--create function CountHeadphones()
+--returns int
+--as
+--begin
+--	declare @res int
+--	select @res = count(*)
+--	from Headphones
+--	return @res
+--end
 
 go
 
@@ -94,8 +130,8 @@ insert Roles values
 ('common user')
 
 insert Users values
-('admin', 'admin', 1),
-('user', 'user', 2)
+('admin@a', 'admin', 1),
+('user@u', 'user', 2)
 
 insert Companies values
 ('Sony'),
@@ -111,3 +147,5 @@ insert Headphones values
 
 insert UserHeadphones values
 (1,2)
+
+exec GetOtherUsersProc @login = 'admin@a'
