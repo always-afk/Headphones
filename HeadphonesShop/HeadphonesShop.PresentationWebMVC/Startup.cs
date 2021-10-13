@@ -35,7 +35,12 @@ namespace HeadphonesShop.PresentationWebMVC
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+                .AddCookie()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "525136855843-vdr9s9c33l9hnn75tdqgc2md5t7tda19.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
+                });
             //services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
@@ -45,8 +50,8 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMapper, Mapper>();
 
-            services.AddScoped<ISignInService, SignInService>();
-            services.AddScoped<ISignUpService, SignUpService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IHeadphonesService, HeadphonesService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ICompanyService, CompanyService>();

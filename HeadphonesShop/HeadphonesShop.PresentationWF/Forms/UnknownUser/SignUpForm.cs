@@ -16,7 +16,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
     public partial class SignUpForm : Form
     {
         private readonly Form _form;
-        private readonly ISignUpService _signUpService;
+        private readonly IAccountService _accountService;
         private readonly SimpleInjector.Container _container;
 
         private const int MAXLOGIN = 16;
@@ -30,7 +30,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
 
             _form = form;
             _container = container;
-            _signUpService = _container.GetInstance<ISignUpService>();
+            _accountService = _container.GetInstance<IAccountService>();
         }
 
         private void SignUpFormLoad(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
                         Name = "Common user"
                     }
                 };
-                if (_signUpService.SignUp(user))
+                if (_accountService.SignUp(user))
                 {
                     Close();
                 }

@@ -2,6 +2,7 @@
 using HeadphonesShop.Common.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,18 @@ using System.Threading.Tasks;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
-    public class UnknownUserController : Controller
+    public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        public UnknownUserController(IAccountService AccountService)
+        public IActionResult SignInGoogle()
         {
-            _accountService = AccountService;
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);  
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult Index()
         {
@@ -37,7 +44,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             };
             user = _accountService.SignIn(user);
 
-            if(user is not null)
+            if (user is not null)
             {
                 var claims = new List<Claim>
                 {
@@ -48,11 +55,11 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
-                if(user.Role.Name == "admin")
+                if (user.Role.Name == "admin")
                 {
                     return Redirect("~/Admin/Index");
                 }
-                else if(user.Role.Name == "common user")
+                else if (user.Role.Name == "common user")
                 {
                     return Redirect("~/CommonUser/Index");
                 }

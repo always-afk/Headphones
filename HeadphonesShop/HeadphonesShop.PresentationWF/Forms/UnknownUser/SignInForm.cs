@@ -23,7 +23,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
 {
     public partial class SignInForm : Form
     {
-        private readonly ISignInService _signInService;
+        private readonly IAccountService _accountService;
         private readonly SimpleInjector.Container _container;
         public SignInForm()
         {
@@ -33,14 +33,14 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
 
             Register();
 
-            _signInService = _container.GetInstance<ISignInService>();
+            _accountService = _container.GetInstance<IAccountService>();
         }
 
         private void Register()
         {
             _container.Register<IHeadphonesService, HeadphonesService>();
-            _container.Register<ISignInService, SignInService>();
-            _container.Register<ISignUpService, SignUpService>();
+            _container.Register<IAccountService, AccountService>();
+            _container.Register<IAccountService, AccountService>();
             _container.Register<IUsersService, UsersService>();
             _container.Register<ICompanyService, CompanyService>();
             _container.Register<IDesignService, DesignService>();
@@ -82,7 +82,7 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
                 Login = _loginTextBox.Text,
                 Password = _passwordTextBox.Text
             };
-            user = _signInService.SignIn(user);
+            user = _accountService.SignIn(user);
             if(user is null)
             {
                 MessageBox.Show("Can't find this user");
