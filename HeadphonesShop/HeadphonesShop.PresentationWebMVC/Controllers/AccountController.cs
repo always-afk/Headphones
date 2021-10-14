@@ -15,6 +15,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        public AccountController(IAccountService accountService)
+        {
+            _accountService = accountService;
+        }
         public IActionResult SignInGoogle()
         {
             var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
@@ -24,11 +28,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);  
             return RedirectToAction("Index", "Home");
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        }        
         [HttpGet]
         public IActionResult SignIn()
         {

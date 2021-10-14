@@ -38,8 +38,8 @@ namespace HeadphonesShop.PresentationWebMVC
                 .AddCookie()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "525136855843-vdr9s9c33l9hnn75tdqgc2md5t7tda19.apps.googleusercontent.com";
-                    options.ClientSecret = "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";
+                    options.ClientId = "164653057181-ftkgoarmpjsmrn16b8gq4aj09l7g0qmk.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
                 });
             //services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<HeadphonesDBContext>();

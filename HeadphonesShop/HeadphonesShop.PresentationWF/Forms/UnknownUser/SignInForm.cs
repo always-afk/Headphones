@@ -40,7 +40,6 @@ namespace HeadphonesShop.PresentationWF.Forms.UnknownUser
         {
             _container.Register<IHeadphonesService, HeadphonesService>();
             _container.Register<IAccountService, AccountService>();
-            _container.Register<IAccountService, AccountService>();
             _container.Register<IUsersService, UsersService>();
             _container.Register<ICompanyService, CompanyService>();
             _container.Register<IDesignService, DesignService>();
