@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HeadphonesShop.Common\HeadphonesShop.Common.csproj" />
     <ProjectReference Include="..\HeadphonesShop.DataAccess\HeadphonesShop.DataAccess.csproj" />
   </ItemGroup>

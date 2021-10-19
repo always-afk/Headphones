@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using HeadphonesShop.DataAccess.Models;
+using HeadphonesShop.DataAccess.Models.DataModels;
 
 #nullable disable
 
@@ -13,13 +13,14 @@ namespace HeadphonesShop.DataAccess.Context
         {
         }
 
-        //public HeadphonesDBContext(DbContextOptions<HeadphonesDBContext> options)
-        //    : base(options)
-        //{
-        //}
+        public HeadphonesDBContext(DbContextOptions<HeadphonesDBContext> options)
+            : base(options)
+        {
+        }
 
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Design> Designs { get; set; }
+        public virtual DbSet<FullHeadphone> FullHeadphones { get; set; }
         public virtual DbSet<Headphone> Headphones { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -40,7 +41,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Companie__737584F609D1FF9F")
+                entity.HasIndex(e => e.Name, "UQ__Companie__737584F61CA2A4B6")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -50,7 +51,7 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<Design>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Designs__737584F680D9505C")
+                entity.HasIndex(e => e.Name, "UQ__Designs__737584F629C8ABEE")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -58,10 +59,31 @@ namespace HeadphonesShop.DataAccess.Context
                     .HasMaxLength(32);
             });
 
+            modelBuilder.Entity<FullHeadphone>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("FullHeadphones");
+
+                entity.Property(e => e.Company)
+                    .IsRequired()
+                    .HasMaxLength(32);
+
+                entity.Property(e => e.Design)
+                    .IsRequired()
+                    .HasMaxLength(32);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(128);
+            });
+
             modelBuilder.Entity<Headphone>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Headphon__737584F64E273714")
+                entity.HasIndex(e => e.Name, "UQ__Headphon__737584F6F5F7CF82")
                     .IsUnique();
+
+                entity.HasIndex(e => e.Picture, "pic_index");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -72,17 +94,17 @@ namespace HeadphonesShop.DataAccess.Context
                 entity.HasOne(d => d.Company)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.CompanyId)
-                    .HasConstraintName("FK__Headphone__Compa__34B3CB38");
+                    .HasConstraintName("FK__Headphone__Compa__6521F869");
 
                 entity.HasOne(d => d.Design)
                     .WithMany(p => p.Headphones)
                     .HasForeignKey(d => d.DesignId)
-                    .HasConstraintName("FK__Headphone__Desig__35A7EF71");
+                    .HasConstraintName("FK__Headphone__Desig__66161CA2");
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
-                entity.HasIndex(e => e.Name, "UQ__Roles__737584F65D3617BB")
+                entity.HasIndex(e => e.Name, "UQ__Roles__737584F6536C9287")
                     .IsUnique();
 
                 entity.Property(e => e.Name)
@@ -92,12 +114,12 @@ namespace HeadphonesShop.DataAccess.Context
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Login, "UQ__Users__5E55825B3F028A47")
+                entity.HasIndex(e => e.Login, "UQ__Users__5E55825BDA2AA638")
                     .IsUnique();
 
                 entity.Property(e => e.Login)
                     .IsRequired()
-                    .HasMaxLength(16);
+                    .HasMaxLength(64);
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -107,7 +129,7 @@ namespace HeadphonesShop.DataAccess.Context
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__RoleId__2B2A60FE");
+                    .HasConstraintName("FK__Users__RoleId__5B988E2F");
             });
 
             modelBuilder.Entity<UserHeadphone>(entity =>
@@ -115,12 +137,12 @@ namespace HeadphonesShop.DataAccess.Context
                 entity.HasOne(d => d.Headphones)
                     .WithMany(p => p.UserHeadphones)
                     .HasForeignKey(d => d.HeadphonesId)
-                    .HasConstraintName("FK__UserHeadp__Headp__38845C1C");
+                    .HasConstraintName("FK__UserHeadp__Headp__68F2894D");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.UserHeadphones)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__UserHeadp__UserI__39788055");
+                    .HasConstraintName("FK__UserHeadp__UserI__69E6AD86");
             });
 
             OnModelCreatingPartial(modelBuilder);

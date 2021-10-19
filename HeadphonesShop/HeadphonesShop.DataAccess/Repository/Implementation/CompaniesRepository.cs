@@ -1,12 +1,10 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.DataAccess.Models.LogicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HeadphonesShop.DataAccess.Context;
-using HeadphonesShop.DataAccess.Services.Interfaces;
-using HeadphonesShop.DataAccess.Services.Implementation;
 
 
 namespace HeadphonesShop.DataAccess.Repository.Implementation
@@ -14,25 +12,20 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class CompaniesRepository : Interfaces.ICompaniesRepository
     {
         private readonly HeadphonesDBContext _context;
-        private readonly IMapper _mapper;
 
-        //public CompaniesRepository()
-        //{
-        //    _context = new HeadphonesDBContext();
-        //    _commonMapper = new CommonMapper();
-        //    _dataMapper = new DataMapper();
-        //}
-        public CompaniesRepository(HeadphonesDBContext context, IMapper mapper)
+        public CompaniesRepository(HeadphonesDBContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public bool Add(Company company)
+        public bool TryAdd(Company company)
         {
             if(!_context.Companies.Any(c => c.Name == company.Name))
             {
-                var comp = _mapper.ToCompany(company);
+                var comp = new Models.DataModels.Company()
+                {
+                    Name = company.Name
+                };
                 _context.Companies.Add(comp);                
                 return true;
             }
@@ -47,24 +40,17 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public IEnumerable<Company> GetAllCompanies()
         {
-            var companies = new List<Company>();
-            foreach(var c in _context.Companies)
+            var companies = _context.Companies.Select(c => new Company()
             {
-                companies.Add(_mapper.ToCompany(c));
-            }
+                Name = c.Name
+            });
             return companies;
         }
 
         public void Update(IEnumerable<Company> companies)
         {
-            foreach(var company in _context.Companies)
-            {
-                var comp = companies.Where(c => c.Name == company.Name).FirstOrDefault();
-                if(comp is null)
-                {
-                    _context.Remove(company);
-                }
-            }            
+            var comp = _context.Companies.Where(c => !companies.Any(x => x.Name == c.Name));
+            _context.RemoveRange(comp);
         }
     }
 }

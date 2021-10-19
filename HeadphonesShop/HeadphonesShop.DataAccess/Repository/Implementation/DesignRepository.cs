@@ -1,7 +1,5 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.DataAccess.Models.LogicModels;
 using HeadphonesShop.DataAccess.Context;
-using HeadphonesShop.DataAccess.Services.Implementation;
-using HeadphonesShop.DataAccess.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,55 +11,39 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class DesignRepository : Interfaces.IDesignRepository
     {
         private readonly HeadphonesDBContext _context;
-        private readonly IMapper _mapper;
 
-        //public DesignRepository()
-        //{
-        //    _context = new HeadphonesDBContext();
-        //    _commonMapper = new CommonMapper();
-        //    _dataMapper = new DataMapper();
-        //}
-
-        public DesignRepository(HeadphonesDBContext context, IMapper mapper)
+        public DesignRepository(HeadphonesDBContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public bool Add(Design design)
-        {
-            var dataDes = _mapper.ToDesign(design);
-            if(!_context.Designs.Any(d => d.Name == dataDes.Name))
+        public bool TryAdd(Design design)
+        {            
+            if(!_context.Designs.Any(d => d.Name == design.Name))
             {
+                var dataDes = new Models.DataModels.Design()
+                {
+                    Name = design.Name
+                };
                 _context.Designs.Add(dataDes);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public IEnumerable<Design> GetAllDesigns()
         {
-            var designs = new List<Design>();
-            foreach(var des in _context.Designs)
+            var designs = _context.Designs.Select(d => new Design()
             {
-                var d = _mapper.ToDesign(des);
-                designs.Add(d);
-            }
+                Name = d.Name
+            }).ToList();
             return designs;
         }
 
         public void Update(IEnumerable<Design> designs)
         {
-            foreach(var design in _context.Designs)
-            {
-                if(!designs.Any(d => d.Name == design.Name))
-                {
-                    _context.Designs.Remove(design);
-                }
-            }
+            var des = _context.Designs.Where(d => !designs.Any(x => x.Name == d.Name));
+            _context.Designs.RemoveRange(des);
         }
     }
 }

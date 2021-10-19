@@ -1,7 +1,4 @@
-﻿using HeadphonesShop.Common.Entities;
-using HeadphonesShop.DataAccess.Repository.Interfaces;
-using HeadphonesShop.DataAccess.Services.Implementation;
-using HeadphonesShop.DataAccess.Services.Interfaces;
+﻿using HeadphonesShop.DataAccess.Models.LogicModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,38 +11,34 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class HeadphonesRepository : Interfaces.IHeadphonesRepository
     {
         private Context.HeadphonesDBContext _context;
-        private IMapper _mapper;
-        //public HeadphonesRepository()
-        //{
-        //    _context = new Context.HeadphonesDBContext();
-        //    _dataMapper = new DataMapper();
-        //    _commonMapper = new CommonMapper();
-        //}
 
-        public HeadphonesRepository(Context.HeadphonesDBContext context, IMapper mapper)
+        public HeadphonesRepository(Context.HeadphonesDBContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public bool Add(Headphones headphones)
+        public bool TryAdd(Headphones headphones)
         {
-            var head = _mapper.ToHeadphones(headphones);
-            head = Fill(head);
+            var head = new Models.DataModels.Headphone()
+            {
+                Name = headphones.Name,
+                MaxFrequency = headphones.MaxFrequency,
+                MinFrequency = headphones.MinFrequency,
+                Picture = headphones.Picture,
+                CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).Select(c => c.Id).Single(),
+                DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).Select(d => d.Id).Single()
+            };
             if(!_context.Headphones.Any(h => h.Name == head.Name))
             {
                 _context.Headphones.Add(head);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public void Delete(Headphones headphones)
         {
-            var headphonesToDel = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
+            var headphonesToDel = _context.Headphones.Where(h => h.Name == headphones.Name).Single();
             _context.Headphones.Remove(headphonesToDel);
         }
 
@@ -77,15 +70,6 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             head.Picture = headphones.Picture;
             head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
-        }
-
-        private Models.Headphone Fill(Models.Headphone headphone)
-        {
-            headphone.CompanyId = _context.Companies.Where(c => c.Name == headphone.Company.Name).FirstOrDefault().Id;
-            headphone.Company = null;
-            headphone.DesignId = _context.Designs.Where(d => d.Name == headphone.Design.Name).FirstOrDefault().Id;
-            headphone.Design = null;
-            return headphone;
         }
     }
 }

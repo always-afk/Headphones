@@ -1,4 +1,4 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.BusinessLogic.Models.LogicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,13 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
 {
     public interface IUsersService
     {
-        IEnumerable<User> GetOtherUsers(User user);
-        void Update(IEnumerable<User> users);
-        void Update(User user);
+        public User FillUser(User user);
+
+        public IEnumerable<SmallUser> GetOtherUsers(User user);
+
+        public void Update(IEnumerable<SmallUser> users);
+
+        public void Update(User user);
+
     }
 }

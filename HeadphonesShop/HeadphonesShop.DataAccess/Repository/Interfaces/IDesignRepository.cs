@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.DataAccess.Models.LogicModels;
 
 namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IDesignRepository
     {
-        IEnumerable<Design> GetAllDesigns();
-        bool Add(Design design);
-        void Update(IEnumerable<Design> designs);
+        public bool TryAdd(Design design);
+
+        public IEnumerable<Design> GetAllDesigns();
+
+        public void Update(IEnumerable<Design> designs);
     }
 }

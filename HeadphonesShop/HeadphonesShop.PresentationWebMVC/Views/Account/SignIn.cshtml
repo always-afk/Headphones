@@ -1,8 +1,11 @@
-﻿<form method="post" asp-action="SignIn">
+﻿@using HeadphonesShop.Common.Entities
+@model HeadphonesShop.Common.Entities.User
+
+<form method="post" asp-action="SignIn">
     <label class="signincomp">Email:</label>
-    <input type="email" class="signincomp" />
+    <input type="email" class="signincomp" name="User.Login"/>
     <label class="signincomp">Password:</label>
-    <input type="password" class="signincomp" />
+    <input type="password" class="signincomp" name="User.Password"/>
     <input type="submit" class="signincomp" value="Sign In" />
 </form>
 <form method="post" asp-action="SignInGoogle">

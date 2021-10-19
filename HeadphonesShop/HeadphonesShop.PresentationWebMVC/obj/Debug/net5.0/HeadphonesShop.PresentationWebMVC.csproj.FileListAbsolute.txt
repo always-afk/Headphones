@@ -788,3 +788,5 @@ C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesS
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Account\Index.cshtml.g.cs
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Account\SignIn.cshtml.g.cs
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\Humanizer.dll
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

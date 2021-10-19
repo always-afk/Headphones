@@ -1,11 +1,9 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.DataAccess.Models.LogicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadphonesShop.DataAccess.Services.Interfaces;
-using HeadphonesShop.DataAccess.Services.Implementation;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,183 +12,114 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     public class UsersRepository : IUsersRepository
     {
         private Context.HeadphonesDBContext _context;
-        private IMapper _mapper;
-        //public UsersRepository()
-        //{
-        //    _context = new Context.HeadphonesDBContext();
-        //    _dataMapper = new DataMapper();
-        //    _commonMapper = new CommonMapper();
-        //}
-        public UsersRepository(Context.HeadphonesDBContext context, IMapper mapper)
+        public UsersRepository(Context.HeadphonesDBContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public void Delete(User user)
+        public User CheckUser(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<User> GetAllUsers()
-        {
-            var users = new List<User>();
-            //var us = from u in _context.Users
-            //         join con in _context.UserHeadphones on u.Id equals con.UserId
-            //         join head in _context.Headphones on con.HeadphonesId equals head.Id
-            //         select u;
-            var us = _context.Users.Include(u => u.Role).ToList().Select(u => new User
+            user = _context.Users.Where(u => u.Login == user.Login && u.Password == user.Password).Select(u => new User()
             {
                 Login = u.Login,
                 Password = u.Password,
-                Role = new Role(){
-                   Name = u.Role.Name
-                },
-                FavHeadphones = _context.Headphones.Where(h => _context.UserHeadphones
-                                                        .Where(con => con.UserId == u.Id)
-                                                        .Any(con => con.HeadphonesId == h.Id))
-                                                   .Include(h => h.Design)
-                                                   .Include(h => h.Company)
-                                                   .ToList()
-                                                   .Select(h => new Headphones()
-                                                   {
-                                                       Name = h.Name,
-                                                       MinFrequency = h.MinFrequency,
-                                                       MaxFrequency = h.MaxFrequency,
-                                                       Picture  = h.Picture,
-                                                       Company = new Company()
-                                                       {
-                                                           Name = h.Company.Name
-                                                       },
-                                                       Design = new Design()
-                                                       {
-                                                           Name = h.Design.Name
-                                                       }
-                                                   })
-                                                   .ToList()
-            }).ToList();
-            
-
-            //foreach(var user in _context.Users.Include(u => u.Role))
-            //{
-                
-            //    users.Add(_mapper.ToUser(user));
-            //}
-            return us;
+                Role = new Role()
+                {
+                    Name = u.Role.Name
+                }
+            }).Single();
+            return user;
         }
 
-        public IEnumerable<User> GetOtherUsers(User user)
+        public User CheckGoogleUser(User user)
         {
-            //var users = new List<User>();
-            //foreach(var us in _context.Users.Where(u => u.Login != user.Login))
-            //{
-            //    users.Add(_mapper.ToUser(us));
-            //}
-            var param = new Microsoft.Data.SqlClient.SqlParameter("@login", user.Login);
-            var users = _context.Users.FromSqlRaw("GetOtherUsersProc @login", param).ToList().Select(u => new User()
+            user = _context.Users.Where(u => u.Login == user.Login && u.Password == "0").Select(u => new User()
             {
-                Login = u.Login
+                Login = u.Login,
+                Password = u.Password,
+                Role = new Role()
+                {
+                    Name = u.Role.Name
+                }
+            }).Single();
+            return user;
+        }
+
+        public User FillUser(User user)
+        {
+            user.FavHeadphones = _context.UserHeadphones.Where(u => u.User.Login == user.Login).Select(h => new Headphones()
+            {
+                Name = h.Headphones.Name,
+                MinFrequency = h.Headphones.MinFrequency,
+                MaxFrequency = h.Headphones.MaxFrequency,
+                Picture = h.Headphones.Picture,
+                Company = new Company()
+                {
+                    Name = h.Headphones.Company.Name
+                },
+                Design = new Design()
+                {
+                    Name = h.Headphones.Design.Name
+                }
+            }).ToList();
+            return user;
+        }
+
+        public IEnumerable<SmallUser> GetSmallOtherUsers(string login) 
+        {
+            var users = _context.Users.Where(u => u.Login != login).Select(u => new SmallUser()
+            {
+                Login = u.Login,
+                Role = new Role()
+                {
+                    Name = u.Role.Name
+                }
             });
             return users;
         }
 
-
-        public void Update(IEnumerable<User> users)
+        public bool TryAdd(User user)
         {
-            var idAdmin = _context.Roles.Where(r => r.Name == "admin").FirstOrDefault().Id;
-            foreach (var user in _context.Users)
+            if(_context.Users.Any(u => u.Login == user.Login))
             {
-                var us = users.Where(u => u.Login == user.Login).FirstOrDefault();
-                if(us is null)
+                try
                 {
-                    _context.Remove(user);
+                    var dbuser = new Models.DataModels.User()
+                    {
+                        Login = user.Login,
+                        Password = user.Password,
+                        RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).Single().Id
+                    };
+                    _context.Users.Add(dbuser);
+                    return true;
                 }
-                else
+                catch (Exception)
                 {
-                    //user.IsAdmin = us.IsAdmin;
+                    return false;
                 }
             }
-            foreach (var user in users)
-            {
-                var roleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
-                var us = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault();
-                us.RoleId = roleId;
-            }
+            return false;
         }
 
         public void Update(User user)
         {
-            var userId = _context.Users.Where(u => u.Login == user.Login).FirstOrDefault().Id;
-
-            //foreach(var headphones in user.FavHeadphones)
-            //{
-            //    var headId = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault().Id;
-            //    if(!_context.UserHeadphones.Any(x => x.UserId == userId && x.HeadphonesId == headId))
-            //    {
-            //        var elem = new Models.UserHeadphone()
-            //        {
-            //            HeadphonesId = headId,
-            //            UserId = userId
-            //        };
-            //    }
-            //}
-
-            var heads = _context.Headphones.ToList();
-            var hu = _context.UserHeadphones.ToList();
-
-            foreach (var headphones in heads)
-            {
-                if(user.FavHeadphones.Any(h => h.Name == headphones.Name) && 
-                    !hu.Any(x => x.UserId == userId && x.HeadphonesId == headphones.Id))
-                {
-                    
-                    var elem = new Models.UserHeadphone()
-                    {
-                        HeadphonesId = headphones.Id,
-                        UserId = userId
-                    };
-                    _context.UserHeadphones.Add(elem);
-                    
-                }
-                else if (!user.FavHeadphones.Any(h => h.Name == headphones.Name) &&
-                    hu.Any(x => x.UserId == userId && x.HeadphonesId == headphones.Id))
-                {
-                    var elem = hu.Where(x => x.UserId == userId && x.HeadphonesId == headphones.Id).FirstOrDefault();
-                    _context.UserHeadphones.Remove(elem);
-                }
-            }
+            var heads = _context.UserHeadphones.Where(h => h.User.Login == user.Login && !user.FavHeadphones.Any(f => f.Name == h.Headphones.Name));
+            _context.RemoveRange(heads);
         }
 
-        bool Add(User user)
+        public void Update(IEnumerable<SmallUser> users)
         {
-            if (!_context.Users.Any(u => u.Login == user.Login))
-            {
-                var newUser = _mapper.ToUser(user);
-                newUser.RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
-                newUser.Role = null;
-                _context.Users.Add(newUser);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+            var us = _context.Users.Where(u => !users.Any(x => x.Login == u.Login));
 
-        bool IUsersRepository.Add(User user)
-        {
-            if (!_context.Users.Any(u => u.Login == user.Login))
+            _context.RemoveRange(us);
+
+            foreach(var u in users)
             {
-                var newUser = _mapper.ToUser(user);
-                newUser.RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).FirstOrDefault().Id;
-                newUser.Role = null;
-                _context.Users.Add(newUser);
-                return true;
+                var duser = _context.Users.Where(x => x.Login == u.Login && x.Role.Name != u.Role.Name).Single();
+                duser.Role = null;
+                duser.RoleId = _context.Roles.Where(x => x.Name == u.Role.Name).Single().Id;
             }
-            else
-            {
-                return false;
-            }
-        }
+            
+        }        
     }
 }

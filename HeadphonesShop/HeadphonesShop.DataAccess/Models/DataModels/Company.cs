@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace HeadphonesShop.DataAccess.Models
+namespace HeadphonesShop.DataAccess.Models.DataModels
 {
-    public partial class Design
+    public partial class Company
     {
-        public Design()
+        public Company()
         {
             Headphones = new HashSet<Headphone>();
         }

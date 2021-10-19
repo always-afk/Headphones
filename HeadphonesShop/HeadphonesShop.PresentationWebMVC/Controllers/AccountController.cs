@@ -26,8 +26,19 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         }
         public async Task<IActionResult> GoogleResponse()
         {
-            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);  
-            return RedirectToAction("Index", "Home");
+            var user = new User()
+            {
+                Login = User.FindFirst(ClaimTypes.Email).Value,
+                Password = "Google",
+                Role = new Role()
+                {
+                    Name = "Common user"
+                }
+            };
+
+            user = _accountService.SignInGoogle(user);
+            
+            return await Authenticate(user);
         }        
         [HttpGet]
         public IActionResult SignIn()
@@ -35,36 +46,37 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignIn(string email, string password)
+        public async Task<IActionResult> SignIn(User user)
         {
-            var user = new User()
-            {
-                Login = email,
-                Password = password
-            };
             user = _accountService.SignIn(user);
 
             if (user is not null)
             {
-                var claims = new List<Claim>
+                return await Authenticate(user);
+            }
+            else
+            {
+                return Content("Error");
+            }
+        }
+        private async Task<IActionResult> Authenticate(User user)
+        {
+            var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, user.Login),
                     new Claim(ClaimTypes.Role, user.Role.Name)
                 };
-                var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
-                if (user.Role.Name == "admin")
-                {
-                    return Redirect("~/Admin/Index");
-                }
-                else if (user.Role.Name == "common user")
-                {
-                    return Redirect("~/CommonUser/Index");
-                }
-
-                return Content("Ok");
+            if (user.Role.Name == "admin")
+            {
+                return Redirect("~/Admin/Index");
+            }
+            else if (user.Role.Name == "common user")
+            {
+                return Redirect("~/CommonUser/Index");
             }
             else
             {

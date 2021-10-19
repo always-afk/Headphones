@@ -1,4 +1,4 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.BusinessLogic.Models.LogicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
     public interface IAccountService
     {
         User SignIn(User user);
+        User SignInGoogle(User user);
         bool SignUp(User user);
     }
 }

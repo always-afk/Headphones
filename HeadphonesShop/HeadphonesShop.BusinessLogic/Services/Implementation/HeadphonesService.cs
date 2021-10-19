@@ -1,4 +1,4 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.BusinessLogic.Models.LogicModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,24 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
 using HeadphonesShop.DataAccess.Repository.Implementation;
+using AutoMapper;
 
 namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class HeadphonesService : Interfaces.IHeadphonesService
     {
         private readonly IUnitOfWork _unitOfWork;
-        //public HeadphonesService()
-        //{
-        //    _unitOfWork = new UnitOfWorkHeadphones();
-        //}
-        public HeadphonesService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+
+        public HeadphonesService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public bool Add(Headphones headphones)
         {
-            if(_unitOfWork.HeadphonesRepository.Add(headphones))
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            if(_unitOfWork.HeadphonesRepository.TryAdd(head))
             {
                 _unitOfWork.Save();
                 return true;
@@ -36,23 +37,27 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Delete(Headphones headphones)
         {
-            _unitOfWork.HeadphonesRepository.Delete(headphones);
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            _unitOfWork.HeadphonesRepository.Delete(head);
             _unitOfWork.Save();
         }
 
-        public List<Company> GetAllCompanies()
+        public IEnumerable<Company> GetAllCompanies()
         {
-            return _unitOfWork.CompaniesRepository.GetAllCompanies().ToList();
+            return _unitOfWork.CompaniesRepository.GetAllCompanies()
+                .Select(c => _mapper.Map<DataAccess.Models.LogicModels.Company, Company>(c));
         }
 
-        public List<Design> GetAllDesigns()
+        public IEnumerable<Design> GetAllDesigns()
         {
-            return _unitOfWork.DesignRepository.GetAllDesigns().ToList();
+            return _unitOfWork.DesignRepository.GetAllDesigns()
+                .Select(d => _mapper.Map<DataAccess.Models.LogicModels.Design, Design>(d));
         }
 
-        public List<Headphones> GetAllHeadphones()
+        public IEnumerable<Headphones> GetAllHeadphones()
         {
-            return _unitOfWork.HeadphonesRepository.GetAllHeadphones().ToList();
+            return _unitOfWork.HeadphonesRepository.GetAllHeadphones()
+                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.Headphones, Headphones>(h));
         }
 
         public void Save(List<Headphones> headphones)
@@ -62,7 +67,8 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Update(Headphones headphones)
         {
-            _unitOfWork.HeadphonesRepository.Update(headphones);
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            _unitOfWork.HeadphonesRepository.Update(head);
             _unitOfWork.Save();
         }
     }

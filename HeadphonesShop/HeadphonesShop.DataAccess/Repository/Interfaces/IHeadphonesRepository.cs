@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.DataAccess.Models.LogicModels;
 
 namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IHeadphonesRepository
     {
-        IEnumerable<Headphones> GetAllHeadphones();
-        bool Add(Headphones headphones);
-        void Delete(Headphones headphones);
-        void Update(Headphones headphones);
+        public bool TryAdd(Headphones headphones);
+
+        public void Delete(Headphones headphones);
+
+        public IEnumerable<Headphones> GetAllHeadphones();
+
+        public void Update(Headphones headphones);
     }
 }

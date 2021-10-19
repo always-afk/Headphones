@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.DataAccess.Models.LogicModels;
 
 namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface ICompaniesRepository
     {
-        IEnumerable<Company> GetAllCompanies();
-        bool Add(Company company);
-        void Update(IEnumerable<Company> company);
+        public bool TryAdd(Company company);
+
+        public void Delete(Company company);
+
+        public IEnumerable<Company> GetAllCompanies();
+
+        public void Update(IEnumerable<Company> companies);
     }
 }

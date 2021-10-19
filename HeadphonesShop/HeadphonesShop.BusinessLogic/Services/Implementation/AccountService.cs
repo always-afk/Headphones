@@ -1,6 +1,7 @@
 ﻿using HeadphonesShop.BusinessLogic.Services.Interfaces;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.BusinessLogic.Models.LogicModels;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +13,60 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
     public class AccountService : IAccountService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public AccountService(IUnitOfWork unitOfWork)
+        public AccountService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public User SignIn(User user)
         {
-            return _unitOfWork.UsersRepository.GetAllUsers().Where(u => u.Login == user.Login && u.Password == user.Password).FirstOrDefault();
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var res = _unitOfWork.UsersRepository.CheckUser(u);
+            if(res is not null)
+            {
+                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                return us;
+            }
+            return null;
+        }
+
+        public User SignInGoogle(User user)
+        {
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var res = _unitOfWork.UsersRepository.CheckGoogleUser(u);
+
+            if (res is not null)
+            {
+                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                return us;
+            }
+
+            if (_unitOfWork.UsersRepository.TryAdd(u))
+            {
+                res = _unitOfWork.UsersRepository.CheckGoogleUser(u);
+                _unitOfWork.Save();
+
+                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                return us;
+            }
+
+            return null;
         }
 
         public bool SignUp(User user)
         {
-            if (_unitOfWork.UsersRepository.Add(user))
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+
+            if (_unitOfWork.UsersRepository.TryAdd(u))
             {
                 _unitOfWork.Save();
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

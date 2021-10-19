@@ -1,4 +1,4 @@
-﻿using HeadphonesShop.Common.Entities;
+﻿using HeadphonesShop.BusinessLogic.Models.LogicModels;
 using HeadphonesShop.DataAccess.Repository.Implementation;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
 using System;
@@ -6,34 +6,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace HeadphonesShop.BusinessLogic.Services.Implementation
 {
     public class UsersService : Interfaces.IUsersService
     {
         private readonly IUnitOfWork _unitOfWork;
-        //public UsersService()
-        //{
-        //    _usersRepository = new UsersRepository();
-        //}
-        public UsersService(IUnitOfWork unitOfWork)
+        private readonly IMapper _mapper;
+
+        public UsersService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-        }
-        public IEnumerable<User> GetOtherUsers(User user)
-        {
-            return _unitOfWork.UsersRepository.GetOtherUsers(user);
+            _mapper = mapper;
         }
 
-        public void Update(IEnumerable<User> users)
+        public User FillUser(User user)
         {
-            _unitOfWork.UsersRepository.Update(users);
+            var us = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            user.FavHeadphones = _unitOfWork.UsersRepository.FillUser(us).FavHeadphones
+                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.Headphones, Headphones>(h)).ToList();
+
+            return user;
+        }
+
+        public IEnumerable<SmallUser> GetOtherUsers(User user)
+        {
+            var res = _unitOfWork.UsersRepository.GetSmallOtherUsers(user.Login)
+                .Select(u => _mapper.Map<DataAccess.Models.LogicModels.SmallUser, SmallUser>(u));
+            return res;
+        }
+
+        public void Update(IEnumerable<SmallUser> users)
+        {
+            var us = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUser>(u));
+
+            _unitOfWork.UsersRepository.Update(us);
             _unitOfWork.Save();
         }
 
         public void Update(User user)
         {
-            _unitOfWork.UsersRepository.Update(user);
+            var us = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
             _unitOfWork.Save();
         }
     }

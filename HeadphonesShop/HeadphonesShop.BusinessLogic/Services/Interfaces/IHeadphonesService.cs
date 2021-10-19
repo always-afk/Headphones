@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.BusinessLogic.Models.LogicModels;
 
 namespace HeadphonesShop.BusinessLogic.Services.Interfaces
 {
     public interface IHeadphonesService
     {
-        List<Headphones> GetAllHeadphones();
-        List<Company> GetAllCompanies();
-        List<Design> GetAllDesigns();
+        IEnumerable<Headphones> GetAllHeadphones();
+        IEnumerable<Company> GetAllCompanies();
+        IEnumerable<Design> GetAllDesigns();
         bool Add(Headphones headphones);
         void Update(Headphones headphones);
         void Save(List<Headphones> headphones);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace HeadphonesShop.DataAccess.Models
+namespace HeadphonesShop.DataAccess.Models.DataModels
 {
     public partial class UserHeadphone
     {
