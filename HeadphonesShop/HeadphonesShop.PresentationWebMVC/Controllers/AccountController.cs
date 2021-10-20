@@ -1,5 +1,5 @@
 ﻿using HeadphonesShop.BusinessLogic.Services.Interfaces;
-using HeadphonesShop.Common.Entities;
+using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -9,15 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        private readonly IMapper _mapper;
+        public AccountController(IAccountService accountService, IMapper mapper)
         {
             _accountService = accountService;
+            _mapper = mapper;
         }
         public IActionResult SignInGoogle()
         {
@@ -29,14 +32,18 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             var user = new User()
             {
                 Login = User.FindFirst(ClaimTypes.Email).Value,
-                Password = "Google",
+                Password = "0",
                 Role = new Role()
                 {
-                    Name = "Common user"
+                    Name = "common user"
                 }
             };
 
-            user = _accountService.SignInGoogle(user);
+            var u = _mapper.Map<User, BusinessLogic.Models.LogicModels.User>(user);
+
+            u = _accountService.SignInGoogle(u);
+
+            user = _mapper.Map<BusinessLogic.Models.LogicModels.User, User>(u);
             
             return await Authenticate(user);
         }        
@@ -48,7 +55,9 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(User user)
         {
-            user = _accountService.SignIn(user);
+            var u = _mapper.Map<User, BusinessLogic.Models.LogicModels.User>(user);
+            u = _accountService.SignIn(u);
+            user = _mapper.Map<BusinessLogic.Models.LogicModels.User, User>(u);
 
             if (user is not null)
             {
@@ -61,11 +70,11 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         }
         private async Task<IActionResult> Authenticate(User user)
         {
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Email, user.Login),
-                    new Claim(ClaimTypes.Role, user.Role.Name)
-                };
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Email, user.Login),
+                new Claim(ClaimTypes.Role, user.Role.Name)
+            };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));

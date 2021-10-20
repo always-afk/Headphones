@@ -12,12 +12,11 @@ using System.Threading.Tasks;
 using HeadphonesShop.DataAccess.Context;
 using HeadphonesShop.DataAccess.Repository.Implementation;
 using HeadphonesShop.DataAccess.Repository.Interfaces;
-using HeadphonesShop.DataAccess.Services.Implementation;
-using HeadphonesShop.DataAccess.Services.Interfaces;
 using HeadphonesShop.BusinessLogic.Services.Implementation;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using AutoMapper;
 
 namespace HeadphonesShop.PresentationWebMVC
 {
@@ -48,14 +47,14 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<IDesignRepository, DesignRepository>();
             services.AddScoped<IHeadphonesRepository, HeadphonesRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IMapper, Mapper>();
 
-            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IHeadphonesService, HeadphonesService>();
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IDesignService, DesignService>();
+
+            services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 
             services.AddControllersWithViews();
             
