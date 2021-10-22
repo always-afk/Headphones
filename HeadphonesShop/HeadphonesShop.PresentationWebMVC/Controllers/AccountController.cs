@@ -10,6 +10,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using HeadphonesShop.PresentationWebMVC.Services.Intedaces;
+using HeadphonesShop.PresentationWebMVC.Models.DTO;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
@@ -17,9 +19,11 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
-        public AccountController(IAccountService accountService, IMapper mapper)
+        private readonly INavigationService _navigationService;
+        public AccountController(IAccountService accountService, IMapper mapper, INavigationService navigationService)
         {
             _accountService = accountService;
+            _navigationService = navigationService;
             _mapper = mapper;
         }
         public IActionResult SignInGoogle()
@@ -68,6 +72,38 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 return Content("Error");
             }
         }
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SignUp(UserRegistrationDTO user)
+        {
+            if(user.Password == user.RePassword)
+            {
+                var u = _mapper.Map<BusinessLogic.Models.LogicModels.User>(user);
+                u.Role = new BusinessLogic.Models.LogicModels.Role()
+                {
+                    Name = "common user"
+                };
+
+                if (_accountService.SignUp(u))
+                {
+                    u = _accountService.SignIn(u);
+                    var us = _mapper.Map<User>(u);
+                    return await Authenticate(us);
+                }
+            }
+
+            return Content("Error");
+        }
+        [HttpGet]
+        public IActionResult SignOutAccount()
+        {
+            HttpContext.SignOutAsync();
+            return Redirect("~/Home/Index");
+        }
         private async Task<IActionResult> Authenticate(User user)
         {
             var claims = new List<Claim>()
@@ -79,22 +115,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
 
-            if (user.Role.Name == "admin")
-            {
-                return Redirect("~/Admin/Index");
-            }
-            else if (user.Role.Name == "common user")
-            {
-                return Redirect("~/CommonUser/Index");
-            }
-            else
-            {
-                return Content("Error");
-            }
-        }
-        public IActionResult SignUp()
-        {
-            return Content("Sign Up");
+            return _navigationService.Navigate(user.Role.Name);
         }
     }
 }

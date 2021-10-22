@@ -9,9 +9,9 @@ namespace HeadphonesShop.DataAccess.Context
 {
     public partial class HeadphonesDBContext : DbContext
     {
-        public HeadphonesDBContext()
-        {
-        }
+        //public HeadphonesDBContext()
+        //{
+        //}
 
         public HeadphonesDBContext(DbContextOptions<HeadphonesDBContext> options)
             : base(options)

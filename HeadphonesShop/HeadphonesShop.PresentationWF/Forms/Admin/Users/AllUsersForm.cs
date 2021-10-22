@@ -44,8 +44,8 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
         private void AllUsersFormLoad(object sender, EventArgs e)
         {
             _form.Visible = false;
-            _users = _usersService.GetOtherUsers(_user).ToList();
-            Fill(_users);
+            //_users = _usersService.GetOtherUsers(_user).ToList();
+            //Fill(_users);
         }
 
         private void Fill(List<User> users)
@@ -103,8 +103,8 @@ namespace HeadphonesShop.PresentationWF.Forms.Admin.Users
                 }
                 j += 1;
             }
-            _users.Add(_user);
-            _usersService.Update(_users);
+            //_users.Add(_user);
+            //_usersService.Update(_users);
             Close();
         }
     }

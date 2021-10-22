@@ -16,6 +16,8 @@ using HeadphonesShop.BusinessLogic.Services.Implementation;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using HeadphonesShop.PresentationWebMVC.Services.Implementation;
+using HeadphonesShop.PresentationWebMVC.Services.Intedaces;
 using AutoMapper;
 
 namespace HeadphonesShop.PresentationWebMVC
@@ -40,8 +42,8 @@ namespace HeadphonesShop.PresentationWebMVC
                     options.ClientId = "164653057181-ftkgoarmpjsmrn16b8gq4aj09l7g0qmk.apps.googleusercontent.com";
                     options.ClientSecret = "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";
                 });
-            //services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<HeadphonesDBContext>();
+            services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
+            //services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<ICompaniesRepository, CompaniesRepository>();
             services.AddScoped<IDesignRepository, DesignRepository>();
@@ -53,6 +55,8 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IDesignService, DesignService>();
+
+            services.AddScoped<INavigationService, NavigationService>();
 
             services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 

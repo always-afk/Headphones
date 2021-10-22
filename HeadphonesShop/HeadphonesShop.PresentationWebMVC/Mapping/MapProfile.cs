@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using HeadphonesShop.BusinessLogic.Models.LogicModels;
+using HeadphonesShop.PresentationWebMVC.Models.DTO;
 
 namespace HeadphonesShop.PresentationWebMVC.Mapping
 {
@@ -66,6 +67,11 @@ namespace HeadphonesShop.PresentationWebMVC.Mapping
                 .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password))
                 .ForMember(x => x.Role, opt => opt.MapFrom(u => u.Role))
                 .ForMember(x => x.FavHeadphones, opt => opt.MapFrom(u => u.FavHeadphones));
+
+            //DTO to BLL
+            CreateMap<UserRegistrationDTO, User>()
+                .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Email))
+                .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password));
         }
     }
 }

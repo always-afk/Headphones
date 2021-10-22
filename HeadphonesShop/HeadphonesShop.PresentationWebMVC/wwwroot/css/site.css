@@ -70,6 +70,45 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 .signincomp{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.signincomp *{
+    margin : 5px;
+}
+
+.signupcomp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.signupcomp * {
     margin: 5px;
+}
+
+.admin-heaphones-table {
+    width: 100%;
+}
+
+.admin-heaphones-table * {
+    margin: 5px;
+}
+
+.admin-heaphones-table-column-0 {
+    width : 40%;
+}
+.admin-heaphones-table-column-1 {
+    width: 15%;
+}
+.admin-heaphones-table-column-2 {
+    width: 15%;
+}
+.admin-heaphones-table-column-3 {
+    width: 15%;
+}
+.admin-heaphones-table-column-4 {
+    width: 15%;
 }

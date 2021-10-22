@@ -1,8 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model HeadphonesShop.PresentationWebMVC.Models.DTO.AdminIndexDTO
 <p>
     Admin
 </p>
+<div>
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+            <tr>
+                <td class="admin-heaphones-table-column-0">
+                    <a>Name</a>
+                </td>
+                <td class="admin-heaphones-table-column-1">
+                    <a>Company</a>
+                </td>
+                <td class="admin-heaphones-table-column-2">
+                    <a>Design</a>
+                </td>
+                <td class="admin-heaphones-table-column-3">
+                    <a>Min Frequancy</a>
+                </td>
+                <td class="admin-heaphones-table-column-4">
+                    <a>Max Frequency</a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var h in Model.Headphones)
+            {
+                <tr>
+                    <td>
+                        <a>@h.Name</a>                        
+                    </td>
+                    <td>
+                        <a>@h.Company.Name</a>
+                    </td>
+                    <td>
+                        <a>@h.Design.Name</a>
+                    </td>
+                    <td>
+                        <a>@h.MinFrequency</a>
+                    </td>
+                    <td>
+                        <a>@h.MaxFrequency</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

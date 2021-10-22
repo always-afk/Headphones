@@ -792,3 +792,5 @@ C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesS
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Shared\HeaderPart.cshtml.g.cs
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Account\SignUp.cshtml.g.cs

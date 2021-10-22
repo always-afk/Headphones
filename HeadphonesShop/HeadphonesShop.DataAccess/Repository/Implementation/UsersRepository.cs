@@ -27,7 +27,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 {
                     Name = u.Role.Name
                 }
-            }).Single();
+            }).SingleOrDefault();
             return user;
         }
 
@@ -41,7 +41,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 {
                     Name = u.Role.Name
                 }
-            }).Single();
+            }).SingleOrDefault();
             return user;
         }
 
@@ -80,7 +80,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public bool TryAdd(User user)
         {
-            if(_context.Users.Any(u => u.Login == user.Login))
+            if(!_context.Users.Any(u => u.Login == user.Login))
             {
                 try
                 {
@@ -88,7 +88,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     {
                         Login = user.Login,
                         Password = user.Password,
-                        RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).Single().Id
+                        RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).SingleOrDefault().Id
                     };
                     _context.Users.Add(dbuser);
                     return true;
