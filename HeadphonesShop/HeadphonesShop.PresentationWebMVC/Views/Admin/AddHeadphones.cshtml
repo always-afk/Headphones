@@ -1,0 +1,17 @@
+﻿@using HeadphonesShop.PresentationWebMVC.Models.DTO;
+@model AddHeadphonesDTO
+
+<div>
+    <form method="post" asp-controller="Admin" asp-action="AddHeadphones">
+        <label>Name: </label>
+        <input name="headphonesDTO.Headphones.Name" />
+        <label>Company</label>
+        <select>
+            @foreach(var c in Model.Companies)
+            {
+                <option value="@c.Name">@c.Name</option>
+            }
+        </select>
+        <input type="submit" value="Add"/>
+    </form>
+</div>

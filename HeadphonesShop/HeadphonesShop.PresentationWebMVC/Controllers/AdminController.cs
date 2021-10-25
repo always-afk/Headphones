@@ -30,5 +30,19 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             _indexDTO.Headphones = heads.Select(h => _mapper.Map<Models.LogicModels.Headphones>(h)).ToList();
             return View(_indexDTO);
         }
+        [HttpGet]
+        public IActionResult AddHeadphones()
+        {
+            var headphonesDTO = new AddHeadphonesDTO();
+            headphonesDTO.Headphones = new Models.LogicModels.Headphones();
+            headphonesDTO.Companies = _headphonesService.GetAllCompanies().Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
+            headphonesDTO.Designs = _headphonesService.GetAllDesigns().Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
+            return View(headphonesDTO);
+        }
+        [HttpPost]
+        public IActionResult AddHeadphones(AddHeadphonesDTO headphonesDTO)
+        {
+            return Ok();
+        }
     }
 }
