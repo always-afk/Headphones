@@ -35,6 +35,8 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         {
             var headphonesDTO = new AddHeadphonesDTO();
             headphonesDTO.Headphones = new Models.LogicModels.Headphones();
+            headphonesDTO.Headphones.Company = new Models.LogicModels.Company();
+            headphonesDTO.Headphones.Design = new Models.LogicModels.Design();
             headphonesDTO.Companies = _headphonesService.GetAllCompanies().Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
             headphonesDTO.Designs = _headphonesService.GetAllDesigns().Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
             return View(headphonesDTO);

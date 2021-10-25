@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yFFfaYa9cVQXIGTH6QBKzLTO31/j7I9OvAVtegi3a52CqESTPh8N2cSAZoRKun681Mp0nZlT1+s6OFzsUTh2jw==",
+  "dgSpecHash": "/RTQIEDs/3f4PdVcrCq4sg3nu6A2fQCksqLqycHapUuyY5ZjaoEi4oKUu6zE+j3auGbmRolnpxJPLIVIg12png==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWebMVC\\HeadphonesShop.PresentationWebMVC.csproj",
+  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWebMVC\\HeadphonesShop.PresentationWebMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

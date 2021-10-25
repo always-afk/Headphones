@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tpzWV6y8Y2gTFGZ53TTNU49aCEnB+zQ39Rq/Kvbg3qIgF81FVeR/zxm0i0opA4cei0JpWOp3dVUBbFRKNvmbvg==",
+  "dgSpecHash": "Qb1xLnbIcawskAAmXIlFCI5WL7ANRidM5WjuQrUkrPcdH//O3x6t0N48MWnHxiu/QuIoJ306VwuT7uHyxiunWQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
+  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWF\\HeadphonesShop.PresentationWF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

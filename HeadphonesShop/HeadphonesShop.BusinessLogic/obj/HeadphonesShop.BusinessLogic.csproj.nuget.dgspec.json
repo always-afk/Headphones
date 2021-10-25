@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {}
+    "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {
+    "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+        "projectUniqueName": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
         "projectName": "HeadphonesShop.BusinessLogic",
-        "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+        "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\obj\\",
+        "outputPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,11 +32,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
-                "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
+              "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
+                "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
               },
-              "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj"
+              "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
+                "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj"
               }
             }
           }
@@ -71,18 +71,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
+    "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj",
+        "projectUniqueName": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj",
         "projectName": "HeadphonesShop.Common",
-        "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj",
+        "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj",
         "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\obj\\",
+        "outputPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -129,18 +129,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
+    "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
+        "projectUniqueName": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
         "projectName": "HeadphonesShop.DataAccess",
-        "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
+        "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\HeadphonesShop.DataAccess.csproj",
         "packagesPath": "C:\\Users\\artem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\obj\\",
+        "outputPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -161,8 +161,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
-                "projectPath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
+              "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj": {
+                "projectPath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.Common\\HeadphonesShop.Common.csproj"
               }
             }
           }
@@ -207,7 +207,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

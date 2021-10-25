@@ -7,11 +7,11 @@
         <input name="headphonesDTO.Headphones.Name" />
         <label>Company</label>
         <select>
-            @foreach(var c in Model.Companies)
+            @for(var i = 0; i < Model.Companies.Count; i++)
             {
-                <option value="@c.Name">@c.Name</option>
+                <option name="headphonesDTO.Companies[@i].Name">@Model.Companies[i].Name</option>
             }
-        </select>
+        </select>        
         <input type="submit" value="Add"/>
     </form>
 </div>

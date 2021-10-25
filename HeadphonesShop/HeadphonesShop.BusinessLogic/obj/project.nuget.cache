@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tVB4pRbfIsEcXVuEce/XgrTcnt5fV4HaG7FVNcZMHhfyxrsjBPZMUpt7er6goqb/Ll1RXvrkKTL4IwUgKUyWQg==",
+  "dgSpecHash": "9vYoNe5Z1HFCrkL15FBrK81kbG7DdYJslB3x3aweFHLcl3bmBBprhOPjx2WWk5tNxUzmxurOS7WDwB1MpnSp3g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
+  "projectFilePath": "D:\\Artyom\\Studing\\PandaDoc\\Courses\\Tasks\\Headphones\\HeadphonesShop\\HeadphonesShop.BusinessLogic\\HeadphonesShop.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
