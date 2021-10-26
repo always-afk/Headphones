@@ -10,7 +10,7 @@ namespace HeadphonesShop.PresentationWebMVC.Models.DTO
     public class AddHeadphonesDTO
     {
         public Headphones Headphones { get; set; }
-        public SelectList Companies { get; set; }
-        public SelectList Designs { get; set; }
+        public List<Company> Companies { get; set; }
+        public List<Design> Designs { get; set; }
     }
 }

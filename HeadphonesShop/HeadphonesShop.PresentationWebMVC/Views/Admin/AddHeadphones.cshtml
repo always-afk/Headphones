@@ -6,7 +6,18 @@
         <label>Name: </label>
         <input name="headphonesDTO.Headphones.Name" />
         <label>Company</label>
-        @Html.DropDownListFor(m => m.Headphones.Company, Model.Companies as IEnumerable<SelectListItem>)
+        <select name="headphonesDTO.Headphones.Company.Name">
+            @foreach (var i in Model.Companies)
+            {
+                <option value="@i.Name">@i.Name</option>
+            }
+        </select>
+        <select name="headphonesDTO.Headphones.Design.Name">
+            @foreach(var i in Model.Designs)
+            {
+                <option value="@i.Name">@i.Name</option>
+            }
+        </select>
         <input type="submit" value="Add"/>
     </form>
 </div>

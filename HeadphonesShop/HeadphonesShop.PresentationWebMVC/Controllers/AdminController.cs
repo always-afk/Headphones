@@ -35,11 +35,11 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         public IActionResult AddHeadphones()
         {
             var headphonesDTO = new AddHeadphonesDTO();
-            headphonesDTO.Headphones = new Models.LogicModels.Headphones();
-            headphonesDTO.Headphones.Company = new Models.LogicModels.Company();
-            headphonesDTO.Headphones.Design = new Models.LogicModels.Design();
-            headphonesDTO.Companies = new SelectList(_headphonesService.GetAllCompanies().Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList(), "Name", "Name");
-            headphonesDTO.Designs = new SelectList(_headphonesService.GetAllDesigns().Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList(), "Name", "Name");
+            //headphonesDTO.Headphones = new Models.ViewModels.Headphones();
+            headphonesDTO.Companies = _headphonesService.GetAllCompanies()
+                .Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
+            headphonesDTO.Designs = _headphonesService.GetAllDesigns()
+                .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
             return View(headphonesDTO);
         }
         [HttpPost]
