@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
 using HeadphonesShop.PresentationWebMVC.Models.DTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
@@ -37,8 +38,8 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             headphonesDTO.Headphones = new Models.LogicModels.Headphones();
             headphonesDTO.Headphones.Company = new Models.LogicModels.Company();
             headphonesDTO.Headphones.Design = new Models.LogicModels.Design();
-            headphonesDTO.Companies = _headphonesService.GetAllCompanies().Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
-            headphonesDTO.Designs = _headphonesService.GetAllDesigns().Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
+            headphonesDTO.Companies = new SelectList(_headphonesService.GetAllCompanies().Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList(), "Name", "Name");
+            headphonesDTO.Designs = new SelectList(_headphonesService.GetAllDesigns().Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList(), "Name", "Name");
             return View(headphonesDTO);
         }
         [HttpPost]

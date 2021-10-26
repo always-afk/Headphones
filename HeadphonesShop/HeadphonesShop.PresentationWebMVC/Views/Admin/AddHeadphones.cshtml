@@ -6,12 +6,7 @@
         <label>Name: </label>
         <input name="headphonesDTO.Headphones.Name" />
         <label>Company</label>
-        <select>
-            @for(var i = 0; i < Model.Companies.Count; i++)
-            {
-                <option name="headphonesDTO.Companies[@i].Name">@Model.Companies[i].Name</option>
-            }
-        </select>        
+        @Html.DropDownListFor(m => m.Headphones.Company, Model.Companies as IEnumerable<SelectListItem>)
         <input type="submit" value="Add"/>
     </form>
 </div>
