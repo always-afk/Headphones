@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "yFFfaYa9cVQXIGTH6QBKzLTO31/j7I9OvAVtegi3a52CqESTPh8N2cSAZoRKun681Mp0nZlT1+s6OFzsUTh2jw==",
+  "dgSpecHash": "qsJ1QpbA7QB+xScRVc2kRwnebzVKFtf5dBBuRIxGBKNjYNuKRmvRmSkE7RhShEIbVun+n9QGoIF0U95et7bWcg==",
   "success": true,
   "projectFilePath": "C:\\Users\\artem\\Studing\\Courses\\TMS\\Project\\Headphones\\HeadphonesShop\\HeadphonesShop.PresentationWebMVC\\HeadphonesShop.PresentationWebMVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artem\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\artem\\.nuget\\packages\\fluentvalidation\\10.3.4\\fluentvalidation.10.3.4.nupkg.sha512",
+    "C:\\Users\\artem\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.4\\fluentvalidation.aspnetcore.10.3.4.nupkg.sha512",
+    "C:\\Users\\artem\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.4\\fluentvalidation.dependencyinjectionextensions.10.3.4.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.11\\microsoft.aspnetcore.authentication.google.5.0.11.nupkg.sha512",
     "C:\\Users\\artem\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.11\\microsoft.aspnetcore.mvc.razor.extensions.5.0.11.nupkg.sha512",

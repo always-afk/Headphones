@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using HeadphonesShop.PresentationWebMVC.Services.Implementation;
 using HeadphonesShop.PresentationWebMVC.Services.Intedaces;
+using HeadphonesShop.PresentationWebMVC.Validation;
+using FluentValidation.AspNetCore;
 using AutoMapper;
 
 namespace HeadphonesShop.PresentationWebMVC
@@ -55,8 +57,11 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<IUsersService, UsersService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IDesignService, DesignService>();
+            services.AddScoped<IFileWorker, FileWorker>();
 
             services.AddScoped<INavigationService, NavigationService>();
+
+            services.AddFluentValidation();
 
             services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 

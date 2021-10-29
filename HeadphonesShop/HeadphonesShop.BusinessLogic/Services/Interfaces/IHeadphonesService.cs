@@ -12,7 +12,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
         IEnumerable<Headphones> GetAllHeadphones();
         IEnumerable<Company> GetAllCompanies();
         IEnumerable<Design> GetAllDesigns();
-        bool Add(Headphones headphones);
+        bool TryAdd(Headphones headphones);
         void Update(Headphones headphones);
         void Save(List<Headphones> headphones);
         void Delete(Headphones headphones);

@@ -1,15 +1,15 @@
 ﻿@using HeadphonesShop.PresentationWebMVC.Models.DTO;
 @model AddHeadphonesDTO
 
-<div>
-    <form class="form-group" method="post" asp-controller="Admin" asp-action="AddHeadphones">
+<div class="container">
+    <form class="form-group" method="post" asp-controller="Admin" asp-action="AddHeadphones" enctype="multipart/form-data">
         <div class="form-group">
             <label>Name</label>
             <input class="form-control w-25" name="headphonesDTO.Headphones.Name" />
         </div>
         <div class="form-group">
             <label>MinFrequency</label>
-            <input class="form-control w25" type="number" min="0" max="999999" step="1" name="headphonesDTO.Headphones.MinFrequency" />
+            <input class="form-control w-25" type="number" min="0" max="999999" step="1" name="headphonesDTO.Headphones.MinFrequency" />
         </div>
         <div class="form-group">
             <label>MaxFrequency</label>
@@ -33,7 +33,10 @@
                 }
             </select>
         </div>
-        
+        <div class="form-group">
+            <label>Picture</label>
+            <input type="file" name="headphonesDTO.File" class="custom-file"/>
+        </div>
         
         
         <input type="submit" value="Add" />

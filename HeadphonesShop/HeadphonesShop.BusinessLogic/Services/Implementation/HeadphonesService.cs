@@ -21,7 +21,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             _mapper = mapper;
         }
 
-        public bool Add(Headphones headphones)
+        public bool TryAdd(Headphones headphones)
         {
             var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
             if(_unitOfWork.HeadphonesRepository.TryAdd(head))
