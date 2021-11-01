@@ -10,6 +10,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using FluentValidation;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
@@ -22,7 +23,8 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private readonly IMapper _mapper;
         private AdminIndexDTO _indexDTO;
         //private readonly IAccountService _accountService;
-        public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
+        public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, 
+            IWebHostEnvironment hostEnvironment, IMapper mapper)
         {
             _headphonesService = headphonesService;
             _fileWorker = fileWorker;
@@ -51,20 +53,26 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddHeadphones(AddHeadphonesDTO headphonesDTO)
         {
-            var heads = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
-            heads.Picture = _appEnvironment.WebRootPath + "/images/" + headphonesDTO.File.FileName;
-
-            if (TryValidateModel(headphonesDTO.Headphones) && _headphonesService.TryAdd(heads))
+            if (ModelState.IsValid)
             {
-                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.Contains("image"))
+                var heads = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
+                heads.Picture = _appEnvironment.WebRootPath + "/images/" + headphonesDTO.File.FileName;
+
+                //var context = new ValidationContext(HttpContext.Request);
+
+                if (_headphonesService.TryAdd(heads))
                 {
-                    using (var mem = new MemoryStream())
+                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.Contains("image"))
                     {
-                        await headphonesDTO.File.CopyToAsync(mem);
-                        _fileWorker.SaveToDisc(mem, heads.Picture);
+                        using (var mem = new MemoryStream())
+                        {
+                            await headphonesDTO.File.CopyToAsync(mem);
+                            _fileWorker.SaveToDisc(mem, heads.Picture);
+                        }
                     }
                 }
-            }            
+            }
+                        
             
             return Redirect("~/Admin/Index");
         }

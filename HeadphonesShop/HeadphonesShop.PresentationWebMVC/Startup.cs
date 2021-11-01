@@ -41,8 +41,8 @@ namespace HeadphonesShop.PresentationWebMVC
                 .AddCookie()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "164653057181-ftkgoarmpjsmrn16b8gq4aj09l7g0qmk.apps.googleusercontent.com";
-                    options.ClientSecret = "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";
+                    options.ClientId = "164653057181-9hgst6ao0j81c49n9191hmt58gmr7hda.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
                 });
             services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
             //services.AddDbContext<HeadphonesDBContext>();
@@ -61,7 +61,8 @@ namespace HeadphonesShop.PresentationWebMVC
 
             services.AddScoped<INavigationService, NavigationService>();
 
-            services.AddFluentValidation();
+            services.AddMvcCore()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<INavigationService>());
 
             services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 
