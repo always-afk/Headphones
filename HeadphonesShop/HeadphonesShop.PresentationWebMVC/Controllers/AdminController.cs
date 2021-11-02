@@ -60,7 +60,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 var folder = headphonesDTO.Headphones.Name;
                 if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith("image"))
                 {
-                    var partpath = "/images/";
+                    var partpath = "/images";
                     path = _appEnvironment.WebRootPath + partpath;
                     heads.Picture = "~" + partpath;
                 }
@@ -87,6 +87,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             var dto = new InfoHeadphonesDTO();
             var h = _headphonesService.GetHeadphonesByName(name);
             dto.Headphones = _mapper.Map<Models.LogicModels.Headphones>(h);
+            dto.Companies = _headphonesService.GetAllCompanies()
+                .Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
+            dto.Designs = _headphonesService.GetAllDesigns()
+                .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
             return View(dto);
         }
     }
