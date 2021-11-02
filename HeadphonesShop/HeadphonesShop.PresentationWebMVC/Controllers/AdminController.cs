@@ -62,7 +62,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 {
                     var partpath = "/images";
                     path = _appEnvironment.WebRootPath + partpath;
-                    heads.Picture = "~" + partpath;
+                    heads.Picture = partpath + "/" + heads.Name + "/" + headphonesDTO.File.FileName;
                 }
 
                 if (_headphonesService.TryAdd(heads))
