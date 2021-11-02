@@ -73,29 +73,29 @@ namespace HeadphonesShop.PresentationWebMVC.Mapping
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Email))
                 .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password));
 
-            //Pres to View
-            CreateMap<Models.LogicModels.Headphones, Models.ViewModels.Headphones>()
-                .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
-                .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
-                .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
-                .ForMember(x => x.Picture, opt => opt.MapFrom(h => h.Picture))
-                .ForMember(x => x.Company, opt => opt.MapFrom(h => h.Company.Name))
-                .ForMember(x => x.Design, opt => opt.MapFrom(h => h.Design.Name));
+            ////Pres to View
+            //CreateMap<Models.LogicModels.Headphones, Models.ViewModels.Headphones>()
+            //    .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
+            //    .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
+            //    .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
+            //    .ForMember(x => x.Picture, opt => opt.MapFrom(h => h.Picture))
+            //    .ForMember(x => x.Company, opt => opt.MapFrom(h => h.Company.Name))
+            //    .ForMember(x => x.Design, opt => opt.MapFrom(h => h.Design.Name));
 
-            //View to pres
-            CreateMap<Models.ViewModels.Headphones, Models.LogicModels.Headphones>()
-                .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
-                .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
-                .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
-                .ForMember(x => x.Picture, opt => opt.MapFrom(h => h.Picture))
-                .ForMember(x => x.Company, opt => opt.MapFrom(h => new Models.LogicModels.Company()
-                {
-                    Name = h.Company
-                }))
-                .ForMember(x => x.Design, opt => opt.MapFrom(h => new Models.LogicModels.Design()
-                {
-                    Name = h.Design
-                }));
+            ////View to pres
+            //CreateMap<Models.ViewModels.Headphones, Models.LogicModels.Headphones>()
+            //    .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
+            //    .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
+            //    .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
+            //    .ForMember(x => x.Picture, opt => opt.MapFrom(h => h.Picture))
+            //    .ForMember(x => x.Company, opt => opt.MapFrom(h => new Models.LogicModels.Company()
+            //    {
+            //        Name = h.Company
+            //    }))
+            //    .ForMember(x => x.Design, opt => opt.MapFrom(h => new Models.LogicModels.Design()
+            //    {
+            //        Name = h.Design
+            //    }));
         }
     }
 }

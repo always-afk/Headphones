@@ -810,3 +810,6 @@ D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesSho
 D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Shared\HeaderPart.cshtml.g.cs
 D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\UnknownUser\Index.cshtml.g.cs
 D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\UnknownUser\SignIn.cshtml.g.cs
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
