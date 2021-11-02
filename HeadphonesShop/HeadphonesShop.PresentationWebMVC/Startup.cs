@@ -39,11 +39,18 @@ namespace HeadphonesShop.PresentationWebMVC
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
+                //IISExpress
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "164653057181-9hgst6ao0j81c49n9191hmt58gmr7hda.apps.googleusercontent.com";
-                    options.ClientSecret = "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";
+                    options.ClientId = "164653057181-mn3t1slohrpdmihr613buc1d81ijdqqi.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
                 });
+            //Raw
+            //.AddGoogle(options =>
+            //{
+            //    options.ClientId = "164653057181-9hgst6ao0j81c49n9191hmt58gmr7hda.apps.googleusercontent.com";
+            //    options.ClientSecret = "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";
+            //});
             services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
             //services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
@@ -62,7 +69,12 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<INavigationService, NavigationService>();
 
             services.AddMvcCore()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<INavigationService>());
+                .AddFluentValidation(fv =>
+                {
+                    fv.DisableDataAnnotationsValidation = true;
+                    fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                }
+                );
 
             services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 

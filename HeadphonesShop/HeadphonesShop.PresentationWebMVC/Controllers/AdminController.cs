@@ -56,18 +56,23 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             if (ModelState.IsValid)
             {
                 var heads = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
-                heads.Picture = _appEnvironment.WebRootPath + "/images/" + headphonesDTO.File.FileName;
-
-                //var context = new ValidationContext(HttpContext.Request);
+                var path = "";
+                var folder = headphonesDTO.Headphones.Name;
+                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith("image"))
+                {
+                    var partpath = "/images/";
+                    path = _appEnvironment.WebRootPath + partpath;
+                    heads.Picture = "~" + partpath;
+                }
 
                 if (_headphonesService.TryAdd(heads))
                 {
-                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.Contains("image"))
+                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith("image"))
                     {
                         using (var mem = new MemoryStream())
                         {
                             await headphonesDTO.File.CopyToAsync(mem);
-                            _fileWorker.SaveToDisc(mem, heads.Picture);
+                            _fileWorker.SaveToDiscInFolder(mem, path, folder);
                         }
                     }
                 }

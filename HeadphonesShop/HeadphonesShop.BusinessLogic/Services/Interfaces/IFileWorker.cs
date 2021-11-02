@@ -10,6 +10,6 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
     public interface IFileWorker
     {
         public void SaveToDisc(MemoryStream file, string path);
-        //public 
+        public void SaveToDiscInFolder(MemoryStream file, string path, string folder);
     }
 }
