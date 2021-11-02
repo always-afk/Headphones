@@ -72,7 +72,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                         using (var mem = new MemoryStream())
                         {
                             await headphonesDTO.File.CopyToAsync(mem);
-                            _fileWorker.SaveToDiscInFolder(mem, path, folder);
+                            _fileWorker.SaveToDiscInFolder(mem, path, folder, headphonesDTO.File.FileName);
                         }
                     }
                 }
