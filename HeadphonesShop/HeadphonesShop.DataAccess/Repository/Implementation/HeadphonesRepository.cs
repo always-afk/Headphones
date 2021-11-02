@@ -91,5 +91,14 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             }).FirstOrDefault();
             return head;
         }
+
+        public void DeleteByName(string name)
+        {
+            var headToDel = _context.Headphones.Where(h => h.Name == name).FirstOrDefault();
+            if(headToDel is not null)
+            {
+                _context.Headphones.Remove(headToDel);
+            }
+        }
     }
 }

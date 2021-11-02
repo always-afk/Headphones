@@ -77,5 +77,11 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             var res = _mapper.Map<Headphones>(_unitOfWork.HeadphonesRepository.GetHeadphonesByName(name));
             return res;
         }
+
+        public void DeleteHeadphonesByName(string name)
+        {
+            _unitOfWork.HeadphonesRepository.DeleteByName(name);
+            _unitOfWork.Save();
+        }
     }
 }

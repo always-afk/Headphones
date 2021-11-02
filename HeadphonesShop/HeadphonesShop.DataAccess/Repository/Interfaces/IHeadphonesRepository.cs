@@ -17,6 +17,7 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 
         public void Update(Headphones headphones);
         public Headphones GetHeadphonesByName(string name);
+        public void DeleteByName(string name);
 
     }
 }

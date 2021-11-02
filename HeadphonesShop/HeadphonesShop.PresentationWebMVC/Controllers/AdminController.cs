@@ -93,5 +93,41 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
             return View(dto);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateHeadphones(InfoHeadphonesDTO headphonesDTO)
+        {
+            var head = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
+            var path = "";
+            var folder = headphonesDTO.Headphones.Name;
+            if (headphonesDTO.File is null)
+            {
+                _headphonesService.Update(head);
+            }
+            else
+            {
+                if (headphonesDTO.File.ContentType.StartsWith("image"))
+                {
+                    var partpath = "/images";
+                    path = _appEnvironment.WebRootPath + partpath;
+                    head.Picture = partpath + "/" + head.Name + "/" + headphonesDTO.File.FileName;
+                    using (var mem = new MemoryStream())
+                    {
+                        await headphonesDTO.File.CopyToAsync(mem);
+                        _fileWorker.SaveToDiscInFolder(mem, path, folder, headphonesDTO.File.FileName);
+                    }
+                    _headphonesService.Update(head);
+                }
+            }
+            return Redirect("~/Admin/Index");
+
+        }
+
+        [HttpGet]
+        public IActionResult DeleteHeadphones([FromQuery(Name = "name")] string name)
+        {
+            _headphonesService.DeleteHeadphonesByName(name);
+            return Redirect("~/Admin/Index");
+        }
     }
 }
