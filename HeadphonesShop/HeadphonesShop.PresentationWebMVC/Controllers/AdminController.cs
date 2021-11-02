@@ -81,5 +81,13 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             
             return Redirect("~/Admin/Index");
         }
+        [HttpGet()]
+        public IActionResult InfoHeadphones([FromQuery(Name = "name")] string name)
+        {
+            var dto = new InfoHeadphonesDTO();
+            var h = _headphonesService.GetHeadphonesByName(name);
+            dto.Headphones = _mapper.Map<Models.LogicModels.Headphones>(h);
+            return View(dto);
+        }
     }
 }

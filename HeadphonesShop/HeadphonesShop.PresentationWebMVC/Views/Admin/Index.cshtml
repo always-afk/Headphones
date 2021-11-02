@@ -42,7 +42,7 @@
                 {
                     <tr>
                         <td>
-                            <a>@h.Name</a>
+                            <a href="@Url.Action("InfoHeadphones", "Admin", new { name = h.Name })">@h.Name</a>
                         </td>
                         <td>
                             <a>@h.Company.Name</a>

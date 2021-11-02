@@ -813,3 +813,4 @@ D:\Artyom\Studing\PandaDoc\Courses\Tasks\Headphones\HeadphonesShop\HeadphonesSho
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\obj\Debug\net5.0\Razor\Views\Admin\InfoHeadphones.cshtml.g.cs

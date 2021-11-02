@@ -71,5 +71,25 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
         }
+
+        public Headphones GetHeadphonesByName(string name)
+        {
+            var head = _context.Headphones.Where(h => h.Name == name).Select(h => new Headphones()
+            {
+                Name = h.Name,
+                MinFrequency = h.MinFrequency,
+                MaxFrequency = h.MaxFrequency,
+                Picture = h.Picture,
+                Company = new Company()
+                {
+                    Name = h.Company.Name
+                },
+                Design = new Design()
+                {
+                    Name = h.Design.Name
+                }
+            }).FirstOrDefault();
+            return head;
+        }
     }
 }

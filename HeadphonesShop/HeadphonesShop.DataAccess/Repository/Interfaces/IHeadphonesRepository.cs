@@ -16,5 +16,7 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         public IEnumerable<Headphones> GetAllHeadphones();
 
         public void Update(Headphones headphones);
+        public Headphones GetHeadphonesByName(string name);
+
     }
 }
