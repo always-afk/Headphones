@@ -73,10 +73,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 {
                     if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
                     {
-                        using (var mem = new MemoryStream())
+                        using (var memoryStream = new MemoryStream())
                         {
-                            await headphonesDTO.File.CopyToAsync(mem);
-                            _fileWorker.SaveToDiscInFolder(mem, path, folder, headphonesDTO.File.FileName);
+                            await headphonesDTO.File.CopyToAsync(memoryStream);
+                            _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesDTO.File.FileName);
                         }
                     }
                 }
