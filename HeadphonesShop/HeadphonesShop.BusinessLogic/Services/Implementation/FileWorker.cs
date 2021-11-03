@@ -17,13 +17,18 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
                 file.CopyTo(filestream);
             }
         }
+
         public void SaveToDiscInFolder(MemoryStream file, string path, string folder, string filename)
         {
-            if(!Directory.Exists(path + folder))
+            var folderPath = Path.Combine(path, folder);
+
+            if (!Directory.Exists(folderPath))
             {
-                Directory.CreateDirectory(path + folder);
-            }            
-            SaveToDisc(file, path + folder + "/" + filename);
+                Directory.CreateDirectory(folderPath);
+            }
+
+            var filePath = Path.Combine(folderPath, filename);
+            SaveToDisc(file, filePath);
         }
     }
 }
