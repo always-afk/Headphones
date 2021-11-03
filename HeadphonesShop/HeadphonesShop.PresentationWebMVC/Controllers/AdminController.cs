@@ -17,6 +17,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
     [Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
+        private const string IMAGE = "image";
+        private const string IMAGES = "images";
+        private const string INDEX = "Index";
+
         private IWebHostEnvironment _appEnvironment;
         private readonly IHeadphonesService _headphonesService;
         private readonly IFileWorker _fileWorker;
@@ -56,18 +60,18 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             if (ModelState.IsValid)
             {
                 var heads = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
-                var path = "";
+                var path = String.Empty;
                 var folder = headphonesDTO.Headphones.Name;
-                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith("image"))
+
+                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
                 {
-                    var partpath = "/images/";
-                    path = _appEnvironment.WebRootPath + partpath;
-                    heads.Picture = "~" + partpath;
+                    path = Path.Combine(_appEnvironment.WebRootPath, IMAGES);
+                    heads.Picture = Path.Combine(IMAGES, headphonesDTO.Headphones.Name, headphonesDTO.File.FileName);
                 }
 
                 if (_headphonesService.TryAdd(heads))
                 {
-                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith("image"))
+                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
                     {
                         using (var mem = new MemoryStream())
                         {
@@ -77,9 +81,9 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                     }
                 }
             }
-                        
-            
-            return Redirect("~/Admin/Index");
+
+
+            return RedirectToAction(INDEX);
         }
     }
 }

@@ -36,23 +36,19 @@ namespace HeadphonesShop.PresentationWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            var googleAuthIIS = Configuration.GetSection("GoogleAuthentication").GetSection("IISExpress");
+            var googleId = googleAuthIIS.GetSection("ClientId").Value;
+            var googleSecret = googleAuthIIS.GetSection("ClientSecret").Value;
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
-                //IISExpress
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "164653057181-mn3t1slohrpdmihr613buc1d81ijdqqi.apps.googleusercontent.com";
-                    options.ClientSecret = "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";
+                    options.ClientId = googleId;
+                    options.ClientSecret = googleSecret;
                 });
-            //Raw
-            //.AddGoogle(options =>
-            //{
-            //    options.ClientId = "164653057181-9hgst6ao0j81c49n9191hmt58gmr7hda.apps.googleusercontent.com";
-            //    options.ClientSecret = "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";
-            //});
             services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
-            //services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<ICompaniesRepository, CompaniesRepository>();
             services.AddScoped<IDesignRepository, DesignRepository>();
