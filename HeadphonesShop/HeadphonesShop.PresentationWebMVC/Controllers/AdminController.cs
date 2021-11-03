@@ -28,8 +28,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private AdminIndexDTO _indexDTO;
         //private readonly IAccountService _accountService;
 
-        public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, 
-            IWebHostEnvironment hostEnvironment, IMapper mapper)
+        public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
         {
             _headphonesService = headphonesService;
             _fileWorker = fileWorker;
@@ -77,10 +76,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 {
                     if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
                     {
-                        using (var mem = new MemoryStream())
+                        using (var memoryStream = new MemoryStream())
                         {
-                            await headphonesDTO.File.CopyToAsync(mem);
-                            _fileWorker.SaveToDiscInFolder(mem, path, folder, headphonesDTO.File.FileName);
+                            await headphonesDTO.File.CopyToAsync(memoryStream);
+                            _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesDTO.File.FileName);
                         }
                     }
                 }
@@ -92,21 +91,20 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         [HttpGet()]
         public IActionResult InfoHeadphones([FromQuery(Name = "name")] string name)
         {
-            var dto = new InfoHeadphonesDTO();
-            var h = _headphonesService.GetHeadphonesByName(name);
-            dto.Headphones = _mapper.Map<Models.LogicModels.Headphones>(h);
-            dto.Companies = _headphonesService.GetAllCompanies()
-                .Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
-            dto.Designs = _headphonesService.GetAllDesigns()
-                .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
-            return View(dto);
+            var headphonesDTO = new InfoHeadphonesDTO();
+            var headphones = _headphonesService.GetHeadphonesByName(name);
+            headphonesDTO.Headphones = _mapper.Map<Models.LogicModels.Headphones>(headphones);
+            headphonesDTO.Companies = _headphonesService.GetAllCompanies()
+                .Select(h => _mapper.Map<Models.LogicModels.Company>(headphones)).ToList();
+            headphonesDTO.Designs = _headphonesService.GetAllDesigns()
+                .Select(h => _mapper.Map<Models.LogicModels.Design>(headphones)).ToList();
+            return View(headphonesDTO);
         }
 
         [HttpPost]
         public async Task<IActionResult> UpdateHeadphones(InfoHeadphonesDTO headphonesDTO)
         {
             var head = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
-            var path = String.Empty;
             var folder = headphonesDTO.Headphones.Name;
 
             if (headphonesDTO.File is null)
@@ -117,12 +115,12 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             {
                 if (headphonesDTO.File.ContentType.StartsWith(IMAGE))
                 {
-                    path = Path.Combine(_appEnvironment.WebRootPath, IMAGES);
+                    var path = Path.Combine(_appEnvironment.WebRootPath, IMAGES);
                     head.Picture = Path.Combine(IMAGES, head.Name, headphonesDTO.File.FileName);
-                    using (var fileInMemory = new MemoryStream())
+                    using (var memoryStream = new MemoryStream())
                     {
-                        await headphonesDTO.File.CopyToAsync(fileInMemory);
-                        _fileWorker.SaveToDiscInFolder(fileInMemory, path, folder, headphonesDTO.File.FileName);
+                        await headphonesDTO.File.CopyToAsync(memoryStream);
+                        _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesDTO.File.FileName);
                     }
                     _headphonesService.Update(head);
                 }
