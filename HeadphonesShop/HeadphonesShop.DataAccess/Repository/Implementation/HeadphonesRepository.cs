@@ -28,11 +28,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).Select(c => c.Id).Single(),
                 DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).Select(d => d.Id).Single()
             };
+
             if(!_context.Headphones.Any(h => h.Name == head.Name))
             {
                 _context.Headphones.Add(head);
                 return true;
             }
+
             return false;
         }
 
@@ -59,6 +61,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     Name = h.Design.Name
                 }
             }).ToList();
+
             return headphones;
         }
 
@@ -89,12 +92,14 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     Name = h.Design.Name
                 }
             }).FirstOrDefault();
+
             return head;
         }
 
         public void DeleteByName(string name)
         {
             var headToDel = _context.Headphones.Where(h => h.Name == name).FirstOrDefault();
+
             if(headToDel is not null)
             {
                 _context.Headphones.Remove(headToDel);

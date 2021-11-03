@@ -27,6 +27,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private readonly IMapper _mapper;
         private AdminIndexDTO _indexDTO;
         //private readonly IAccountService _accountService;
+
         public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, 
             IWebHostEnvironment hostEnvironment, IMapper mapper)
         {
@@ -36,6 +37,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             _appEnvironment = hostEnvironment;
             _indexDTO = new AdminIndexDTO();
         }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -43,6 +45,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             _indexDTO.Headphones = heads.Select(h => _mapper.Map<Models.LogicModels.Headphones>(h)).ToList();
             return View(_indexDTO);
         }
+
         [HttpGet]
         public IActionResult AddHeadphones()
         {
@@ -54,6 +57,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
             return View(headphonesDTO);
         }
+
         [HttpPost]
         public async Task<IActionResult> AddHeadphones(AddHeadphonesDTO headphonesDTO)
         {
@@ -82,6 +86,55 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 }
             }
 
+            return RedirectToAction(INDEX);
+        }
+
+        [HttpGet()]
+        public IActionResult InfoHeadphones([FromQuery(Name = "name")] string name)
+        {
+            var dto = new InfoHeadphonesDTO();
+            var h = _headphonesService.GetHeadphonesByName(name);
+            dto.Headphones = _mapper.Map<Models.LogicModels.Headphones>(h);
+            dto.Companies = _headphonesService.GetAllCompanies()
+                .Select(h => _mapper.Map<Models.LogicModels.Company>(h)).ToList();
+            dto.Designs = _headphonesService.GetAllDesigns()
+                .Select(h => _mapper.Map<Models.LogicModels.Design>(h)).ToList();
+            return View(dto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateHeadphones(InfoHeadphonesDTO headphonesDTO)
+        {
+            var head = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphonesDTO.Headphones);
+            var path = String.Empty;
+            var folder = headphonesDTO.Headphones.Name;
+
+            if (headphonesDTO.File is null)
+            {
+                _headphonesService.Update(head);
+            }
+            else
+            {
+                if (headphonesDTO.File.ContentType.StartsWith(IMAGE))
+                {
+                    path = Path.Combine(_appEnvironment.WebRootPath, IMAGES);
+                    head.Picture = Path.Combine(IMAGES, head.Name, headphonesDTO.File.FileName);
+                    using (var fileInMemory = new MemoryStream())
+                    {
+                        await headphonesDTO.File.CopyToAsync(fileInMemory);
+                        _fileWorker.SaveToDiscInFolder(fileInMemory, path, folder, headphonesDTO.File.FileName);
+                    }
+                    _headphonesService.Update(head);
+                }
+            }
+
+            return RedirectToAction(INDEX);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteHeadphones([FromQuery(Name = "name")] string name)
+        {
+            _headphonesService.DeleteHeadphonesByName(name);
 
             return RedirectToAction(INDEX);
         }

@@ -1,6 +1,5 @@
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\appsettings.json
-C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\googlesettings.json
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\HeadphonesShop.PresentationWebMVC.exe
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\HeadphonesShop.PresentationWebMVC.deps.json
 C:\Users\artem\Studing\Courses\TMS\Project\Headphones\HeadphonesShop\HeadphonesShop.PresentationWebMVC\bin\Debug\net5.0\HeadphonesShop.PresentationWebMVC.runtimeconfig.json
