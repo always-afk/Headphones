@@ -17,9 +17,9 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
     [Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
-        private const string IMAGE = "image";
-        private const string IMAGES = "images";
-        private const string INDEX = "Index";
+        private const string Image = "image";
+        private const string Images = "images";
+        private const string IndexStr = "Index";
 
         private IWebHostEnvironment _appEnvironment;
         private readonly IHeadphonesService _headphonesService;
@@ -63,15 +63,15 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 var path = String.Empty;
                 var folder = headphonesDTO.Headphones.Name;
 
-                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
+                if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(Image))
                 {
-                    path = Path.Combine(_appEnvironment.WebRootPath, IMAGES);
-                    heads.Picture = Path.Combine(IMAGES, headphonesDTO.Headphones.Name, headphonesDTO.File.FileName);
+                    path = Path.Combine(_appEnvironment.WebRootPath, Images);
+                    heads.Picture = Path.Combine(Images, headphonesDTO.Headphones.Name, headphonesDTO.File.FileName);
                 }
 
                 if (_headphonesService.TryAdd(heads))
                 {
-                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(IMAGE))
+                    if (headphonesDTO.File is not null && headphonesDTO.File.ContentType.StartsWith(Image))
                     {
                         using (var memoryStream = new MemoryStream())
                         {
@@ -83,7 +83,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             }
 
 
-            return RedirectToAction(INDEX);
+            return RedirectToAction(IndexStr);
         }
     }
 }
