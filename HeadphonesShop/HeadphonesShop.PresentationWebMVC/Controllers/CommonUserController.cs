@@ -27,5 +27,9 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             dto.Headphones = _headphonesService.GetAllHeadphones().Select(h => _mapper.Map<Headphones>(h)).ToList();
             return View(dto);
         }
+        public IActionResult InfoHeadphones([FromQuery(Name = "name")] string name)
+        {
+            return Ok();
+        }
     }
 }
