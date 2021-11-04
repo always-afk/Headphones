@@ -1,5 +1,5 @@
-﻿@using HeadphonesShop.PresentationWebMVC.Models.DTO
-@model InfoHeadphonesDTO
+﻿@using HeadphonesShop.PresentationWebMVC.Models.ViewModel
+@model InfoHeadphonesViewModel
 
 <div class="container">
     <form class="form-group" method="post" asp-controller="Admin" asp-action="UpdateHeadphones" enctype="multipart/form-data">
@@ -7,19 +7,19 @@
             <div class="col-7">
                 <div class="form-group">
                     <label>Name</label>
-                    <input class="form-control w-50" name="headphonesDTO.Headphones.Name" value="@Model.Headphones.Name" readonly />
+                    <input class="form-control w-50" name="headphonesViewModel.Headphones.Name" value="@Model.Headphones.Name" readonly />
                 </div>
                 <div class="form-group">
                     <label>MinFrequency</label>
-                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesDTO.Headphones.MinFrequency" value="@Model.Headphones.MinFrequency" />
+                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesViewModel.Headphones.MinFrequency" value="@Model.Headphones.MinFrequency" />
                 </div>
                 <div class="form-group">
                     <label>MaxFrequency</label>
-                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesDTO.Headphones.MaxFrequency" value="@Model.Headphones.MaxFrequency" />
+                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesViewModel.Headphones.MaxFrequency" value="@Model.Headphones.MaxFrequency" />
                 </div>
                 <div class="form-group">
                     <label>Company</label>
-                    <select class="custom-select w-50" name="headphonesDTO.Headphones.Company.Name">
+                    <select class="custom-select w-50" name="headphonesViewModel.Headphones.Company.Name">
                         @foreach (var i in Model.Companies)
                         {
                             if (i.Name == Model.Headphones.Company.Name)
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Design</label>
-                    <select class="custom-select w-50" name="headphonesDTO.Headphones.Design.Name">
+                    <select class="custom-select w-50" name="headphonesViewModel.Headphones.Design.Name">
                         @foreach (var i in Model.Designs)
                         {
                             if (i.Name == Model.Headphones.Design.Name)
@@ -56,10 +56,10 @@
                     <label>Picture</label>
                     <div>
                         <img class="figure-img" src="/@Model.Headphones.Picture" />
-                        <input name="headphonesDTO.Headphones.Picture" value="@Model.Headphones.Picture" hidden />
+                        <input name="headphonesViewModel.Headphones.Picture" value="@Model.Headphones.Picture" hidden />
                     </div>
                     @*<img src="~/images/Sony WF-1000XM4 (черный)/cfd42d366e0004198126f4eba8ee0638.jpeg" />*@
-                    <input type="file" name="headphonesDTO.File" class="custom-file" />
+                    <input type="file" name="headphonesViewModel.File" class="custom-file" />
                 </div>
             </div>
         </div>

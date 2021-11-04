@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 
-namespace HeadphonesShop.PresentationWebMVC.Models.DTO
+namespace HeadphonesShop.PresentationWebMVC.Models.ViewModel
 {
-    public class AdminIndexDTO
+    public class AdminIndexViewModel
     {
         public List<Headphones> Headphones { get; set; }
     }
