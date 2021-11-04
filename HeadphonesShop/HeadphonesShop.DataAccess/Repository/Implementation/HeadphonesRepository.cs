@@ -17,7 +17,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
         }
 
-        public bool TryAdd(Headphones headphones)
+        public bool TryAdd(HeadphonesModel headphones)
         {
             var head = new Models.DataModels.Headphone()
             {
@@ -38,25 +38,25 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return false;
         }
 
-        public void Delete(Headphones headphones)
+        public void Delete(HeadphonesModel headphones)
         {
             var headphonesToDel = _context.Headphones.Where(h => h.Name == headphones.Name).Single();
             _context.Headphones.Remove(headphonesToDel);
         }
 
-        public IEnumerable<Headphones> GetAllHeadphones()
+        public IEnumerable<HeadphonesModel> GetAllHeadphones()
         {
-            var headphones = _context.Headphones.Select(h => new Headphones()
+            var headphones = _context.Headphones.Select(h => new HeadphonesModel()
             {
                 Name = h.Name,
                 MinFrequency = h.MinFrequency,
                 MaxFrequency = h.MaxFrequency,
                 Picture = h.Picture,
-                Company = new Company()
+                Company = new CompanyModel()
                 {
                     Name = h.Company.Name
                 },
-                Design = new Design()
+                Design = new DesignModel()
                 {
                     Name = h.Design.Name
                 }
@@ -65,7 +65,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return headphones;
         }
 
-        public void Update(Headphones headphones)
+        public void Update(HeadphonesModel headphones)
         {
             var head = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
             head.MinFrequency = headphones.MinFrequency;
@@ -75,19 +75,19 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
         }
 
-        public Headphones GetHeadphonesByName(string name)
+        public HeadphonesModel GetHeadphonesByName(string name)
         {
-            var head = _context.Headphones.Where(h => h.Name == name).Select(h => new Headphones()
+            var head = _context.Headphones.Where(h => h.Name == name).Select(h => new HeadphonesModel()
             {
                 Name = h.Name,
                 MinFrequency = h.MinFrequency,
                 MaxFrequency = h.MaxFrequency,
                 Picture = h.Picture,
-                Company = new Company()
+                Company = new CompanyModel()
                 {
                     Name = h.Company.Name
                 },
-                Design = new Design()
+                Design = new DesignModel()
                 {
                     Name = h.Design.Name
                 }

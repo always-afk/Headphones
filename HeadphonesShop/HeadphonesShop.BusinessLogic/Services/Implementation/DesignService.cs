@@ -21,7 +21,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public bool TryAdd(Design design)
         {
-            var des = _mapper.Map<Design, DataAccess.Models.LogicModels.Design>(design);
+            var des = _mapper.Map<Design, DataAccess.Models.LogicModels.DesignModel>(design);
             if (_unitOfWork.DesignRepository.TryAdd(des))
             {
                 _unitOfWork.Save();
@@ -34,12 +34,12 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public IEnumerable<Design> GetAllDesigns()
         {
             return _unitOfWork.DesignRepository.GetAllDesigns()
-                .Select(d => _mapper.Map<DataAccess.Models.LogicModels.Design, Design>(d));
+                .Select(d => _mapper.Map<DataAccess.Models.LogicModels.DesignModel, Design>(d));
         }
 
         public void Save(IEnumerable<Design> designs)
         {
-            var des = designs.Select(d => _mapper.Map<Design, DataAccess.Models.LogicModels.Design>(d));
+            var des = designs.Select(d => _mapper.Map<Design, DataAccess.Models.LogicModels.DesignModel>(d));
             _unitOfWork.DesignRepository.Update(des);
             _unitOfWork.Save();
         }

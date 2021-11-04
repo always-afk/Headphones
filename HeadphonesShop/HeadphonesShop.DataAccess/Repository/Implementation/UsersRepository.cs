@@ -17,13 +17,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
         }
 
-        public User CheckUser(User user)
+        public UserModel CheckUser(UserModel user)
         {
-            user = _context.Users.Where(u => u.Login == user.Login && u.Password == user.Password).Select(u => new User()
+            user = _context.Users.Where(u => u.Login == user.Login && u.Password == user.Password).Select(u => new UserModel()
             {
                 Login = u.Login,
                 Password = u.Password,
-                Role = new Role()
+                Role = new RoleModel()
                 {
                     Name = u.Role.Name
                 }
@@ -31,13 +31,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return user;
         }
 
-        public User CheckGoogleUser(User user)
+        public UserModel CheckGoogleUser(UserModel user)
         {
-            user = _context.Users.Where(u => u.Login == user.Login && u.Password == "0").Select(u => new User()
+            user = _context.Users.Where(u => u.Login == user.Login && u.Password == "0").Select(u => new UserModel()
             {
                 Login = u.Login,
                 Password = u.Password,
-                Role = new Role()
+                Role = new RoleModel()
                 {
                     Name = u.Role.Name
                 }
@@ -45,19 +45,19 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return user;
         }
 
-        public User FillUser(User user)
+        public UserModel FillUser(UserModel user)
         {
-            user.FavHeadphones = _context.UserHeadphones.Where(u => u.User.Login == user.Login).Select(h => new Headphones()
+            user.FavHeadphones = _context.UserHeadphones.Where(u => u.User.Login == user.Login).Select(h => new HeadphonesModel()
             {
                 Name = h.Headphones.Name,
                 MinFrequency = h.Headphones.MinFrequency,
                 MaxFrequency = h.Headphones.MaxFrequency,
                 Picture = h.Headphones.Picture,
-                Company = new Company()
+                Company = new CompanyModel()
                 {
                     Name = h.Headphones.Company.Name
                 },
-                Design = new Design()
+                Design = new DesignModel()
                 {
                     Name = h.Headphones.Design.Name
                 }
@@ -65,12 +65,12 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return user;
         }
 
-        public IEnumerable<SmallUser> GetSmallOtherUsers(string login) 
+        public IEnumerable<SmallUserModel> GetSmallOtherUsers(string login) 
         {
-            var users = _context.Users.Where(u => u.Login != login).Select(u => new SmallUser()
+            var users = _context.Users.Where(u => u.Login != login).Select(u => new SmallUserModel()
             {
                 Login = u.Login,
-                Role = new Role()
+                Role = new RoleModel()
                 {
                     Name = u.Role.Name
                 }
@@ -78,7 +78,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return users;
         }
 
-        public bool TryAdd(User user)
+        public bool TryAdd(UserModel user)
         {
             if(!_context.Users.Any(u => u.Login == user.Login))
             {
@@ -101,13 +101,13 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return false;
         }
 
-        public void Update(User user)
+        public void Update(UserModel user)
         {
             var heads = _context.UserHeadphones.Where(h => h.User.Login == user.Login && !user.FavHeadphones.Any(f => f.Name == h.Headphones.Name));
             _context.RemoveRange(heads);
         }
 
-        public void Update(IEnumerable<SmallUser> users)
+        public void Update(IEnumerable<SmallUserModel> users)
         {
             var us = _context.Users.Where(u => !users.Any(x => x.Login == u.Login));
 

@@ -23,7 +23,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public bool TryAdd(Headphones headphones)
         {
-            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.HeadphonesModel>(headphones);
             if(_unitOfWork.HeadphonesRepository.TryAdd(head))
             {
                 _unitOfWork.Save();
@@ -37,7 +37,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Delete(Headphones headphones)
         {
-            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.HeadphonesModel>(headphones);
             _unitOfWork.HeadphonesRepository.Delete(head);
             _unitOfWork.Save();
         }
@@ -45,19 +45,19 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public IEnumerable<Company> GetAllCompanies()
         {
             return _unitOfWork.CompaniesRepository.GetAllCompanies()
-                .Select(c => _mapper.Map<DataAccess.Models.LogicModels.Company, Company>(c));
+                .Select(c => _mapper.Map<DataAccess.Models.LogicModels.CompanyModel, Company>(c));
         }
 
         public IEnumerable<Design> GetAllDesigns()
         {
             return _unitOfWork.DesignRepository.GetAllDesigns()
-                .Select(d => _mapper.Map<DataAccess.Models.LogicModels.Design, Design>(d));
+                .Select(d => _mapper.Map<DataAccess.Models.LogicModels.DesignModel, Design>(d));
         }
 
         public IEnumerable<Headphones> GetAllHeadphones()
         {
             return _unitOfWork.HeadphonesRepository.GetAllHeadphones()
-                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.Headphones, Headphones>(h));
+                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.HeadphonesModel, Headphones>(h));
         }
 
         public void Save(List<Headphones> headphones)
@@ -67,7 +67,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Update(Headphones headphones)
         {
-            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.Headphones>(headphones);
+            var head = _mapper.Map<Headphones, DataAccess.Models.LogicModels.HeadphonesModel>(headphones);
             _unitOfWork.HeadphonesRepository.Update(head);
             _unitOfWork.Save();
         }

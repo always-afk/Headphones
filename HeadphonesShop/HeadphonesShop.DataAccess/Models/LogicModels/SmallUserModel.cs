@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HeadphonesShop.DataAccess.Models.LogicModels
 {
-    public class SmallUser
+    public class SmallUserModel
     {
         public string Login { get; set; }
 
-        public Role Role { get; set; }
+        public RoleModel Role { get; set; }
     }
 }

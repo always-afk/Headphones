@@ -13,13 +13,13 @@ namespace HeadphonesShop.BusinessLogic.Mapping
         public MapProfile()
         {
             //BLL to DAL
-            CreateMap<Company, Models.LogicModels.Company>()
+            CreateMap<CompanyModel, Models.LogicModels.Company>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(c => c.Name));
 
-            CreateMap<Design, Models.LogicModels.Design>()
+            CreateMap<DesignModel, Models.LogicModels.Design>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(d => d.Name));
 
-            CreateMap<Headphones, Models.LogicModels.Headphones>()
+            CreateMap<HeadphonesModel, Models.LogicModels.Headphones>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
                 .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
                 .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
@@ -27,27 +27,27 @@ namespace HeadphonesShop.BusinessLogic.Mapping
                 .ForMember(x => x.Company, opt => opt.MapFrom(h => h.Company))
                 .ForMember(x => x.Design, opt => opt.MapFrom(h => h.Design));
 
-            CreateMap<Role, Models.LogicModels.Role>()
+            CreateMap<RoleModel, Models.LogicModels.Role>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(r => r.Name));
 
-            CreateMap<SmallUser, Models.LogicModels.SmallUser>()
+            CreateMap<SmallUserModel, Models.LogicModels.SmallUser>()
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Login))
                 .ForMember(x => x.Role, opt => opt.MapFrom(u => u.Role));
 
-            CreateMap<User, Models.LogicModels.User>()
+            CreateMap<UserModel, Models.LogicModels.User>()
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Login))
                 .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password))
                 .ForMember(x => x.Role, opt => opt.MapFrom(u => u.Role))
                 .ForMember(x => x.FavHeadphones, opt => opt.MapFrom(u => u.FavHeadphones));
 
             //DAL to BLL
-            CreateMap<Models.LogicModels.Company, Company>()
+            CreateMap<Models.LogicModels.Company, CompanyModel>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(c => c.Name));
 
-            CreateMap<Models.LogicModels.Design, Design>()
+            CreateMap<Models.LogicModels.Design, DesignModel>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(d => d.Name));
 
-            CreateMap<Models.LogicModels.Headphones, Headphones>()
+            CreateMap<Models.LogicModels.Headphones, HeadphonesModel>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(h => h.Name))
                 .ForMember(x => x.MinFrequency, opt => opt.MapFrom(h => h.MinFrequency))
                 .ForMember(x => x.MaxFrequency, opt => opt.MapFrom(h => h.MaxFrequency))
@@ -55,14 +55,14 @@ namespace HeadphonesShop.BusinessLogic.Mapping
                 .ForMember(x => x.Company, opt => opt.MapFrom(h => h.Company))
                 .ForMember(x => x.Design, opt => opt.MapFrom(h => h.Design));
 
-            CreateMap<Models.LogicModels.Role, Role>()
+            CreateMap<Models.LogicModels.Role, RoleModel>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(r => r.Name));
 
-            CreateMap<Models.LogicModels.SmallUser, SmallUser>()
+            CreateMap<Models.LogicModels.SmallUser, SmallUserModel>()
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Login))
                 .ForMember(x => x.Role, opt => opt.MapFrom(u => u.Role));
 
-            CreateMap<Models.LogicModels.User, User>()
+            CreateMap<Models.LogicModels.User, UserModel>()
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Login))
                 .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password))
                 .ForMember(x => x.Role, opt => opt.MapFrom(u => u.Role))
