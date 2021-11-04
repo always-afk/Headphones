@@ -83,5 +83,26 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             _unitOfWork.HeadphonesRepository.DeleteByName(name);
             _unitOfWork.Save();
         }
+
+        public List<Headphones> GetFavoriteHeadphones(string userEmail)
+        {
+            var headphones = _unitOfWork.HeadphonesRepository.GetFavoriteHeadphones(userEmail);
+            var res = headphones.Select(h => _mapper.Map<Headphones>(h)).ToList();
+            return res;
+        }
+
+        public void UpdateHeadphonesStatus(string userEmail, string headphonesName, bool isFavorite)
+        {
+            if (isFavorite)
+            {
+                _unitOfWork.HeadphonesRepository.RemoveFromFavorite(userEmail, headphonesName);
+            }
+            else
+            {
+                _unitOfWork.HeadphonesRepository.AddToFavorite(userEmail, headphonesName);
+            }
+
+            _unitOfWork.Save();
+        } 
     }
 }

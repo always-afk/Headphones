@@ -1,3 +1,51 @@
-﻿@model HeadphonesShop.PresentationWebMVC.Models.DTO.CommonUserHeadphonesInfoDTO;
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModel.CommonUserHeadphonesInfoViewModel;
 
-<a>Info</a>
+<div class="container">
+    <form class="form-group" method="post" asp-controller="CommonUser" asp-action="UpdateHeadphones">
+        <div class="row">
+            <div class="col-7">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control w-50" name="headphonesInfoViewModel.Headphones.Name" value="@Model.Headphones.Name" readonly />
+                </div>
+                <div class="form-group">
+                    <label>MinFrequency</label>
+                    <input class="form-control w-50" value="@Model.Headphones.MinFrequency" readonly />
+                </div>
+                <div class="form-group">
+                    <label>MaxFrequency</label>
+                    <input class="form-control w-50" value="@Model.Headphones.MaxFrequency" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Company</label>
+                    <input class="form-control w-50" value="@Model.Headphones.Company.Name" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Design</label>
+                    <input class="form-control w-50" value="@Model.Headphones.Design.Name" readonly />
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <label>Picture</label>
+                    <div>
+                        <img class="figure-img" src="/@Model.Headphones.Picture" />
+                        <input name="headphonesViewModel.Headphones.Picture" value="@Model.Headphones.Picture" hidden />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @if (Model.IsFavorite)
+        {
+            <a class="btn border" href="@Url.Action("UpdateHeadphones", "CommonUser", new { name = Model.Headphones.Name, isFavorite = Model.IsFavorite})">Remove from favorite</a>
+        }
+        else
+        {
+            <a class="btn border" href="@Url.Action("UpdateHeadphones", "CommonUser", new { name = Model.Headphones.Name, isFavorite = Model.IsFavorite})">Add to favorite</a>
+        }
+
+
+    </form>
+</div>

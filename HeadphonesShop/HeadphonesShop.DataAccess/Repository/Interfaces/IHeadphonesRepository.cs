@@ -19,5 +19,9 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         public HeadphonesModel GetHeadphonesByName(string name);
         public void DeleteByName(string name);
 
+        public List<HeadphonesModel> GetFavoriteHeadphones(string userEmail);
+        public void AddToFavorite(string userEmail, string headphonesName);
+        public void RemoveFromFavorite(string userEmail, string headphonesName);
+
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HeadphonesShop.DataAccess.Models.DataModels;
 
 namespace HeadphonesShop.DataAccess.Repository.Implementation
 {
@@ -98,12 +99,45 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void DeleteByName(string name)
         {
-            var headToDel = _context.Headphones.Where(h => h.Name == name).FirstOrDefault();
+            var headToDel = _context.Headphones.FirstOrDefault(h => h.Name == name);
 
             if(headToDel is not null)
             {
                 _context.Headphones.Remove(headToDel);
             }
+        }
+
+        public List<HeadphonesModel> GetFavoriteHeadphones(string userEmail)
+        {
+            var headphones = _context.UserHeadphones
+                .Where(u => u.User.Login == userEmail)
+                .Select(u => new HeadphonesModel()
+                {
+                    Name = u.Headphones.Name
+                }).ToList();
+
+            return headphones;
+        }
+
+        public void AddToFavorite(string userEmail, string headphonesName)
+        {
+            var userId = _context.Users.First(u => u.Login == userEmail).Id;
+            var headphonesId = _context.Headphones.First(h => h.Name == headphonesName).Id;
+
+            _context.UserHeadphones.Add(new UserHeadphone()
+            {
+                UserId = userId,
+                HeadphonesId = headphonesId
+            });
+        }
+
+        public void RemoveFromFavorite(string userEmail, string headphonesName)
+        {
+            var userId = _context.Users.First(u => u.Login == userEmail).Id;
+            var headphonesId = _context.Headphones.First(h => h.Name == headphonesName).Id;
+            var noteToDel = _context.UserHeadphones
+                    .First(x => x.UserId == userId && x.HeadphonesId == headphonesId);
+            _context.UserHeadphones.Remove(noteToDel);
         }
     }
 }
