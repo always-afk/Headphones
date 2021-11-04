@@ -9,12 +9,12 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface ICompaniesRepository
     {
-        public bool TryAdd(Company company);
+        public bool TryAdd(CompanyModel company);
 
-        public void Delete(Company company);
+        public void Delete(CompanyModel company);
 
-        public IEnumerable<Company> GetAllCompanies();
+        public IEnumerable<CompanyModel> GetAllCompanies();
 
-        public void Update(IEnumerable<Company> companies);
+        public void Update(IEnumerable<CompanyModel> companies);
     }
 }

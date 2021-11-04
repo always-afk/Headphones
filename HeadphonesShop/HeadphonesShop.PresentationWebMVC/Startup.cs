@@ -36,16 +36,19 @@ namespace HeadphonesShop.PresentationWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            var connection = Configuration.GetConnectionString("DefaultConnection");
+            var googleAuthIIS = Configuration.GetSection("GoogleAuthentication").GetSection("IISExpress");
+            var googleId = googleAuthIIS.GetSection("ClientId").Value;
+            var googleSecret = googleAuthIIS.GetSection("ClientSecret").Value;
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "164653057181-ftkgoarmpjsmrn16b8gq4aj09l7g0qmk.apps.googleusercontent.com";
-                    options.ClientSecret = "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";
+                    options.ClientId = googleId;
+                    options.ClientSecret = googleSecret;
                 });
             services.AddDbContext<HeadphonesDBContext>(options => options.UseSqlServer(connection));
-            //services.AddDbContext<HeadphonesDBContext>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<ICompaniesRepository, CompaniesRepository>();
             services.AddScoped<IDesignRepository, DesignRepository>();
@@ -61,7 +64,13 @@ namespace HeadphonesShop.PresentationWebMVC
 
             services.AddScoped<INavigationService, NavigationService>();
 
-            services.AddFluentValidation();
+            services.AddMvcCore()
+                .AddFluentValidation(fv =>
+                {
+                    fv.DisableDataAnnotationsValidation = true;
+                    fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                }
+                );
 
             services.AddAutoMapper(typeof(Mapping.MapProfile), typeof(BusinessLogic.Mapping.MapProfile));
 

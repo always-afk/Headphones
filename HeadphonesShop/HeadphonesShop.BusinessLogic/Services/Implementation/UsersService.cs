@@ -23,9 +23,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public User FillUser(User user)
         {
-            var us = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var us = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
             user.FavHeadphones = _unitOfWork.UsersRepository.FillUser(us).FavHeadphones
-                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.Headphones, Headphones>(h)).ToList();
+                .Select(h => _mapper.Map<DataAccess.Models.LogicModels.HeadphonesModel, Headphones>(h)).ToList();
 
             return user;
         }
@@ -33,13 +33,13 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public IEnumerable<SmallUser> GetOtherUsers(User user)
         {
             var res = _unitOfWork.UsersRepository.GetSmallOtherUsers(user.Login)
-                .Select(u => _mapper.Map<DataAccess.Models.LogicModels.SmallUser, SmallUser>(u));
+                .Select(u => _mapper.Map<DataAccess.Models.LogicModels.SmallUserModel, SmallUser>(u));
             return res;
         }
 
         public void Update(IEnumerable<SmallUser> users)
         {
-            var us = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUser>(u));
+            var us = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUserModel>(u));
 
             _unitOfWork.UsersRepository.Update(us);
             _unitOfWork.Save();
@@ -47,7 +47,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Update(User user)
         {
-            var us = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var us = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
             _unitOfWork.Save();
         }
     }

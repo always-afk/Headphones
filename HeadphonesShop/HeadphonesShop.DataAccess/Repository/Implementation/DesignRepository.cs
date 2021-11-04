@@ -17,7 +17,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
         }
 
-        public bool TryAdd(Design design)
+        public bool TryAdd(DesignModel design)
         {            
             if(!_context.Designs.Any(d => d.Name == design.Name))
             {
@@ -31,16 +31,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return false;
         }
 
-        public IEnumerable<Design> GetAllDesigns()
+        public IEnumerable<DesignModel> GetAllDesigns()
         {
-            var designs = _context.Designs.Select(d => new Design()
+            var designs = _context.Designs.Select(d => new DesignModel()
             {
                 Name = d.Name
             }).ToList();
             return designs;
         }
 
-        public void Update(IEnumerable<Design> designs)
+        public void Update(IEnumerable<DesignModel> designs)
         {
             var des = _context.Designs.Where(d => !designs.Any(x => x.Name == d.Name));
             _context.Designs.RemoveRange(des);

@@ -9,10 +9,10 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IDesignRepository
     {
-        public bool TryAdd(Design design);
+        public bool TryAdd(DesignModel design);
 
-        public IEnumerable<Design> GetAllDesigns();
+        public IEnumerable<DesignModel> GetAllDesigns();
 
-        public void Update(IEnumerable<Design> designs);
+        public void Update(IEnumerable<DesignModel> designs);
     }
 }

@@ -9,18 +9,18 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IUsersRepository
     {
-        public User CheckUser(User user);
+        public UserModel CheckUser(UserModel user);
 
-        public User CheckGoogleUser(User user);
+        public UserModel CheckGoogleUser(UserModel user);
 
-        public User FillUser(User user);
+        public UserModel FillUser(UserModel user);
 
-        public IEnumerable<SmallUser> GetSmallOtherUsers(string login);
+        public IEnumerable<SmallUserModel> GetSmallOtherUsers(string login);
 
-        public bool TryAdd(User user);
+        public bool TryAdd(UserModel user);
 
-        public void Update(User user);
+        public void Update(UserModel user);
 
-        public void Update(IEnumerable<SmallUser> users);
+        public void Update(IEnumerable<SmallUserModel> users);
     }
 }

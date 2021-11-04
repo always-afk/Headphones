@@ -1,0 +1,74 @@
+﻿@using HeadphonesShop.PresentationWebMVC.Models.ViewModel
+@model InfoHeadphonesViewModel
+
+<div class="container">
+    <form class="form-group" method="post" asp-controller="Admin" asp-action="UpdateHeadphones" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-7">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control w-50" name="headphonesViewModel.Headphones.Name" value="@Model.Headphones.Name" readonly />
+                </div>
+                <div class="form-group">
+                    <label>MinFrequency</label>
+                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesViewModel.Headphones.MinFrequency" value="@Model.Headphones.MinFrequency" />
+                </div>
+                <div class="form-group">
+                    <label>MaxFrequency</label>
+                    <input class="form-control w-50" type="number" min="0" max="999999" step="1" name="headphonesViewModel.Headphones.MaxFrequency" value="@Model.Headphones.MaxFrequency" />
+                </div>
+                <div class="form-group">
+                    <label>Company</label>
+                    <select class="custom-select w-50" name="headphonesViewModel.Headphones.Company.Name">
+                        @foreach (var i in Model.Companies)
+                        {
+                            if (i.Name == Model.Headphones.Company.Name)
+                            {
+                                <option selected value="@i.Name">@i.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@i.Name">@i.Name</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Design</label>
+                    <select class="custom-select w-50" name="headphonesViewModel.Headphones.Design.Name">
+                        @foreach (var i in Model.Designs)
+                        {
+                            if (i.Name == Model.Headphones.Design.Name)
+                            {
+                                <option selected value="@i.Name">@i.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@i.Name">@i.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <label>Picture</label>
+                    <div>
+                        <img class="figure-img" src="/@Model.Headphones.Picture" />
+                        <input name="headphonesViewModel.Headphones.Picture" value="@Model.Headphones.Picture" hidden />
+                    </div>
+                    @*<img src="~/images/Sony WF-1000XM4 (черный)/cfd42d366e0004198126f4eba8ee0638.jpeg" />*@
+                    <input type="file" name="headphonesViewModel.File" class="custom-file" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <input type="submit" class="btn border" value="Save" />
+        <a class="btn border" href="@Url.Action("DeleteHeadphones", "Admin", new { name = Model.Headphones.Name })">Delete</a>
+        @*<input type="button" asp-controller="Admin" asp-action="DeleteHeadphones" value="Delete" />*@
+
+    </form>
+</div>

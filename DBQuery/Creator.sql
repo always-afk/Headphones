@@ -60,8 +60,8 @@ create table Headphones
 create table UserHeadphones
 (
 	Id int primary key identity(1,1), 
-	HeadphonesId int references Headphones(Id),
-	UserId int references Users(Id)
+	HeadphonesId int references Headphones(Id) on delete cascade,
+	UserId int references Users(Id) on delete cascade
 )
 
 go
@@ -151,3 +151,4 @@ insert UserHeadphones values
 
 select * 
 from GetOtherUsersFunc('admin@a')
+
