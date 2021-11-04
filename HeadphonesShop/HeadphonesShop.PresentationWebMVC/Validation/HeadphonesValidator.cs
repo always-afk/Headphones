@@ -11,7 +11,7 @@ namespace HeadphonesShop.PresentationWebMVC.Validation
     {
         public HeadphonesValidator()
         {
-            RuleFor(h => h.Name).Length(3, 127);
+            RuleFor(h => h.Name).NotNull().Length(3, 127);
             RuleFor(h => h.MinFrequency).LessThan(h => h.MaxFrequency).GreaterThan(0);
             RuleFor(h => h.MaxFrequency).GreaterThan(0);
             RuleFor(h => h.Picture).Null().Length(5, 255);
