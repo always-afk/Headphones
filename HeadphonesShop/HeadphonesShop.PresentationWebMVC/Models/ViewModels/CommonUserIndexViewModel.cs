@@ -1,10 +1,7 @@
-﻿using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 
-namespace HeadphonesShop.PresentationWebMVC.Models.ViewModel
+namespace HeadphonesShop.PresentationWebMVC.Models.ViewModels
 {
     public class CommonUserIndexViewModel
     {

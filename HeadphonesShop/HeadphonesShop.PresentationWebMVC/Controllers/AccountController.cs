@@ -10,8 +10,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 using HeadphonesShop.PresentationWebMVC.Services.Intedaces;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {

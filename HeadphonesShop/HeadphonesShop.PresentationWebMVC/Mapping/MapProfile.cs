@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using HeadphonesShop.BusinessLogic.Models.LogicModels;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 
 namespace HeadphonesShop.PresentationWebMVC.Mapping
 {

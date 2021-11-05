@@ -1,0 +1,43 @@
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModels.AllUsersViewModel
+
+<div class="container">
+    <form method="post" asp-controller="Admin" asp-action="UpdateAllUsers">
+        <input type="submit" value="Save" class="btn border"/>
+        <table class="table table-bordered table-striped">
+            <thead class="table-info">
+            <tr>
+                <td>
+                    <a>Login</a>
+                </td>
+                <td>
+                    <a>Role</a>
+                </td>
+                <td>
+                    <a>Delete</a>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>
+                        <a>@user.Login</a>
+                    </td>
+                    <td>
+                        <select>
+                            @foreach (var role in Model.Roles)
+                            {
+                                <option selected="@user.Role.Name">@role.Name</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <a class="btn border">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </form>
+</div>

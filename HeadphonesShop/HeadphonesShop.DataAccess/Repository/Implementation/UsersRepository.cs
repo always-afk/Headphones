@@ -88,7 +88,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                     {
                         Login = user.Login,
                         Password = user.Password,
-                        RoleId = _context.Roles.Where(r => r.Name == user.Role.Name).SingleOrDefault().Id
+                        RoleId = _context.Roles.First(r => r.Name == user.Role.Name).Id
                     };
                     _context.Users.Add(dbuser);
                     return true;
@@ -103,21 +103,21 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(UserModel user)
         {
-            var heads = _context.UserHeadphones.Where(h => h.User.Login == user.Login && !user.FavHeadphones.Any(f => f.Name == h.Headphones.Name));
+            var heads = _context.UserHeadphones.Where(h => h.User.Login == user.Login && user.FavHeadphones.All(f => f.Name != h.Headphones.Name));
             _context.RemoveRange(heads);
         }
 
         public void Update(IEnumerable<SmallUserModel> users)
         {
-            var us = _context.Users.Where(u => !users.Any(x => x.Login == u.Login));
+            var us = _context.Users.Where(u => users.All(x => x.Login != u.Login));
 
             _context.RemoveRange(us);
 
             foreach(var u in users)
             {
-                var duser = _context.Users.Where(x => x.Login == u.Login && x.Role.Name != u.Role.Name).Single();
-                duser.Role = null;
-                duser.RoleId = _context.Roles.Where(x => x.Name == u.Role.Name).Single().Id;
+                var dbuser = _context.Users.First(x => x.Login == u.Login && x.Role.Name != u.Role.Name);
+                dbuser.Role = null;
+                dbuser.RoleId = _context.Roles.First(x => x.Name == u.Role.Name).Id;
             }
             
         }        

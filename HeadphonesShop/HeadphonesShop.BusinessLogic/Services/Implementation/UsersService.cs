@@ -50,5 +50,18 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
             var us = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
             _unitOfWork.Save();
         }
+
+        public IEnumerable<SmallUser> GetOtherUsers(string login)
+        {
+            var res = _unitOfWork.UsersRepository.GetSmallOtherUsers(login)
+                .Select(u => _mapper.Map<DataAccess.Models.LogicModels.SmallUserModel, SmallUser>(u));
+            return res;
+        }
+
+        public IEnumerable<Role> GetAllRoles()
+        {
+            var res = _unitOfWork.RolesRepository.GetRoles().Select(r => _mapper.Map<Role>(r));
+            return res;
+        }
     }
 }

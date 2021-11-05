@@ -1,12 +1,8 @@
-﻿using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
+﻿using System.Collections.Generic;
+using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HeadphonesShop.PresentationWebMVC.Models.ViewModel
+namespace HeadphonesShop.PresentationWebMVC.Models.ViewModels
 {
     public class AddHeadphonesViewModel
     {

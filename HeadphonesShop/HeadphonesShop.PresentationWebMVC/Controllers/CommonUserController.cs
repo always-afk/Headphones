@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
