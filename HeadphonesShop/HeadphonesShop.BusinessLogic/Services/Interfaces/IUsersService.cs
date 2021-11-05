@@ -19,6 +19,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
 
         public IEnumerable<SmallUser> GetOtherUsers(string login);
 
+        public IEnumerable<Role> GetAllRoles();
+        public void DeleteUser(string userEmail);
+
 
     }
 }

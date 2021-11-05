@@ -53,6 +53,7 @@ namespace HeadphonesShop.PresentationWebMVC
             services.AddScoped<ICompaniesRepository, CompaniesRepository>();
             services.AddScoped<IDesignRepository, DesignRepository>();
             services.AddScoped<IHeadphonesRepository, HeadphonesRepository>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IAccountService, AccountService>();

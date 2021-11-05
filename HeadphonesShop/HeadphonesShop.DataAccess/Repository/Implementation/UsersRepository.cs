@@ -109,17 +109,29 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(IEnumerable<SmallUserModel> users)
         {
-            var us = _context.Users.Where(u => users.All(x => x.Login != u.Login));
-
-            _context.RemoveRange(us);
-
-            foreach(var u in users)
+            foreach (var u in users)
             {
-                var dbuser = _context.Users.First(x => x.Login == u.Login && x.Role.Name != u.Role.Name);
-                dbuser.Role = null;
-                dbuser.RoleId = _context.Roles.First(x => x.Name == u.Role.Name).Id;
+                var userToUpdate = _context.Users.FirstOrDefault(x => x.Login == u.Login && x.Role.Name != u.Role.Name);
+                if (userToUpdate is not null)
+                {
+                    userToUpdate.RoleId = _context.Roles.First(x => x.Name == u.Role.Name).Id;
+                }
             }
-            
-        }        
+
+            //var usersToUpdate =
+            //    _context.Users.Where(u => users.Any(x => x.Login == u.Login && x.Role.Name != u.Role.Name)).ToList();
+            //var allRoles = _context.Roles.Where(r => users.Any(u => u.Role.Name == r.Name)).ToList();
+
+            //foreach (var user in usersToUpdate)
+            //{
+            //    user.RoleId = allRoles.First(r => r.Name == users.First(u => u.Login == user.Login).Role.Name).Id;
+            //}
+        }
+
+        public void DeleteUser(string userEmail)
+        {
+            var userToDel = _context.Users.First(u => u.Login == userEmail);
+            _context.Users.Remove(userToDel);
+        }
     }
 }

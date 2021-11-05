@@ -18,22 +18,31 @@
             </tr>
             </thead>
             <tbody>
-            @foreach (var user in Model.Users)
+            @for(var i = 0; i < Model.Users.Count; i++)
             {
                 <tr>
                     <td>
-                        <a>@user.Login</a>
+                        <label >@Model.Users[i].Login</label>
+                        <input name="allUsersViewModel.Users[@i].Login" value="@Model.Users[i].Login" hidden/>
                     </td>
                     <td>
-                        <select>
+                        <select name ="allUsersViewModel.Users[@i].Role.Name" class="custom-select w-50">
                             @foreach (var role in Model.Roles)
                             {
-                                <option selected="@user.Role.Name">@role.Name</option>
+                                if (Model.Users[i].Role.Name == role.Name)
+                                {
+                                    <option selected value="@role.Name">@role.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@role.Name">@role.Name</option>
+
+                                }
                             }
                         </select>
                     </td>
                     <td>
-                        <a class="btn border">Delete</a>
+                        <a href="@Url.Action("DeleteUser", "Admin", new { name = Model.Users[i].Login })" class="btn border">Delete</a>
                     </td>
                 </tr>
             }

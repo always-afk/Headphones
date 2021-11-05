@@ -22,5 +22,7 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         public void Update(UserModel user);
 
         public void Update(IEnumerable<SmallUserModel> users);
+        public void DeleteUser(string userEmail);
+
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using FluentValidation;
+using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
@@ -20,13 +21,13 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private const string Image = "image";
         private const string Images = "images";
         private const string IndexStr = "Index";
+        private const string AllUsersStr = "AllUsers";
 
         private readonly IWebHostEnvironment _appEnvironment;
         private readonly IHeadphonesService _headphonesService;
         private readonly IUsersService _usersService;
         private readonly IFileWorker _fileWorker;
         private readonly IMapper _mapper;
-        //private readonly IAccountService _accountService;
 
         public AdminController(IHeadphonesService headphonesService, IUsersService usersService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
         {
@@ -139,15 +140,24 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         {
             var users = new AllUsersViewModel()
             {
-                Users = _usersService.GetOtherUsers(User.Claims.ElementAt(0).Value).ToList(),
-                Roles = _usersService.
+                Users = _usersService.GetOtherUsers(User.Claims.ElementAt(0).Value).Select(u => _mapper.Map<SmallUser>(u)).ToList(),
+                Roles = _usersService.GetAllRoles().Select(r => _mapper.Map<Role>(r))
             };
             return View(users);
         }
 
         public IActionResult UpdateAllUsers(AllUsersViewModel allUsersViewModel)
         {
-            return Ok();
+            var usersToUpdate = allUsersViewModel.Users
+                .Select(u => _mapper.Map<BusinessLogic.Models.LogicModels.SmallUser>(u));
+            _usersService.Update(usersToUpdate);
+            return RedirectToAction(IndexStr);
+        }
+
+        public IActionResult DeleteUser([FromQuery(Name = "name")] string userEmail)
+        {
+            _usersService.DeleteUser(userEmail);
+            return RedirectToAction(AllUsersStr);
         }
     }
 }
