@@ -1,4 +1,4 @@
-﻿@model HeadphonesShop.PresentationWebMVC.Models.DTO.AdminIndexDTO
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModel.AdminIndexViewModel
 <p>
     Admin
 </p>
@@ -42,7 +42,7 @@
                 {
                     <tr>
                         <td>
-                            <a>@h.Name</a>
+                            <a href="@Url.Action("InfoHeadphones", "Admin", new { name = h.Name })">@h.Name</a>
                         </td>
                         <td>
                             <a>@h.Company.Name</a>

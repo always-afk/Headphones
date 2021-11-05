@@ -9,12 +9,15 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IHeadphonesRepository
     {
-        public bool TryAdd(Headphones headphones);
+        public bool TryAdd(HeadphonesModel headphones);
 
-        public void Delete(Headphones headphones);
+        public void Delete(HeadphonesModel headphones);
 
-        public IEnumerable<Headphones> GetAllHeadphones();
+        public IEnumerable<HeadphonesModel> GetAllHeadphones();
 
-        public void Update(Headphones headphones);
+        public void Update(HeadphonesModel headphones);
+        public HeadphonesModel GetHeadphonesByName(string name);
+        public void DeleteByName(string name);
+
     }
 }

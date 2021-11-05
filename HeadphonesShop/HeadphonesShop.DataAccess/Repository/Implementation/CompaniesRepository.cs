@@ -18,7 +18,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
         }
 
-        public bool TryAdd(Company company)
+        public bool TryAdd(CompanyModel company)
         {
             if(!_context.Companies.Any(c => c.Name == company.Name))
             {
@@ -32,22 +32,22 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return false;
         }
 
-        public void Delete(Company company)
+        public void Delete(CompanyModel company)
         {
             var comp = _context.Companies.Where(c => c.Name == company.Name).FirstOrDefault();
             _context.Companies.Remove(comp);            
         }
 
-        public IEnumerable<Company> GetAllCompanies()
+        public IEnumerable<CompanyModel> GetAllCompanies()
         {
-            var companies = _context.Companies.Select(c => new Company()
+            var companies = _context.Companies.Select(c => new CompanyModel()
             {
                 Name = c.Name
             });
             return companies;
         }
 
-        public void Update(IEnumerable<Company> companies)
+        public void Update(IEnumerable<CompanyModel> companies)
         {
             var comp = _context.Companies.Where(c => !companies.Any(x => x.Name == c.Name));
             _context.RemoveRange(comp);

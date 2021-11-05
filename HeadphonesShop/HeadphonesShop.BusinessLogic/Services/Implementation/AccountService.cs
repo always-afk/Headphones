@@ -23,11 +23,11 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public User SignIn(User user)
         {
-            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
             var res = _unitOfWork.UsersRepository.CheckUser(u);
             if(res is not null)
             {
-                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(res);
                 return us;
             }
             return null;
@@ -35,12 +35,12 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public User SignInGoogle(User user)
         {
-            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
             var res = _unitOfWork.UsersRepository.CheckGoogleUser(u);
 
             if (res is not null)
             {
-                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(res);
                 return us;
             }
 
@@ -49,7 +49,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
                 res = _unitOfWork.UsersRepository.CheckGoogleUser(u);
                 _unitOfWork.Save();
 
-                var us = _mapper.Map<DataAccess.Models.LogicModels.User, User>(res);
+                var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(res);
                 return us;
             }
 
@@ -58,7 +58,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public bool SignUp(User user)
         {
-            var u = _mapper.Map<User, DataAccess.Models.LogicModels.User>(user);
+            var u = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
 
             if (_unitOfWork.UsersRepository.TryAdd(u))
             {

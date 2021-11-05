@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace HeadphonesShop.DataAccess.Models.LogicModels
 {
-    public partial class Company
+    public partial class DesignModel
     {
         public string Name { get; set; }
     }

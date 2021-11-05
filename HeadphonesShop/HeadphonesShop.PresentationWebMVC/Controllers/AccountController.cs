@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using HeadphonesShop.PresentationWebMVC.Services.Intedaces;
-using HeadphonesShop.PresentationWebMVC.Models.DTO;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
@@ -78,7 +78,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignUp(UserRegistrationDTO user)
+        public async Task<IActionResult> SignUp(UserRegistrationViewModel user)
         {
             if(user.Password == user.RePassword)
             {

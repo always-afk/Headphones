@@ -21,7 +21,7 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public bool TryAdd(Company company)
         {
-            var comp = _mapper.Map<Company, DataAccess.Models.LogicModels.Company>(company);
+            var comp = _mapper.Map<Company, DataAccess.Models.LogicModels.CompanyModel>(company);
 
             if (_unitOfWork.CompaniesRepository.TryAdd(comp))
             {
@@ -35,12 +35,12 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
         public IEnumerable<Company> GetAllCompanies()
         {
             return _unitOfWork.CompaniesRepository.GetAllCompanies()
-                .Select(c => _mapper.Map<DataAccess.Models.LogicModels.Company, Company>(c));
+                .Select(c => _mapper.Map<DataAccess.Models.LogicModels.CompanyModel, Company>(c));
         }
 
         public void Save(IEnumerable<Company> companies)
         {
-            var comp = companies.Select(c => _mapper.Map<Company, DataAccess.Models.LogicModels.Company>(c));
+            var comp = companies.Select(c => _mapper.Map<Company, DataAccess.Models.LogicModels.CompanyModel>(c));
             _unitOfWork.CompaniesRepository.Update(comp);
             _unitOfWork.Save();
         }

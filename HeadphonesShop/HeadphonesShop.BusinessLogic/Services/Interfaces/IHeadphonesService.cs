@@ -12,6 +12,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Interfaces
         IEnumerable<Headphones> GetAllHeadphones();
         IEnumerable<Company> GetAllCompanies();
         IEnumerable<Design> GetAllDesigns();
+        public Headphones GetHeadphonesByName(string name);
+        public void DeleteHeadphonesByName(string name);
+
         bool TryAdd(Headphones headphones);
         void Update(Headphones headphones);
         void Save(List<Headphones> headphones);
