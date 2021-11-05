@@ -14,7 +14,7 @@ using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = Constants.Roles.Admin)]
     public class AdminController : Controller
     {
         private const string Image = "image";
@@ -26,7 +26,6 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private readonly IUsersService _usersService;
         private readonly IFileWorker _fileWorker;
         private readonly IMapper _mapper;
-        private AdminIndexViewModel _indexViewModel;
         //private readonly IAccountService _accountService;
 
         public AdminController(IHeadphonesService headphonesService, IUsersService usersService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
@@ -36,15 +35,15 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             _fileWorker = fileWorker;
             _mapper = mapper;
             _appEnvironment = hostEnvironment;
-            _indexViewModel = new AdminIndexViewModel();
         }
 
         [HttpGet]
         public IActionResult Index()
         {
+            var indexViewModel = new AdminIndexViewModel();
             var heads = _headphonesService.GetAllHeadphones();
-            _indexViewModel.Headphones = heads.Select(h => _mapper.Map<Models.LogicModels.Headphones>(h)).ToList();
-            return View(_indexViewModel);
+            indexViewModel.Headphones = heads.Select(h => _mapper.Map<Models.LogicModels.Headphones>(h)).ToList();
+            return View(indexViewModel);
         }
 
         [HttpGet]
