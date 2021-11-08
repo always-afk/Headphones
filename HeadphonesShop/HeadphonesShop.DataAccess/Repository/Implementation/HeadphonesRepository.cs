@@ -30,7 +30,10 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).Select(d => d.Id).Single()
             };
 
-            if (_context.Headphones.Any(h => h.Name == head.Name)) return false;
+            if (_context.Headphones.Any(h => h.Name == head.Name))
+            {
+                return false;
+            }
 
             _context.Headphones.Add(head);
             return true;
@@ -39,8 +42,8 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Delete(HeadphonesModel headphones)
         {
-            var headphonesToDel = _context.Headphones.First(h => h.Name == headphones.Name);
-            _context.Headphones.Remove(headphonesToDel);
+            var headphonesToDelete = _context.Headphones.First(h => h.Name == headphones.Name);
+            _context.Headphones.Remove(headphonesToDelete);
         }
 
         public IEnumerable<HeadphonesModel> GetAllHeadphones()
@@ -97,11 +100,14 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void DeleteByName(string name)
         {
-            var headToDel = _context.Headphones.FirstOrDefault(h => h.Name == name);
+            var headphonesToDelete = _context.Headphones.FirstOrDefault(h => h.Name == name);
 
-            if (headToDel is null) return;
+            if (headphonesToDelete is null)
+            {
+                return;
+            }
 
-            _context.Headphones.Remove(headToDel);
+            _context.Headphones.Remove(headphonesToDelete);
         }
 
         public List<HeadphonesModel> GetFavoriteHeadphones(string userEmail)

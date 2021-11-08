@@ -39,9 +39,9 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Update(IEnumerable<SmallUser> users)
         {
-            var usersToDAL = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUserModel>(u));
+            var smallUserModels = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUserModel>(u));
 
-            _unitOfWork.UsersRepository.Update(usersToDAL);
+            _unitOfWork.UsersRepository.Update(smallUserModels);
             _unitOfWork.Save();
         }
 

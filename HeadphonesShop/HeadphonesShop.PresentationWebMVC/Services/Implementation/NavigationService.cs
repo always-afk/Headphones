@@ -12,18 +12,20 @@ namespace HeadphonesShop.PresentationWebMVC.Services.Implementation
         public IActionResult Navigate(string roleName)
         {
             IActionResult result;
-            if (roleName == Constants.Roles.Admin)
+
+            switch (roleName)
             {
-                result = new RedirectResult("~/Admin/Index");
+                case Constants.Roles.Admin:
+                    result = new RedirectResult("~/Admin/Index");
+                    break;
+                case Constants.Roles.CommonUser:
+                    result = new RedirectResult("~/CommonUser/Index");
+                    break;
+                default:
+                    result = new RedirectResult("~/Home/Index");
+                    break;
             }
-            else if (roleName == Constants.Roles.CommonUser)
-            {
-                result = new RedirectResult("~/CommonUser/Index");
-            }
-            else
-            {
-                result = new RedirectResult("~/Home/Index");
-            }
+
             return result;
         }
     }

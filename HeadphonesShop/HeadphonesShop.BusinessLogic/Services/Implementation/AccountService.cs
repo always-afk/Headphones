@@ -23,33 +23,36 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public User SignIn(User user)
         {
-            var u = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
-            var existUser = _unitOfWork.UsersRepository.CheckUser(u);
+            var userModel = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
+            var existUser = _unitOfWork.UsersRepository.GetUser(userModel);
 
-            if (existUser is null) return null;
+            if (existUser is null)
+            {
+                return null;
+            }
 
-            var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
-            return us;
+            user = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
+            return user;
         }
 
         public User SignInGoogle(User user)
         {
-            var u = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
-            var existUser = _unitOfWork.UsersRepository.CheckGoogleUser(u);
+            var userModel = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
+            var existUser = _unitOfWork.UsersRepository.GetGoogleUser(userModel);
 
             if (existUser is not null)
             {
-                var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
-                return us;
+                user = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
+                return user;
             }
 
-            if (_unitOfWork.UsersRepository.TryAdd(u))
+            if (_unitOfWork.UsersRepository.TryAdd(userModel))
             {
-                existUser = _unitOfWork.UsersRepository.CheckGoogleUser(u);
+                existUser = _unitOfWork.UsersRepository.GetGoogleUser(userModel);
                 _unitOfWork.Save();
 
-                var us = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
-                return us;
+                user = _mapper.Map<DataAccess.Models.LogicModels.UserModel, User>(existUser);
+                return user;
             }
 
             return null;

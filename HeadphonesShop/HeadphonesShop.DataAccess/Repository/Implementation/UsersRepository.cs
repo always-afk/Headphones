@@ -17,7 +17,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             _context = context;
         }
 
-        public UserModel CheckUser(UserModel user)
+        public UserModel GetUser(UserModel user)
         {
             user = _context.Users.Where(u => u.Login == user.Login && u.Password == user.Password).Select(u => new UserModel()
             {
@@ -31,7 +31,7 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
             return user;
         }
 
-        public UserModel CheckGoogleUser(UserModel user)
+        public UserModel GetGoogleUser(UserModel user)
         {
             user = _context.Users.Where(u => u.Login == user.Login && u.Password == "0").Select(u => new UserModel()
             {
