@@ -1,4 +1,46 @@
-﻿
-<p>
-    Common User
-</p>
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModel.CommonUserIndexViewModel;
+<div>
+    <table class="table table-bordered table-striped">
+        <thead class="table-info">
+            <tr>
+                <td class="admin-heaphones-table-column-0">
+                    <a>Name</a>
+                </td>
+                <td class="admin-heaphones-table-column-1">
+                    <a>Company</a>
+                </td>
+                <td class="admin-heaphones-table-column-2">
+                    <a>Design</a>
+                </td>
+                <td class="admin-heaphones-table-column-3">
+                    <a>Min Frequancy</a>
+                </td>
+                <td class="admin-heaphones-table-column-4">
+                    <a>Max Frequency</a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var h in Model.Headphones)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("InfoHeadphones", "CommonUser", new { name = h.Name })" >@h.Name</a>
+                    </td>
+                    <td>
+                        <a>@h.Company.Name</a>
+                    </td>
+                    <td>
+                        <a>@h.Design.Name</a>
+                    </td>
+                    <td>
+                        <a>@h.MinFrequency</a>
+                    </td>
+                    <td>
+                        <a>@h.MaxFrequency</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

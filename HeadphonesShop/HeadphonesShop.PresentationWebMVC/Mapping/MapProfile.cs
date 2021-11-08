@@ -72,6 +72,7 @@ namespace HeadphonesShop.PresentationWebMVC.Mapping
             CreateMap<UserRegistrationViewModel, User>()
                 .ForMember(x => x.Login, opt => opt.MapFrom(u => u.Email))
                 .ForMember(x => x.Password, opt => opt.MapFrom(u => u.Password));
+
         }
     }
 }

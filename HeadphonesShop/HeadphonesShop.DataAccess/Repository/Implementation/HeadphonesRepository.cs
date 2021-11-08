@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HeadphonesShop.DataAccess.Models.DataModels;
 
 namespace HeadphonesShop.DataAccess.Repository.Implementation
 {
@@ -29,18 +30,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
                 DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).Select(d => d.Id).Single()
             };
 
-            if(!_context.Headphones.Any(h => h.Name == head.Name))
-            {
-                _context.Headphones.Add(head);
-                return true;
-            }
+            if (_context.Headphones.Any(h => h.Name == head.Name)) return false;
 
-            return false;
+            _context.Headphones.Add(head);
+            return true;
+
         }
 
         public void Delete(HeadphonesModel headphones)
         {
-            var headphonesToDel = _context.Headphones.Where(h => h.Name == headphones.Name).Single();
+            var headphonesToDel = _context.Headphones.First(h => h.Name == headphones.Name);
             _context.Headphones.Remove(headphonesToDel);
         }
 
@@ -67,12 +66,12 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void Update(HeadphonesModel headphones)
         {
-            var head = _context.Headphones.Where(h => h.Name == headphones.Name).FirstOrDefault();
+            var head = _context.Headphones.First(h => h.Name == headphones.Name);
             head.MinFrequency = headphones.MinFrequency;
             head.MaxFrequency = headphones.MaxFrequency;
             head.Picture = headphones.Picture;
-            head.CompanyId = _context.Companies.Where(c => c.Name == headphones.Company.Name).FirstOrDefault().Id;
-            head.DesignId = _context.Designs.Where(d => d.Name == headphones.Design.Name).FirstOrDefault().Id;
+            head.CompanyId = _context.Companies.First(c => c.Name == headphones.Company.Name).Id;
+            head.DesignId = _context.Designs.First(d => d.Name == headphones.Design.Name).Id;
         }
 
         public HeadphonesModel GetHeadphonesByName(string name)
@@ -98,12 +97,51 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
 
         public void DeleteByName(string name)
         {
-            var headToDel = _context.Headphones.Where(h => h.Name == name).FirstOrDefault();
+            var headToDel = _context.Headphones.FirstOrDefault(h => h.Name == name);
 
-            if(headToDel is not null)
+            if (headToDel is null) return;
+
+            _context.Headphones.Remove(headToDel);
+        }
+
+        public List<HeadphonesModel> GetFavoriteHeadphones(string userEmail)
+        {
+            var headphones = _context.UserHeadphones
+                .Where(u => u.User.Login == userEmail)
+                .Select(u => new HeadphonesModel()
+                {
+                    Name = u.Headphones.Name
+                }).ToList();
+
+            return headphones;
+        }
+
+        public void AddToFavorite(string userEmail, string headphonesName)
+        {
+            var userId = _context.Users.First(u => u.Login == userEmail).Id;
+            var headphonesId = _context.Headphones.First(h => h.Name == headphonesName).Id;
+
+            _context.UserHeadphones.Add(new UserHeadphone()
             {
-                _context.Headphones.Remove(headToDel);
-            }
+                UserId = userId,
+                HeadphonesId = headphonesId
+            });
+        }
+
+        public void RemoveFromFavorite(string userEmail, string headphonesName)
+        {
+            var userId = _context.Users.First(u => u.Login == userEmail).Id;
+            var headphonesId = _context.Headphones.First(h => h.Name == headphonesName).Id;
+            var noteToDel = _context.UserHeadphones
+                    .First(x => x.UserId == userId && x.HeadphonesId == headphonesId);
+            _context.UserHeadphones.Remove(noteToDel);
+        }
+
+        public bool IsFavorite(string userEmail, string headphonesName)
+        {
+            var isFavorite = _context.UserHeadphones
+                    .Any(x => x.User.Login == userEmail && x.Headphones.Name == headphonesName);
+            return isFavorite;
         }
     }
 }

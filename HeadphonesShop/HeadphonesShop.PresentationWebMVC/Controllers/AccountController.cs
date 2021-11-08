@@ -35,7 +35,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         {
             var user = new User()
             {
-                Login = User.FindFirst(ClaimTypes.Email).Value,
+                Login = User.FindFirst(ClaimTypes.Email)?.Value,
                 Password = "0",
                 Role = new Role()
                 {

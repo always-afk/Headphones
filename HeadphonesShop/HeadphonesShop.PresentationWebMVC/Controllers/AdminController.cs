@@ -14,7 +14,7 @@ using FluentValidation;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = Constants.Roles.Admin)]
     public class AdminController : Controller
     {
         private const string Image = "image";
