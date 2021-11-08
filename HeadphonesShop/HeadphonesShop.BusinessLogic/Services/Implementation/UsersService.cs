@@ -39,15 +39,34 @@ namespace HeadphonesShop.BusinessLogic.Services.Implementation
 
         public void Update(IEnumerable<SmallUser> users)
         {
-            var us = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUserModel>(u));
+            var smallUserModels = users.Select(u => _mapper.Map<SmallUser, DataAccess.Models.LogicModels.SmallUserModel>(u));
 
-            _unitOfWork.UsersRepository.Update(us);
+            _unitOfWork.UsersRepository.Update(smallUserModels);
             _unitOfWork.Save();
         }
 
         public void Update(User user)
         {
             var us = _mapper.Map<User, DataAccess.Models.LogicModels.UserModel>(user);
+            _unitOfWork.Save();
+        }
+
+        public IEnumerable<SmallUser> GetOtherUsers(string login)
+        {
+            var users = _unitOfWork.UsersRepository.GetSmallOtherUsers(login)
+                .Select(u => _mapper.Map<DataAccess.Models.LogicModels.SmallUserModel, SmallUser>(u));
+            return users;
+        }
+
+        public IEnumerable<Role> GetAllRoles()
+        {
+            var roles = _unitOfWork.RolesRepository.GetRoles().Select(r => _mapper.Map<Role>(r));
+            return roles;
+        }
+
+        public void DeleteUser(string userEmail)
+        {
+            _unitOfWork.UsersRepository.DeleteUser(userEmail);
             _unitOfWork.Save();
         }
     }

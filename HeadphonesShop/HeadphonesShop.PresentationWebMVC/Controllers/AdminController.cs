@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using FluentValidation;
+using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
 {
@@ -20,16 +21,18 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         private const string Image = "image";
         private const string Images = "images";
         private const string IndexStr = "Index";
+        private const string AllUsersStr = "AllUsers";
 
         private readonly IWebHostEnvironment _appEnvironment;
         private readonly IHeadphonesService _headphonesService;
+        private readonly IUsersService _usersService;
         private readonly IFileWorker _fileWorker;
         private readonly IMapper _mapper;
-        //private readonly IAccountService _accountService;
 
-        public AdminController(IHeadphonesService headphonesService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
+        public AdminController(IHeadphonesService headphonesService, IUsersService usersService, IFileWorker fileWorker, IWebHostEnvironment hostEnvironment, IMapper mapper)
         {
             _headphonesService = headphonesService;
+            _usersService = usersService;
             _fileWorker = fileWorker;
             _mapper = mapper;
             _appEnvironment = hostEnvironment;
@@ -71,16 +74,12 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                     heads.Picture = Path.Combine(Images, headphonesViewModel.Headphones.Name, headphonesViewModel.File.FileName);
                 }
 
-                if (_headphonesService.TryAdd(heads))
+                if (_headphonesService.TryAdd(heads) && headphonesViewModel.File is not null 
+                                                     && headphonesViewModel.File.ContentType.StartsWith(Image))
                 {
-                    if (headphonesViewModel.File is not null && headphonesViewModel.File.ContentType.StartsWith(Image))
-                    {
-                        using (var memoryStream = new MemoryStream())
-                        {
-                            await headphonesViewModel.File.CopyToAsync(memoryStream);
-                            _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesViewModel.File.FileName);
-                        }
-                    }
+                    await using var memoryStream = new MemoryStream();
+                    await headphonesViewModel.File.CopyToAsync(memoryStream);
+                    _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesViewModel.File.FileName);
                 }
             }
 
@@ -116,7 +115,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
                 {
                     var path = Path.Combine(_appEnvironment.WebRootPath, Images);
                     head.Picture = Path.Combine(Images, head.Name, headphonesViewModel.File.FileName);
-                    using (var memoryStream = new MemoryStream())
+                    await using (var memoryStream = new MemoryStream())
                     {
                         await headphonesViewModel.File.CopyToAsync(memoryStream);
                         _fileWorker.SaveToDiscInFolder(memoryStream, path, folder, headphonesViewModel.File.FileName);
@@ -134,6 +133,31 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             _headphonesService.DeleteHeadphonesByName(name);
 
             return RedirectToAction(IndexStr);
+        }
+
+        [HttpGet]
+        public IActionResult AllUsers()
+        {
+            var users = new AllUsersViewModel()
+            {
+                Users = _usersService.GetOtherUsers(User.Claims.ElementAt(0).Value).Select(u => _mapper.Map<SmallUser>(u)).ToList(),
+                Roles = _usersService.GetAllRoles().Select(r => _mapper.Map<Role>(r))
+            };
+            return View(users);
+        }
+
+        public IActionResult UpdateAllUsers(AllUsersViewModel allUsersViewModel)
+        {
+            var usersToUpdate = allUsersViewModel.Users
+                .Select(u => _mapper.Map<BusinessLogic.Models.LogicModels.SmallUser>(u));
+            _usersService.Update(usersToUpdate);
+            return RedirectToAction(IndexStr);
+        }
+
+        public IActionResult DeleteUser([FromQuery(Name = "name")] string userEmail)
+        {
+            _usersService.DeleteUser(userEmail);
+            return RedirectToAction(AllUsersStr);
         }
     }
 }

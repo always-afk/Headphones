@@ -1,0 +1,52 @@
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModels.AllUsersViewModel
+
+<div class="container">
+    <form method="post" asp-controller="Admin" asp-action="UpdateAllUsers">
+        <input type="submit" value="Save" class="btn border"/>
+        <table class="table table-bordered table-striped">
+            <thead class="table-info">
+            <tr>
+                <td>
+                    <a>Login</a>
+                </td>
+                <td>
+                    <a>Role</a>
+                </td>
+                <td>
+                    <a>Delete</a>
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+            @for(var i = 0; i < Model.Users.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <label >@Model.Users[i].Login</label>
+                        <input name="allUsersViewModel.Users[@i].Login" value="@Model.Users[i].Login" hidden/>
+                    </td>
+                    <td>
+                        <select name ="allUsersViewModel.Users[@i].Role.Name" class="custom-select w-50">
+                            @foreach (var role in Model.Roles)
+                            {
+                                if (Model.Users[i].Role.Name == role.Name)
+                                {
+                                    <option selected value="@role.Name">@role.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@role.Name">@role.Name</option>
+
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DeleteUser", "Admin", new { name = Model.Users[i].Login })" class="btn border">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </form>
+</div>

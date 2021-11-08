@@ -1,4 +1,4 @@
-﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModel.AdminIndexViewModel
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModels.AdminIndexViewModel
 <p>
     Admin
 </p>
@@ -10,7 +10,7 @@
                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddHeadphones">Add</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AllUsers">Users</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
                         <a>Design</a>
                     </td>
                     <td class="admin-heaphones-table-column-3">
-                        <a>Min Frequancy</a>
+                        <a>Min Frequency</a>
                     </td>
                     <td class="admin-heaphones-table-column-4">
                         <a>Max Frequency</a>

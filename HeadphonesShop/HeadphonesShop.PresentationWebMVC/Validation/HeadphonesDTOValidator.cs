@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 
 namespace HeadphonesShop.PresentationWebMVC.Validation
 {

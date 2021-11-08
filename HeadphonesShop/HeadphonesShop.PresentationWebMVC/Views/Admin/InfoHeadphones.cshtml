@@ -1,5 +1,4 @@
-﻿@using HeadphonesShop.PresentationWebMVC.Models.ViewModel
-@model InfoHeadphonesViewModel
+﻿@model HeadphonesShop.PresentationWebMVC.Models.ViewModels.InfoHeadphonesViewModel
 
 <div class="container">
     <form class="form-group" method="post" asp-controller="Admin" asp-action="UpdateHeadphones" enctype="multipart/form-data">
@@ -58,7 +57,6 @@
                         <img class="figure-img" src="/@Model.Headphones.Picture" />
                         <input name="headphonesViewModel.Headphones.Picture" value="@Model.Headphones.Picture" hidden />
                     </div>
-                    @*<img src="~/images/Sony WF-1000XM4 (черный)/cfd42d366e0004198126f4eba8ee0638.jpeg" />*@
                     <input type="file" name="headphonesViewModel.File" class="custom-file" />
                 </div>
             </div>
@@ -68,7 +66,5 @@
 
         <input type="submit" class="btn border" value="Save" />
         <a class="btn border" href="@Url.Action("DeleteHeadphones", "Admin", new { name = Model.Headphones.Name })">Delete</a>
-        @*<input type="button" asp-controller="Admin" asp-action="DeleteHeadphones" value="Delete" />*@
-
     </form>
 </div>

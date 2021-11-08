@@ -9,9 +9,9 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
 {
     public interface IUsersRepository
     {
-        public UserModel CheckUser(UserModel user);
+        public UserModel GetUser(UserModel user);
 
-        public UserModel CheckGoogleUser(UserModel user);
+        public UserModel GetGoogleUser(UserModel user);
 
         public UserModel FillUser(UserModel user);
 
@@ -22,5 +22,7 @@ namespace HeadphonesShop.DataAccess.Repository.Interfaces
         public void Update(UserModel user);
 
         public void Update(IEnumerable<SmallUserModel> users);
+        public void DeleteUser(string userEmail);
+
     }
 }

@@ -12,14 +12,16 @@ namespace HeadphonesShop.DataAccess.Repository.Implementation
     {
         private readonly HeadphonesDBContext _context;
         public IUsersRepository UsersRepository { get; }
+        public IRolesRepository RolesRepository { get; }
         public ICompaniesRepository CompaniesRepository { get; }
         public IDesignRepository DesignRepository { get; }
         public IHeadphonesRepository HeadphonesRepository { get; }
 
-        public UnitOfWork(HeadphonesDBContext context, IUsersRepository usersRepository, ICompaniesRepository companiesRepository, IDesignRepository designRepository, IHeadphonesRepository headphonesRepository)
+        public UnitOfWork(HeadphonesDBContext context, IUsersRepository usersRepository, IRolesRepository rolesRepository, ICompaniesRepository companiesRepository, IDesignRepository designRepository, IHeadphonesRepository headphonesRepository)
         {
             _context = context;
             UsersRepository = usersRepository;
+            RolesRepository = rolesRepository;
             CompaniesRepository = companiesRepository;
             DesignRepository = designRepository;
             HeadphonesRepository = headphonesRepository;

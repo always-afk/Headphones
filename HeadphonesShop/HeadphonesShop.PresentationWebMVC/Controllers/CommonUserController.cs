@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
-using HeadphonesShop.PresentationWebMVC.Models.ViewModel;
 using HeadphonesShop.PresentationWebMVC.Models.LogicModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HeadphonesShop.PresentationWebMVC.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 
 namespace HeadphonesShop.PresentationWebMVC.Controllers
@@ -33,6 +33,7 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             {
                 Headphones = _headphonesService.GetAllHeadphones().Select(h => _mapper.Map<BusinessLogic.Models.LogicModels.Headphones, Headphones>(h)).ToList()
             };
+
             return View(indexViewModel);
         }
 
@@ -43,7 +44,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
             headphonesViewModel.Headphones = _mapper.Map<Headphones>(headphones);
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
 
-            if (userEmail is null) return RedirectToAction(IndexStr);
+            if (userEmail is null)
+            {
+                return RedirectToAction(IndexStr);
+            }
 
             headphonesViewModel.IsFavorite = _headphonesService.IsFavorite(userEmail, headphones.Name);
             return View(headphonesViewModel);
@@ -53,7 +57,10 @@ namespace HeadphonesShop.PresentationWebMVC.Controllers
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
 
-            if (userEmail is null) return RedirectToAction(IndexStr);
+            if (userEmail is null)
+            {
+                return RedirectToAction(IndexStr);
+            }
 
             _headphonesService.UpdateHeadphonesStatus(userEmail, headphonesName, isFavorite);
             return RedirectToAction(IndexStr);
