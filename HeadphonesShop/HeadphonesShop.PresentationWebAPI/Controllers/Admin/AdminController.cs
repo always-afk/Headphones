@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Web;
 using AutoMapper;
 using HeadphonesShop.BusinessLogic.Services.Interfaces;
 using HeadphonesShop.PresentationWebAPI.Models.DTO;
 using HeadphonesShop.PresentationWebAPI.Models.LogicModels;
+using HeadphonesShop.PresentationWebAPI.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +18,12 @@ namespace HeadphonesShop.PresentationWebAPI.Controllers.Admin
     public class AdminController : ControllerBase
     {
         private readonly IHeadphonesService _headphonesService;
+        private readonly INavigationService _navigationService;
         private readonly IMapper _mapper;
-        public AdminController(IHeadphonesService headphonesService, IMapper mapper)
+        public AdminController(IHeadphonesService headphonesService, INavigationService navigationService, IMapper mapper)
         {
             _headphonesService = headphonesService;
+            _navigationService = navigationService;
             _mapper = mapper;
         }
 
@@ -34,14 +39,34 @@ namespace HeadphonesShop.PresentationWebAPI.Controllers.Admin
         }
 
         [HttpGet]
-        public IActionResult GetHeadphones([FromQuery(Name = "name")]string name)
+        public IActionResult GetHeadphones([FromHeader(Name = "name")]string name)
         {
+            var headphonesName = HttpUtility.UrlDecode(name);
             var adminInfoHeadphonesDTO = new AdminInfoHeadphonesDTO()
             {
-                Headphones = _mapper.Map<Headphones>(_headphonesService.GetHeadphonesByName(name))
+                Headphones = _mapper.Map<Headphones>(_headphonesService.GetHeadphonesByName(headphonesName)),
+                Companies = _headphonesService.GetAllCompanies().Select(c => _mapper.Map<Company>(c)).ToList(),
+                Designs = _headphonesService.GetAllDesigns().Select(d => _mapper.Map<Design>(d)).ToList()
             };
 
             return Ok(adminInfoHeadphonesDTO);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateHeadphones([FromBody] Headphones headphones)
+        {
+            var headphonesModel = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphones);
+            _headphonesService.Update(headphonesModel);
+            var redirect = _navigationService.NavigateByRole(User.FindFirst(ClaimTypes.Role)?.Value);
+            return Ok(redirect);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteHeadphones([FromBody] string headphonesName)
+        {
+            _headphonesService.DeleteHeadphonesByName(headphonesName);
+            var redirect = _navigationService.NavigateByRole(User.FindFirst(ClaimTypes.Role)?.Value);
+            return Ok(redirect);
         }
 
         [HttpGet]

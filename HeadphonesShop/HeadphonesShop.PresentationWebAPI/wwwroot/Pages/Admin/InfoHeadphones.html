@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html>
    <head>
-
+        <meta content="charset=utf-8">
    </head> 
    <body>
+       <div>
+           <div>
+               <label>Name: </label>
+               <input id="headphonesName" readonly>
+           </div>
+           <div>
+               <label>Company: </label>
+               <select id="companies"></select>
+           </div>
+           <div>
+               <label>Design: </label>
+               <select id="designs"></select>
+           </div>
+           <div>
+               <label>Min Frequency: </label>
+               <input id="minFrequency" type="number" min="0" max="999999" step="1">
+           </div>
+           <div>
+               <label>Max Frequency</label>
+               <input id="maxFrequency" type="number" min="0" max="999999" step="1">
+           </div>
+           <div>
+               <button onclick="updateHeadphones()">Save</button>
+               <button onclick="deleteHeadphones()">Delete</button>
+           </div>
+       </div>
        <script src="../../js/adminIndex.js"></script>
        <script type="text/javascript">
             getHeadphones();
