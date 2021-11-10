@@ -29,6 +29,44 @@ async function getHeadphones() {
     .catch(error => console.error("error " + error));
 }
 
+async function getAddHeadphones(){
+    fetch(uri + "GetAddHeadphones",{
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        _displayAddHeadphones(data);
+    })
+    .catch(error => console.error("error " + error));
+}
+
+async function addHeadphones(){
+    headphones = {
+        name: document.getElementById("headphonesName").value,
+        minFrequency: document.getElementById("minFrequency").value,
+        maxFrequency: document.getElementById("maxFrequency").value,
+        design: {
+            name: document.getElementById("designs").value
+        },
+        company: {
+            name: document.getElementById("companies").value
+        }
+    }
+    console.log(JSON.stringify(headphones))
+    fetch(uri + "AddHeadphones",{
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(headphones)
+    })
+    .then(response => response.json())
+    .then(data => window.location.replace(data))
+    .catch(error => console.error("error"));
+}
+
 async function updateHeadphones(){
     headphones = {
         name: document.getElementById("headphonesName").value,
@@ -135,4 +173,24 @@ function _displayHeadphones(data){
 
     maxFrequency = document.getElementById("maxFrequency");
     maxFrequency.value = data.headphones.maxFrequency;
+}
+
+function _displayAddHeadphones(data){
+    companies = document.getElementById("companies")
+    companies.innerHTML = '';
+    data.companies.forEach(company =>{
+        comp = document.createElement("option");
+        comp.value = company.name;
+        comp.innerHTML = company.name;
+        companies.appendChild(comp);
+    })
+
+    designs = document.getElementById("designs")
+    designs.innerHTML = '';
+    data.designs.forEach(design =>{
+        des = document.createElement("option");
+        des.value = design.name;
+        des.innerHTML = design.name;
+        designs.appendChild(des);
+    })
 }

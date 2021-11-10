@@ -52,6 +52,30 @@ namespace HeadphonesShop.PresentationWebAPI.Controllers.Admin
             return Ok(adminInfoHeadphonesDTO);
         }
 
+        [HttpGet]
+        public IActionResult GetAddHeadphones()
+        {
+            var addHeadphonesDTO = new AdminAddHeadphonesDTO()
+            {
+                Companies = _headphonesService.GetAllCompanies().Select(c => _mapper.Map<Company>(c)).ToList(),
+                Designs = _headphonesService.GetAllDesigns().Select(d => _mapper.Map<Design>(d)).ToList()
+            };
+
+            return Ok(addHeadphonesDTO);
+        }
+
+        [HttpPost]
+        public IActionResult AddHeadphones([FromBody] Headphones headphones)
+        {
+            var headphonesModel = _mapper.Map<BusinessLogic.Models.LogicModels.Headphones>(headphones);
+            if (!_headphonesService.TryAdd(headphonesModel))
+            {
+                return BadRequest();
+            }
+            var redirect = _navigationService.NavigateByRole(User.FindFirst(ClaimTypes.Role)?.Value);
+            return Ok(redirect);
+        }
+
         [HttpPut]
         public IActionResult UpdateHeadphones([FromBody] Headphones headphones)
         {
