@@ -16,12 +16,11 @@ async function getAllHeadphones() {
 }
 
 async function getHeadphones() {
-    fetch(uri + "GetHeadphones",{
+    fetch(uri + "GetHeadphones?name="+encodeURIComponent((new URLSearchParams(location.search)).get('name')),{
         method: "GET",
         headers: {
             "Accept": "application/json",
-            "Content-Type": "application/json",
-            "name": escape((new URLSearchParams(location.search)).get('name'))
+            "Content-Type": "application/json"
         }
     })
     .then(response => response.json())

@@ -39,7 +39,7 @@ namespace HeadphonesShop.PresentationWebAPI.Controllers.Admin
         }
 
         [HttpGet]
-        public IActionResult GetHeadphones([FromHeader(Name = "name")]string name)
+        public IActionResult GetHeadphones([FromQuery(Name = "name")]string name)
         {
             var headphonesName = HttpUtility.UrlDecode(name);
             var adminInfoHeadphonesDTO = new AdminInfoHeadphonesDTO()
