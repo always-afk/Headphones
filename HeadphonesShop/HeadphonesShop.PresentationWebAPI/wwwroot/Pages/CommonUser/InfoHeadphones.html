@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta content="charset=utf-8">
+   </head> 
+   <body>
+       <div>
+           <div>
+               <label>Name: </label>
+               <input id="headphonesName">
+           </div>
+           <div>
+               <label>Company: </label>
+               <input id="companies"></input>
+           </div>
+           <div>
+               <label>Design: </label>
+               <input id="designs"></input>
+           </div>
+           <div>
+               <label>Min Frequency: </label>
+               <input id="minFrequency" type="number" min="0" max="999999" step="1">
+           </div>
+           <div>
+               <label>Max Frequency</label>
+               <input id="maxFrequency" type="number" min="0" max="999999" step="1">
+           </div>
+           <div>
+               <input type="checkbox" id="isFavorite">
+           </div>
+       </div>
+       <script src="../../js/commonUser.js"></script>
+       <script type="text/javascript">
+            getHeadphones();
+        </script>
+   </body>
+</html>

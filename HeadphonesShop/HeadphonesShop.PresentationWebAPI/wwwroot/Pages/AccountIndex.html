@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="POST" action="javascript:void(0)" onsubmit="signIn()">
+        <div class="container form-group">
+            <label>Email: </label>
+            <input name="email" id="email" type="email" class="form-input"/>
+        </div>
+        <div>
+            <label>Password: </label>
+            <input name="password" id="password" type="password" />
+        </div>
+        <div>
+            <button type="submit">Sign In</button>
+        </div>
+    </form>
+   <form method="post" action="javascript:void(0)" onsubmit="signInGoogle()">
+        <div>
+            <button type="submit">Google</button>
+        </div>
+    </form>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/accountIndex.js" asp-append-version="true"></script>
+</body>
+</html>
